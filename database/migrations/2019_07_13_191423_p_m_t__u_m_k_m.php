@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PROFILEUSERS extends Migration
+class PMTUMKM extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,13 @@ class PROFILEUSERS extends Migration
      */
     public function up()
     {
-        Schema::create('PROFILEUSERS', function (Blueprint $table) {
+        Schema::create('PMT_UMKM', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('PROFILEUSERS_ID',100)->unique();
-            $table->char('NAMALENGKAP',50);
-            $table->date('TANGGALLAHIR');
-            $table->char('WILAYAH');
-            $table->char('NOHP');
+            $table->char('IDNARASUMBER',10);
+            $table->char('IDUMKM VARCHAR',10);
+            $table->mediumText('KETERANGANPMT');
+            $table->mediumText('PERMASALAHAN');
+            $table->enum('STATUSPMT',['WAIT','REJECT','APPROVE']);
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ class PROFILEUSERS extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('PROFILEUSERS');
+        Schema::dropIfExists('PMT_UMKM');
     }
 }

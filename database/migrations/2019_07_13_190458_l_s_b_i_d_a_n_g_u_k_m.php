@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PROFILEUSERS extends Migration
+class LSBIDANGUKM extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class PROFILEUSERS extends Migration
      */
     public function up()
     {
-        Schema::create('PROFILEUSERS', function (Blueprint $table) {
+        Schema::create('LSBIDANGUKM', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('PROFILEUSERS_ID',100)->unique();
-            $table->char('NAMALENGKAP',50);
-            $table->date('TANGGALLAHIR');
-            $table->char('WILAYAH');
-            $table->char('NOHP');
+            $table->char('PROFILEUSERS_ID',100);
+            $table->char('BIDANGUMKM_ID',10);
+            $table->char('ALAMATUMKM');
+            $table->char('KONTAKUMKM');
             $table->timestamps();
         });
     }
@@ -31,6 +30,6 @@ class PROFILEUSERS extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('PROFILEUSERS');
+        Schema::dropIfExists('LSBIDANGUKM');
     }
 }
