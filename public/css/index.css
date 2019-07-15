@@ -12,6 +12,12 @@ nav {
     color: #FFF !important;
 }
 
+.nav-item {
+    margin-left: 20px;
+    font-size: 16px;
+    text-transform: uppercase;
+}
+
 .abstract {
     position: absolute;
     top: 1250px;
@@ -114,9 +120,22 @@ nav {
     color: rgba(35, 3, 255, 0.6);
 }
 
+
 /* ---- Footer ---- */
 footer {
     background-color: #8298F9;
+}
+
+
+/* ---- Modal ---- */
+.modal-body img {
+    width: 50px;
+    height: 50px;
+}
+
+.modal-body a {
+    text-decoration: none;
+    border-radius: 10px;
 }
 
 
