@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Auth;
 
 use App\User;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -51,7 +52,7 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:6', 'confirmed'],
         ]);
     }
 
@@ -63,10 +64,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        //ambil nama kemudian str_replace lalu susbstr kan
+        $namaUser = $data['name'];
+        $replacE = str_replace(" ","",$namaUser);
+        $sub_kalimat = substr($replacE,0,6);
+        
+        //ambilnomorterakhir database
+        $maxUsers = User::count();
+        $lastNumber = $maxUsers + (int) 1;
+        //data profileuser_id
+        $idUser = $sub_kalimat.sprintf("%06s",$lastNumber);
+
         return User::create([
-            'name' => $data['name'],
+            'PROFILEUSERS_ID' => $idUser,
+            'USERNAME' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
     }
+
 }
