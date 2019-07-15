@@ -3,7 +3,7 @@
 @section('title', 'Pemerataan Pemberdayaan UMKM')
 
 @section('styles')
-    <link rel="stylesheet" href="{{ asset('css/index.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('public/css/index.css') }}" type="text/css">
 @endsection
 
 @section('content')
@@ -46,7 +46,7 @@
                         <a href="#" class="btn-start">Get Started</a>
                     </div>
                     <div class="col-lg-6">
-                        <img src="{{ asset('img/illustrations/business.svg') }}" alt="Illustration Business">
+                        <img src="{{ asset('public/img/illustrations/business.svg') }}" alt="Illustration Business">
                     </div>
                 </div>
             </div>
@@ -68,7 +68,7 @@
                                 <h3 class="card-title">Cari Solusi</h3>
                             </div>
                             <div class="text-center">
-                                <img class="card-img-top" src="{{ asset('img/illustrations/search-solutions.svg') }}" alt="Card image cap">
+                                <img class="card-img-top" src="{{ asset('public/img/illustrations/search-solutions.svg') }}" alt="Card image cap">
                             </div>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                                 <h3 class="card-title">Tentukan Lokasi</h3>
                             </div>
                             <div class="text-center">
-                                <img class="card-img-top" src="{{ asset('img/illustrations/choose-locations.svg') }}" alt="Card image cap">
+                                <img class="card-img-top" src="{{ asset('public/img/illustrations/choose-locations.svg') }}" alt="Card image cap">
                             </div>
                         </div>
                     </div>
@@ -88,7 +88,7 @@
                                 <h3 class="card-title">Seminar</h3>
                             </div>
                             <div class="text-center">
-                                <img class="card-img-top" src="{{ asset('img/illustrations/seminars.svg') }}" alt="Card image cap">
+                                <img class="card-img-top" src="{{ asset('public/img/illustrations/seminars.svg') }}" alt="Card image cap">
                             </div>
                         </div>
                     </div>
@@ -106,7 +106,7 @@
             </div>
             <div class="row mb-5 justify-content-center">
                 <div class="col">
-                    <img src="{{ asset('img/illustrations/solutions.svg') }}" alt="Illustration Solutions">
+                    <img src="{{ asset('public/img/illustrations/solutions.svg') }}" alt="Illustration Solutions">
                 </div>
                 <div class="col">
                     <h3 class="font-weight-bold">Solusi Pemberdayaan UMKM</h3>
@@ -119,7 +119,7 @@
                     <p>Kami menghubungkan anda selaku pemilik usaha UMKM dengan narasumber dari Lembaga yang menyelenggarakan event untuk menyelesaikan permasalahan dari UMKM.</p>
                 </div>
                 <div class="col">
-                    <img src="{{ asset('img/illustrations/maps.svg') }}" alt="Illustration Solutions">
+                    <img src="{{ asset('public/img/illustrations/maps.svg') }}" alt="Illustration Solutions">
                 </div>
             </div>
         </div>
