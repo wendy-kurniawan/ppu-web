@@ -148,4 +148,8 @@ footer {
         float: none;
         margin-bottom: 20px;
     }
+
+    #about {
+        text-align: center;
+    }
 }
