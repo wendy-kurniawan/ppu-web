@@ -113,7 +113,7 @@
                     <p>Kami menghubungkan anda selaku pemilik usaha UMKM dengan narasumber dari Lembaga yang menyelenggarakan event untuk menyelesaikan permasalahan dari UMKM.</p>
                 </div>
             </div>
-            <div class="row mb-5">
+            <div class="row flex-column-reverse flex-lg-row mb-5">
                 <div class="col">
                     <h3 class="font-weight-bold">Solusi Pemberdayaan UMKM</h3>
                     <p>Kami menghubungkan anda selaku pemilik usaha UMKM dengan narasumber dari Lembaga yang menyelenggarakan event untuk menyelesaikan permasalahan dari UMKM.</p>
