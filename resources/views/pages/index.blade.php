@@ -26,10 +26,12 @@
                         <a class="nav-link" href="#about">About</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">Sign In</button>
+                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">Sign In</button> --}}
+                        <a class="nav-link btn-primary" href="{{ route('login') }}">Sign In</a>
                     </li>
                     <li class="nav-item">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign Up</button>
+                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign Up</button> --}}
+                        <a class="nav-link btn-primary" href="{{ route('register') }}">Sign Up</a>
                     </li>
                 </ul>
             </div>
@@ -129,5 +131,5 @@
         <p class="text-center text-white font-weight-bold">Copyright &copy; 2019 PPU</p>
     </footer>
 
-    @include('partials.modal')
+    {{-- @include('partials.modal') --}}
 @endsection
