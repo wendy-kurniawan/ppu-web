@@ -1,0 +1,18 @@
+/* ---- Global ---- */
+body {
+    background: linear-gradient(140deg,#FF4D4D 10%, #1A22FF 90%) fixed;
+    background-repeat: no-repeat;
+}
+
+form {
+    height: 600px;
+    background-color: #FFF;
+    border-radius: 12px;
+}
+
+/* ---- responsive ---- */
+@media only screen and (max-width: 991px) {
+    img {
+        display: none;
+    }
+}
