@@ -25,14 +25,21 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#about">About</a>
                     </li>
-                    <li class="nav-item">
-                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">Sign In</button> --}}
-                        <a class="nav-link btn-primary" href="{{ route('login') }}">Sign In</a>
-                    </li>
-                    <li class="nav-item">
-                        {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign Up</button> --}}
-                        <a class="nav-link btn-primary" href="{{ route('register') }}">Sign Up</a>
-                    </li>
+                    @auth
+                        <li class="nav-item">
+                            <a class="nav-link btn-primary" href="{{ route('src') }}">My Dashboard</a>
+                        </li>
+                    @endauth
+                    @guest
+                        <li class="nav-item">
+                            {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signInModal">Sign In</button> --}}
+                            <a class="nav-link btn-primary" href="{{ route('login') }}">Sign In</a>
+                        </li>
+                        <li class="nav-item">
+                            {{-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#signUpModal">Sign Up</button> --}}
+                            <a class="nav-link btn-primary" href="{{ route('register') }}">Sign Up</a>
+                        </li>
+                    @endguest
                 </ul>
             </div>
         </nav>
