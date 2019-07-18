@@ -14,6 +14,7 @@
             </div>
             <div class="col justify-content-center align-self-center">
                 <form action="" class="shadow overflow-auto p-5">
+                    @csrf
                     <div class="form-group text-center">
                         <h3>Sign Up</h3>
                     </div>
