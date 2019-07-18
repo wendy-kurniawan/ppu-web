@@ -13,7 +13,7 @@
                 <img src="{{ asset('img/illustrations/user-register.svg') }}" alt="illustration">
             </div>
             <div class="col justify-content-center align-self-center">
-                <form action="" class="shadow overflow-auto p-5">
+                <form action="POST" class="shadow overflow-auto p-5">
                     @csrf
                     <div class="form-group text-center">
                         <h3>Sign Up</h3>
