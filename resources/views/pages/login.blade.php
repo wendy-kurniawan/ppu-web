@@ -13,7 +13,8 @@
                 <img src="{{ asset('img/illustrations/network-man.svg') }}" alt="illustration">
             </div>
             <div class="col justify-content-center align-self-center">
-                <form action="" class="shadow p-5">
+                <form action="POST" class="shadow p-5">
+                    @csrf
                     <div class="form-group text-center">
                         <h3>Sign In</h3>
                     </div>
