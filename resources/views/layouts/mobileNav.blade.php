@@ -13,25 +13,25 @@
                             <li><a data-toggle="collapse" data-target="#inputForm" href="#">Input Form <span
                                         class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                 <ul id="inputForm" class="collapse dropdown-header-top">
-                                    <li><a href="add-bidangkeahlian.html">Bidang Keahlian</a></li>
-                                    <li><a href="add-bidangUMKM.html">Bidang UMKM</a></li>
-                                    <li><a href="add-department.html">Jenis Kegiatan</a></li>
+                                    <li><a href="{{route('bidangkeahlian.index')}}">Bidang Keahlian</a></li>
+                                    <li><a href="{{route('bidangumkm.index')}}">Bidang UMKM</a></li>
+                                    <li><a href="{{route('jeniskegiatan.index')}}">Jenis Kegiatan</a></li>
                                 </ul>
                             </li>
                             <li><a data-toggle="collapse" data-target="#inputForm" href="#">Form Permintaan
                                     <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                 <ul id="inputForm" class="collapse dropdown-header-top">
-                                    <li><a href="add-inputPermintaan.html">Input Permintaan</a></li>
+                                    <li><a href="{{route('permintaan.index')}}">Input Permintaan</a></li>
                                 </ul>
                             </li>
                             <li><a data-toggle="collapse" data-target="#inputForm" href="#">Data <span
                                         class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                 <ul id="inputForm" class="collapse dropdown-header-top">
-                                    <li><a href="add-dataNarasumber.html">Narasumber</a></li>
-                                    <li><a href="add-dataUMKM.html">UMKM</a></li>
+                                    <li><a href="{{route('datanarasumber.index')}}">Narasumber</a></li>
+                                    <li><a href="{{route('dataumkm.index')}}">UMKM</a></li>
                                 </ul>
                             </li>
-                            <li><a href="events.html">Event</a></li>
+                            <li><a href="#">Event</a></li>
                         </ul>
                     </nav>
                 </div>
