@@ -11,10 +11,24 @@
 |
 */
 
+// Route::get('/', function () {
+//     return view('welcome');
+// });
+
 Route::get('/', function () {
-    return view('welcome');
+    return view('pages.index');
 });
 
-Auth::routes();
+// Route::middleware('auth')->group(function() {
+    Route::resource('src', 'Dashboard');
+    Route::resource('panel/bidangkeahlian', 'BidangKeahlian');
+    Route::resource('panel/bidangumkm', 'BidangUMKM');
+    Route::resource('panel/jeniskegiatan', 'JenisKegiatan');
+    Route::resource('panel/permintaan', 'permintaanUMKM');
+    Route::resource('panel/datanarasumber', 'narasumberData');
+    Route::resource('panel/dataumkm', 'UMKMData');
+    Route::resource('panel/myprofile', 'profileUsers');
+// });
 
+Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
