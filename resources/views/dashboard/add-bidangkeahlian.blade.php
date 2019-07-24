@@ -56,9 +56,12 @@
         <!-- responsive CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/responsive.css')}}">
+        <!--Data Tables-->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <!-- modernizr JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}')}}"></script>
+
 @endsection
 @section('contentDashboard')
 
@@ -166,7 +169,7 @@
                                                     <a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle">
                                                         <img src="{{asset('assetLogin/img/product/pro4.jpg')}}" alt="" />
-                                                        <span class="admin-name">Prof.Anderson</span>
+                                                        <span class="admin-name">{{Auth::user()->USERNAME}}</span>
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
                                                     <ul role="menu"
@@ -381,16 +384,18 @@
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                <form id="add-department" action="#" class="add-department">
                                                     <div class="row">
                                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                        <form id="add-department" action="{{route('bidangkeahlian.store')}}" method="POST" class="add-department">
+                                                            @csrf
                                                             <div class="form-group">
                                                                 <label>Jenis Kegiatan</label>
-                                                                <input name="name" type="text" class="form-control"
+                                                                <input name="jenisKegiatan" type="text" class="form-control"
                                                                     placeholder="Jenis Kegiatan">
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <div class="payment-adress">
@@ -399,6 +404,7 @@
                                                             </div>
                                                         </div>
                                                     </div>
+
                                                 </form>
                                             </div>
                                         </div>
@@ -407,83 +413,30 @@
                                 <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"
                                     id="formDataKeahlian">
                                     <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="sparkline13-list">
-                                                <div class="sparkline13-hd">
-                                                    <div class="main-sparkline13-hd">
-                                                        <h1>Projects <span class="table-project-n">Data</span> Table
-                                                        </h1>
-                                                    </div>
-                                                </div>
-                                                <div class="sparkline13-graph">
-                                                    <div class="datatable-dashv1-list custom-datatable-overright">
-                                                        <div id="toolbar">
-                                                            <select class="form-control dt-tb">
-                                                                <option value="">Export Basic</option>
-                                                                <option value="all">Export All</option>
-                                                                <option value="selected">Export Selected</option>
-                                                            </select>
-                                                        </div>
-                                                        <table id="table" data-toggle="table" data-pagination="true"
-                                                            data-search="true" data-show-columns="true"
-                                                            data-show-pagination-switch="true" data-show-refresh="true"
-                                                            data-key-events="true" data-show-toggle="true"
-                                                            data-resizable="true" data-cookie="true"
-                                                            data-cookie-id-table="saveId" data-show-export="true"
-                                                            data-click-to-select="true" data-toolbar="#toolbar">
-                                                            <thead>
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive ">
+                                                <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
+                                                        <thead>
+                                                            <tr>
+                                                                <th>No</th>
+                                                                <th>ID_Kegiatan</th>
+                                                                <th>Nama Kegiatan</th>
+                                                                <th>Status</th>
+                                                            </tr>
+                                                        </thead>
+                                                        <tbody>
+                                                            @foreach ($dataKegiatan as $kegiatan)
                                                                 <tr>
-                                                                    <th data-field="state" data-checkbox="true"></th>
-                                                                    <th data-field="id">ID</th>
-                                                                    <th data-field="name" data-editable="true">Task</th>
-                                                                    <th data-field="email" data-editable="true">Email
-                                                                    </th>
-                                                                    <th data-field="phone" data-editable="true">Phone
-                                                                    </th>
-                                                                    <th data-field="complete">Completed</th>
-                                                                    <th data-field="task" data-editable="true">Task</th>
-                                                                    <th data-field="date" data-editable="true">Date</th>
-                                                                    <th data-field="price" data-editable="true">Price
-                                                                    </th>
-                                                                    <th data-field="action">Action</th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>1</td>
-                                                                    <td>Web Development</td>
-                                                                    <td>admin@uttara.com</td>
-                                                                    <td>+8801962067309</td>
-                                                                    <td class="datatable-ct"><span
-                                                                            class="pie">1/6</span>
-                                                                    </td>
-                                                                    <td>10%</td>
-                                                                    <td>Jul 14, 2017</td>
-                                                                    <td>$5455</td>
-                                                                    <td class="datatable-ct"><i class="fa fa-check"></i>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td></td>
-                                                                    <td>2</td>
-                                                                    <td>Graphic Design</td>
-                                                                    <td>fox@itpark.com</td>
-                                                                    <td>+8801762067304</td>
-                                                                    <td class="datatable-ct"><span
-                                                                            class="pie">230/360</span>
-                                                                    </td>
-                                                                    <td>70%</td>
-                                                                    <td>fab 2, 2017</td>
-                                                                    <td>$8756</td>
-                                                                    <td class="datatable-ct"><i class="fa fa-check"></i>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                                                        <td>1</td>
+                                                                        <td>{{$kegiatan->ID_KEGIATAN}}</td>
+                                                                        <td>{{$kegiatan->NAMA_KEGIATAN}}</td>
+                                                                        <td>{{$kegiatan->NAMA_KEGIATAN}}</td>
+                                                                    </tr>
+                                                                @endforeach
+                                                        </tbody>
+                                                        <tfoot>
+        
+                                                        </tfoot>
+                                                </table>	
                                         </div>
                                     </div>
                                 </div>
@@ -543,14 +496,7 @@
         <script src="{{asset('assetLogin/js/metisMenu/metisMenu-active.js')}}"></script>
         <!-- data table JS
             ============================================ -->
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/tableExport.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/data-table-active.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table-editable.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-editable.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table-resizable.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/colResizable-1.5.source.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table-export.js')}}"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <!-- morrisjs JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/sparkline/jquery.sparkline.min.js')}}"></script>
@@ -577,4 +523,6 @@
         <!-- tawk chat JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/tawk-chat.js')}}"></script>
+        {{-- My Custome js --}}
+        <script src="{{asset('myjs/datatables.js')}}"></script>
 @endsection

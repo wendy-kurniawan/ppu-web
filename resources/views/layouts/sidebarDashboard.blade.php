@@ -16,36 +16,49 @@
                                   class="fa fa-home icon-wrap" aria-hidden="true"></span>
                               <span class="mini-click-non">Home</span></a>
                       </li>
-                      <li>
-                          <a class="has-arrow" href="#" aria-expanded="false">
-                              <span class="fa fa-pencil-square icon-wrap"></span>
-                              <span class="mini-click-non">Input Form</span></a>
-                          <ul class="submenu-angle" aria-expanded="false">
-                              <li>
-                                  <a title="All Professors" href="{{route('bidangkeahlian.index')}}">
-                                      <span class="mini-sub-pro">Bidang Keahlian</span></a>
-                              </li>
-                              <li>
-                                  <a title="Add Professor" href="{{route('bidangumkm.index')}}">
-                                      <span class="mini-sub-pro"></span>Bidang UMKM</a>
-                              </li>
-                              <li>
-                                  <a title="Add Professor" href="{{route('jeniskegiatan.index')}}">
-                                      <span class="mini-sub-pro">Jenis Kegiatan</span></a>
-                              </li>
-                          </ul>
-                      </li>
-                      <li>
-                          <a class="has-arrow" href="#" aria-expanded="false">
-                              <span class="fa fa-question-circle-o icon-wrap"></span>
-                              <span class="mini-click-non">Form Permintaan</span></a>
-                          <ul class="submenu-angle" aria-expanded="false">
-                              <li>
-                                  <a title="All Professors" href="{{route('permintaan.index')}}">
-                                      <span class="mini-sub-pro">Input Permintaan</span></a>
-                              </li>
-                          </ul>
-                      </li>
+                        @if (Auth::user()->STATUSUSER == "ADMIN")
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                                <span class="fa fa-pencil-square icon-wrap"></span>
+                                <span class="mini-click-non">Input Form</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li>
+                                    <a title="All Professors" href="{{route('bidangkeahlian.index')}}">
+                                    <span class="mini-sub-pro">Bidang Keahlian</span></a>
+                                </li>
+                                <li>
+                                    <a title="Add Professor" href="{{route('bidangumkm.index')}}">
+                                    <span class="mini-sub-pro"></span>Bidang UMKM</a>
+                                </li>
+                                <li>
+                                    <a title="Add Professor" href="{{route('jeniskegiatan.index')}}">
+                                    <span class="mini-sub-pro">Jenis Kegiatan</span></a>
+                                </li>                     
+                            </ul>
+                        </li>
+                        @elseif (Auth::user()->STATUSUSER == "UMKM")
+                                {{-- do something --}}
+                        @else
+                            {{-- do something narasumber --}}
+                        @endif 
+
+                        @if (Auth::user()->STATUSUSER == "ADMIN")
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                <span class="fa fa-question-circle-o icon-wrap"></span>
+                                <span class="mini-click-non">Form Permintaan</span></a>
+                                    <ul class="submenu-angle" aria-expanded="false">
+                                        <li>
+                                            <a title="All Professors" href="{{route('permintaan.index')}}">
+                                            <span class="mini-sub-pro">Input Permintaan</span></a>
+                                        </li>
+                                    </ul>
+                            </li>
+                        @elseif (Auth::user()->STATUSUSER == "UMKM")
+                            {{-- do something --}}
+                        @else
+                            {{-- do something narasumber --}}
+                        @endif
                       <li>
                           <a class="has-arrow" href="#" aria-expanded="false">
                               <span class="fa fa-database icon-wrap"></span>

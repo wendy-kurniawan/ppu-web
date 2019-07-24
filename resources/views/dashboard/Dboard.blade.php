@@ -61,7 +61,6 @@
         <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}')}}"></script>
 @endsection
 @section('contentDashboard')
-    
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
         <div class="container-fluid">
@@ -142,7 +141,7 @@
                                                     <a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle">
                                                         <img src="{{asset('assetLogin/img/product/pro4.jpg')}}" alt="" />
-                                                        <span class="admin-name">Prof.Anderson</span>
+                                                        <span class="admin-name">{{ Auth::user()->USERNAME }}</span>
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
                                                     <ul role="menu"
@@ -322,6 +321,9 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading">
                                             <h3>Pemerataan Pemberdayaan UMKM</h3>
+                                            <span>Nama: {{ Auth::user()->USERNAME }}</span> <br>
+                                            <span>Email: {{ Auth::user()->email }}</span> <br>
+                                            <span>Status: {{ Auth::user()->STATUSUSER }}</span>
                                             <!-- <form role="search" class="sr-input-func">
                                                 <input type="text" placeholder="Search..."
                                                     class="search-int form-control">

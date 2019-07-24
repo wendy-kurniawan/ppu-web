@@ -15,7 +15,7 @@ class INPTJENISKEGIATAN extends Migration
     {
         Schema::create('INPTJENISKEGIATAN', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('ID_KEGIATAN')->unique();
+            $table->char('ID_KEGIATAN',20)->unique();
             $table->char('NAMA_KEGIATAN');
             $table->timestamps();
         });
