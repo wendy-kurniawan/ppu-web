@@ -20,6 +20,7 @@ class PROFILEUSERS extends Migration
             $table->date('TANGGALLAHIR');
             $table->char('WILAYAH');
             $table->char('NOHP');
+            $table->char('GAMBAR');
             $table->timestamps();
         });
     }

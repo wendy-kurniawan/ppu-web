@@ -27,7 +27,7 @@
                     </li>
                     @auth
                         <li class="nav-item">
-                            <a class="nav-link btn-primary" href="{{ route('src') }}">My Dashboard</a>
+                            <a class="nav-link btn-primary" href="{{ route('src.index') }}">My Dashboard</a>
                         </li>
                     @endauth
                     @guest

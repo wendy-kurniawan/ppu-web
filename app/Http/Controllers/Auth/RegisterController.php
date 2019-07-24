@@ -29,7 +29,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/src';
 
     /**
      * Create a new controller instance.
@@ -64,23 +64,59 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        //ambil nama kemudian str_replace lalu susbstr kan
-        $namaUser = $data['name'];
-        $replacE = str_replace(" ","",$namaUser);
-        $sub_kalimat = substr($replacE,0,6);
-        
-        //ambilnomorterakhir database
-        $maxUsers = User::count();
-        $lastNumber = $maxUsers + (int) 1;
-        //data profileuser_id
-        $idUser = $sub_kalimat.sprintf("%06s",$lastNumber);
+        /*Check the Condition */
+        if($data['statusUser'] == "UMKM"){
+            //ambil nama kemudian str_replace lalu susbstr kan
+            $namaUser = $data['namaUMKM'];
+            $replacE = str_replace(" ","",$namaUser);
+            $sub_kalimat = substr($replacE,0,6);
+            
+            //ambilnomorterakhir database
+            $maxUsers = User::count();
+            $lastNumber = $maxUsers + (int) 1;
+            //data profileuser_id
+            $idUser = $sub_kalimat.sprintf("%06s",$lastNumber);
 
-        return User::create([
+
+            /*for Check the validastion */
+            // $password   = $data['password'];
+            // $email      = $data['email'];
+            // $status     = $data['statusUser'];
+            // dd($idUser,$namaUser,$password,$email,$status);
+
+              return User::create([
             'PROFILEUSERS_ID' => $idUser,
             'USERNAME' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-        ]);
-    }
+            'STATUSUSER'=> $data['statusUser'],
+            ]);
+        }else{
+            //ambil nama kemudian str_replace lalu susbstr kan
+            $namaNarasumber = $data['name'];
+            $replacE = str_replace(" ","",$namaNarasumber);
+            $sub_kalimat = substr($replacE,0,6);
+            
+            //ambilnomorterakhir database
+            $maxUsers = User::count();
+            $lastNumber = $maxUsers + (int) 1;
+            //data profileuser_id
+            $idNarasumber = $sub_kalimat.sprintf("%06s",$lastNumber);
 
+              /*for Check the validastion */
+            // $password   = $data['password'];
+            // $email      = $data['email'];
+            // $status     = $data['statusUser'];
+            // dd($idNarasumber,$password,$email,$status);
+
+            return User::create([
+                'PROFILEUSERS_ID' => $idNarasumber,
+                'USERNAME' => $data['name'],
+                'email' => $data['email'],
+                'password' => Hash::make($data['password']),
+                'STATUSUSER'=> $data['statusUser'],
+                ]);
+        
+        }
+    }
 }

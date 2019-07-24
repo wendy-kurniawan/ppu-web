@@ -148,14 +148,20 @@
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li>
-                                                            <a href="{{route('myprofile.index')}}">
-                                                                <span class="edu-icon edu-user-rounded author-log-ic">
-                                                                </span>MyProfile</a>
+                                                            <a class="dropdown-item" href="{{route('myprofile.index')}}">
+                                                                MyProfile
+                                                            </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="edu-icon edu-locked author-log-ic">
-                                                                </span>LogOut</a>
+                                                        <li> 
+                                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault();
+                                                                          document.getElementById('logout-form').submit();">
+                                                             {{ __('Logout') }}
+                                                            </a>
+                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                             @csrf
+                                                         </form>
+                                                           
                                                         </li>
                                                     </ul>
                                                 </li>
