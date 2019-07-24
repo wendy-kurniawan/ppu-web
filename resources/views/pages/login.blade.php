@@ -13,21 +13,39 @@
                 <img src="{{ asset('img/illustrations/network-man.svg') }}" alt="illustration">
             </div>
             <div class="col justify-content-center align-self-center">
-                <form action="POST" class="shadow p-5">
-                    @csrf
+                <div class="shadow p-5 bg-white">
                     <div class="form-group text-center">
                         <h3>Sign In</h3>
                     </div>
+                <form method="POST" action="{{ route('login') }}">
+                        @csrf
                     <div class="form-group">
-                        <label for="email">Email address</label>
-                        <input type="email" class="form-control" id="email" aria-describedby="emailHelp" placeholder="Enter email">
+                        <label for="email">{{ __('E-Mail Address') }}</label>
+                        <div class="form-group">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
+
                     <div class="form-group">
-                        <label for="password">Password</label>
-                        <input type="password" class="form-control" id="password" placeholder="Password">
+                        <label for="password" >{{ __('Password') }}</label>
+                            <div class="form-group">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
+                     </form>
+                </div>
             </div>
         </div>
     </div>

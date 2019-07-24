@@ -19,7 +19,7 @@ Route::get('/', function () {
     return view('pages.index');
 });
 
-// Route::middleware('auth')->group(function() {
+Route::middleware('auth')->group(function() {
     Route::resource('src', 'Dashboard');
     Route::resource('panel/bidangkeahlian', 'BidangKeahlian');
     Route::resource('panel/bidangumkm', 'BidangUMKM');
@@ -28,7 +28,7 @@ Route::get('/', function () {
     Route::resource('panel/datanarasumber', 'narasumberData');
     Route::resource('panel/dataumkm', 'UMKMData');
     Route::resource('panel/myprofile', 'profileUsers');
-// });
+});
 
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
