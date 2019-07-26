@@ -44,6 +44,7 @@
                             </div>
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <a href="{{route('register')}}">Belum Ada Account?Klik disini</a>
                      </form>
                 </div>
             </div>

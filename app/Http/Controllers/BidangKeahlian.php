@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Alert;
 
+
 class BidangKeahlian extends Controller
 {
     /**
@@ -17,10 +18,10 @@ class BidangKeahlian extends Controller
     public function index()
     {
         //
-        $dataKegiatan = DB::table('inptjeniskegiatan')->get();
-
-        return view('dashboard/add-bidangkeahlian',[
-            'dataKegiatan' => $dataKegiatan,
+        $dataSkill = DB::table('skill')->get();
+        return view('dashboard/add-bidangkeahlian',
+        [
+            'dataSkill' => $dataSkill,
         ]);
     }
 
@@ -42,35 +43,36 @@ class BidangKeahlian extends Controller
      */
     public function store(Request $request)
     {
-        $namaKegiatan = $request->jenisKegiatan;
+        //
+        $namaKeahlian = $request->jenisKeahlian;
         /*check if exits */
-        $cekKegiatan = DB::table('inptjeniskegiatan')->where('NAMA_KEGIATAN', '=',$namaKegiatan)->get()->count();
+        $cekSkill = DB::table('skill')->where('NAMASKILL', '=',$namaKeahlian)->get()->count();
        
-        if ($cekKegiatan > 0) {
-            Alert::error('Data '.$namaKegiatan.' telah terdaftar', 'Error')->persistent('Close')->autoclose(3000);
+        if ($cekSkill > 0) {
+            Alert::error('Data '.$namaKeahlian.' telah terdaftar', 'Error')->persistent('Close')->autoclose(3000);
             return redirect('panel/bidangkeahlian');
         }else {
         /*ambil nama kemudian str_replace lalu susbstr kan */
-        $namaKegiatan = $request->jenisKegiatan;
-        $replacE = str_replace(" ","",$namaKegiatan);
+        $namaKeahlian = $request->jenisKeahlian;
+        $replacE = str_replace(" ","",$namaKeahlian);
         $subKalimat =  substr($replacE,0,6);
         /*count form DB */
-        $lastCount = DB::table('inptjeniskegiatan')->count();
+        $lastCount = DB::table('skill')->count();
         $lastNumber = $lastCount + (int) 1;
-        $idJenisKegiatan = $subKalimat.sprintf("%06s",$lastNumber);
+        $idSkill = $subKalimat.sprintf("%06s",$lastNumber);
         /*date*/
         $current_date_time = Carbon::now()->toDateTimeString();
 
-        DB::table('inptjeniskegiatan')->insert([
-            'ID_KEGIATAN' => $idJenisKegiatan,
-            'NAMA_KEGIATAN' => $namaKegiatan,
+        DB::table('skill')->insert([
+            'ID_SKILL' => $idSkill,
+            'NAMASKILL' => $namaKeahlian,
             'created_at' => $current_date_time
         ]);
 
-        Alert::success('Data '.$namaKegiatan.' Telah Tersimpan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        Alert::success('Data '.$namaKeahlian.' Telah Tersimpan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
         return redirect('panel/bidangkeahlian');
+        }
     }
-}
 
     /**
      * Display the specified resource.

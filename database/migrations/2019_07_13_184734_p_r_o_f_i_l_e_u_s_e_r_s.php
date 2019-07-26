@@ -15,12 +15,13 @@ class PROFILEUSERS extends Migration
     {
         Schema::create('PROFILEUSERS', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('PROFILEUSERS_ID',100)->unique();
-            $table->char('NAMALENGKAP',50);
+            $table->char('PROFILE_ID',20)->unique();
+            $table->char('NAMALENGKAP',70);
             $table->date('TANGGALLAHIR');
-            $table->char('WILAYAH');
             $table->char('NOHP');
             $table->char('GAMBAR');
+            $table->mediumText('BIOGRAFI');
+            $table->enum('JENISKL',['Mohon Di ISI','Perempuan','Laki-Laki']);
             $table->timestamps();
         });
     }

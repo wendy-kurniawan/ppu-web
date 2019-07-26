@@ -15,8 +15,8 @@ class BIDANGUMKM extends Migration
     {
         Schema::create('BIDANGUMKM', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('ID_KEGIATAN')->unique();
-            $table->char('NAMA_KEGIATAN');
+            $table->char('ID_UMKM',12)->unique();
+            $table->char('NAMA_UMKM');
             $table->timestamps();
         });
     }

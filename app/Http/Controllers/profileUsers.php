@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Alert;
 
 class profileUsers extends Controller
 {
@@ -11,10 +14,23 @@ class profileUsers extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        //GET Data Myprofile
+        $dataID     =$request->myProfile;
         //
-        return view('dashboard/profileUsers');
+        $users = DB::table('users')
+            ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
+            ->select('users.*', 'profileusers.*')
+            ->where('PROFILE_ID','=', $dataID)
+            ->get();
+    
+        // dd($users);
+        
+        return view('dashboard/profileUsers',
+        [
+            'users' => $users,
+        ]);
     }
 
     /**

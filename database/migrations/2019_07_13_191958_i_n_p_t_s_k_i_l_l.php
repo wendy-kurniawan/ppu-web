@@ -15,8 +15,8 @@ class INPTSKILL extends Migration
     {
         Schema::create('INPTSKILL', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('PROFILEUSERS_ID',10);
-            $table->char('IDSKILL',10);
+            $table->char('SKILUSERS_ID',12);
+            $table->char('IDSKILL',12);
             $table->char('NAMASKILL');
             $table->timestamps();
         });

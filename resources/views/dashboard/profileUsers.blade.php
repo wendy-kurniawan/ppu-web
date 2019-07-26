@@ -168,7 +168,7 @@
                                                     <a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle">
                                                         <img src="{{asset('assetLogin/img/product/pro4.jpg')}}" alt="" />
-                                                        <span class="admin-name">Prof.Anderson</span>
+                                                        <span class="admin-name">{{Auth::user()->USERNAME}}</span>
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
                                                     <ul role="menu"
@@ -386,6 +386,15 @@
                                                     class="search-int form-control">
                                                 <a href="#"><i class="fa fa-search"></i></a>
                                             </form>
+                                        </div>
+                                        <div>
+                                                @foreach ($users as $itemUsers)
+                                                
+                                                NAMA:{{$itemUsers->NAMALENGKAP}}<br>
+                                                Email:{{$itemUsers->email}}<br>
+                                                TANGGAL LAHIR:{{$itemUsers->TANGGALLAHIR}}<br>
+                                                Gambar:{{$itemUsers->GAMBAR}}
+                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -834,18 +843,7 @@
                     </div>
                 </div>
             </div>
-            <div class="footer-copyright-area">
-                <div class="container-fluid">
-                    <div class="row">
-                        <div class="col-lg-12">
-                            <div class="footer-copy-right">
-                                <p>Copyright © 2018. All rights reserved. Template by <a
-                                        href="https://colorlib.com/wp/templates/">Colorlib</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.footer')
         </div>
 @endsection
 

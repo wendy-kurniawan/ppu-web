@@ -147,9 +147,15 @@
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li>
-                                                            <a class="dropdown-item" href="{{route('myprofile.index')}}">
-                                                                MyProfile
-                                                            </a>
+                                                            <a class="dropdown-item"  href="{{ route('myprofile.index') }}"
+                                                                onclick="event.preventDefault();
+                                                                              document.getElementById('my-profile').submit();">
+                                                                 {{ __('MyProfile') }}
+                                                                </a>
+                                                             <form id="my-profile" action="{{ route('myprofile.index') }}" method="GET" style="display: none;">
+                                                                 @csrf
+                                                                 <input type="text" name="myProfile" value="{{Auth::user()->PROFILEUSERS_ID}}"/>
+                                                             </form>
                                                         </li>
                                                         <li> 
                                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -499,18 +505,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="footer-copy-right">
-                            <p>Copyright © 2018. All rights reserved. Template by <a
-                                    href="https://colorlib.com/wp/templates/">Colorlib</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('layouts.footer')
     </div>
 @endsection
 

@@ -175,14 +175,19 @@
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li>
-                                                            <a href="{{route('myprofile.index')}}">
-                                                                <span class="edu-icon edu-user-rounded author-log-ic">
-                                                                </span>MyProfile</a>
+                                                            <a class="dropdown-item" href="{{route('myprofile.index')}}">
+                                                                MyProfile
+                                                            </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="edu-icon edu-locked author-log-ic">
-                                                                </span>LogOut</a>
+                                                        <li> 
+                                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault();
+                                                                          document.getElementById('logout-form').submit();">
+                                                             {{ __('Logout') }}
+                                                            </a>
+                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                             @csrf
+                                                         </form>
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -389,9 +394,9 @@
                                                         <form id="add-department" action="{{route('bidangkeahlian.store')}}" method="POST" class="add-department">
                                                             @csrf
                                                             <div class="form-group">
-                                                                <label>Jenis Kegiatan</label>
-                                                                <input name="jenisKegiatan" type="text" class="form-control"
-                                                                    placeholder="Jenis Kegiatan">
+                                                                <label>Jenis Bidang Keahlian</label>
+                                                                <input name="jenisKeahlian" type="text" class="form-control"
+                                                                    placeholder="Jenis Keahlian">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -404,7 +409,6 @@
                                                             </div>
                                                         </div>
                                                     </div>
-
                                                 </form>
                                             </div>
                                         </div>
@@ -418,19 +422,19 @@
                                                         <thead>
                                                             <tr>
                                                                 <th>No</th>
-                                                                <th>ID_Kegiatan</th>
-                                                                <th>Nama Kegiatan</th>
+                                                                <th>ID_Bidang Keahlian</th>
+                                                                <th>Nama Keahlian</th>
                                                                 <th>Status</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($dataKegiatan as $kegiatan)
+                                                                @foreach ($dataSkill as $itemSkill)    
                                                                 <tr>
-                                                                        <td>1</td>
-                                                                        <td>{{$kegiatan->ID_KEGIATAN}}</td>
-                                                                        <td>{{$kegiatan->NAMA_KEGIATAN}}</td>
-                                                                        <td>{{$kegiatan->NAMA_KEGIATAN}}</td>
-                                                                    </tr>
+                                                                    <td>1</td>
+                                                                    <td>{{$itemSkill->ID_SKILL}}</td>
+                                                                    <td>{{$itemSkill->NAMASKILL}}</td>
+                                                                    <td>button</td>
+                                                                </tr>
                                                                 @endforeach
                                                         </tbody>
                                                         <tfoot>
@@ -446,18 +450,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="footer-copy-right">
-                            <p>Copyright © 2018. All rights reserved. Template by <a
-                                    href="https://colorlib.com/wp/templates/">Colorlib</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('layouts.footer')
     </div>
 @endsection
 

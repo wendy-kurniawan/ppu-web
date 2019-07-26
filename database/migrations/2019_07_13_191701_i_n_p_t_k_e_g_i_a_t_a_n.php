@@ -15,8 +15,8 @@ class INPTKEGIATAN extends Migration
     {
         Schema::create('INPTKEGIATAN', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('IDUMKM',10);
-            $table->char('IDNARASUMBER',10);
+            $table->char('IDUMKM',12);
+            $table->char('IDNARASUMBER',12);
             $table->char('JUDULACARA');
             $table->mediumText('KETKEGIATAN');
             $table->dateTime('TGLMULAI');

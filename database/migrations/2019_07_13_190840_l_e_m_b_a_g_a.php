@@ -15,8 +15,8 @@ class LEMBAGA extends Migration
     {
         Schema::create('LSLEMBAGA', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('PROFILEUSERS_ID',10);
-            $table->char('IDLEMBAGA',10);
+            $table->char('PROFILEUSERS_ID',12);
+            $table->char('IDLEMBAGA',12);
             $table->timestamps();
         });
     }

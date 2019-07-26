@@ -15,7 +15,7 @@ class INPTLEMBAGA extends Migration
     {
         Schema::create('INPTLEMBAGA', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('IDLEMBAGA',10)->unique(); 
+            $table->char('IDLEMBAGA',12)->unique(); 
             $table->char('NAMALEMBAGA');
             $table->char('ALAMATLEMBAGA');
             $table->char('KONTAK');
