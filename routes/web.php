@@ -30,5 +30,9 @@ Route::middleware('auth')->group(function() {
     Route::resource('panel/myprofile', 'profileUsers');
 });
 
+Route::get('/event', function() {
+    return view('pages.event');
+})->name('event');;
+
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
