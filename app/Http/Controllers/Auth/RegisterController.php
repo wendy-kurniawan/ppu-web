@@ -64,6 +64,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+
         /*Check the Condition */
         if($data['statusUser'] == "UMKM"){
             //ambil nama kemudian str_replace lalu susbstr kan
@@ -87,6 +88,7 @@ class RegisterController extends Controller
               return User::create([
             'PROFILEUSERS_ID' => $idUser,
             'USERNAME' => $data['name'],
+            'NAMAUMKM' => $data['namaUMKM'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
             'STATUSUSER'=> $data['statusUser'],

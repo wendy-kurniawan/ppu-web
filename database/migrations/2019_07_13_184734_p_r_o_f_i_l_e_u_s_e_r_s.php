@@ -17,11 +17,13 @@ class PROFILEUSERS extends Migration
             $table->bigIncrements('NO');
             $table->char('PROFILE_ID',20)->unique();
             $table->char('NAMALENGKAP',70);
-            $table->date('TANGGALLAHIR');
-            $table->char('NOHP');
-            $table->char('GAMBAR');
-            $table->mediumText('BIOGRAFI');
-            $table->enum('JENISKL',['Mohon Di ISI','Perempuan','Laki-Laki']);
+            $table->date('TANGGALLAHIR')->nullable();
+            $table->char('NOHPUMKM',13)->nullable();
+            $table->char('NOHP',13)->nullable();
+            $table->char('GAMBAR')->nullable();
+            $table->mediumText('BIOGRAFI')->nullable();
+            $table->enum('JENISKL',[' ','Perempuan','Laki-Laki']);
+            $table->char('ALAMATUMKM')->nullable();
             $table->timestamps();
         });
     }

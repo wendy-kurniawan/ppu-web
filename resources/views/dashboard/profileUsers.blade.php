@@ -92,28 +92,6 @@
                                     </div>
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
-                                            <ul class="nav navbar-nav mai-top-nav">
-                                                <li class="nav-item"><a href="#" class="nav-link">Home</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">About</a>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Services</a>
-                                                </li>
-                                                <li class="nav-item dropdown res-dis-nn">
-                                                    <a href="#" data-toggle="dropdown" role="button"
-                                                        aria-expanded="false" class="nav-link dropdown-toggle">Project
-                                                        <span class="angle-down-topmenu"><i
-                                                                class="fa fa-angle-down"></i></span></a>
-                                                    <div role="menu" class="dropdown-menu animated zoomIn">
-                                                        <a href="#" class="dropdown-item">Documentation</a>
-                                                        <a href="#" class="dropdown-item">Expert Backend</a>
-                                                        <a href="#" class="dropdown-item">Expert FrontEnd</a>
-                                                        <a href="#" class="dropdown-item">Contact Support</a>
-                                                    </div>
-                                                </li>
-                                                <li class="nav-item"><a href="#" class="nav-link">Support</a>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
@@ -174,14 +152,26 @@
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li>
-                                                            <a href="{{route('myprofile.index')}}">
-                                                                <span class="edu-icon edu-user-rounded author-log-ic">
-                                                                </span>MyProfile</a>
+                                                            <a class="dropdown-item"  href="{{ route('myprofile.index') }}"
+                                                                onclick="event.preventDefault();
+                                                                              document.getElementById('my-profile').submit();">
+                                                                 {{ __('MyProfile') }}
+                                                                </a>
+                                                             <form id="my-profile" action="{{ route('myprofile.index') }}" method="GET" style="display: none;">
+                                                                 @csrf
+                                                                 <input type="text" name="myProfile" value="{{Auth::user()->PROFILEUSERS_ID}}"/>
+                                                             </form>
                                                         </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="edu-icon edu-locked author-log-ic">
-                                                                </span>LogOut</a>
+                                                        <li> 
+                                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault();
+                                                                          document.getElementById('logout-form').submit();">
+                                                             {{ __('Logout') }}
+                                                            </a>
+                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                             @csrf
+                                                         </form>
+                                                           
                                                         </li>
                                                     </ul>
                                                 </li>
@@ -381,27 +371,16 @@
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading">
-                                            <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..."
-                                                    class="search-int form-control">
-                                                <a href="#"><i class="fa fa-search"></i></a>
-                                            </form>
+                                            <h3>Profile Anda</h3>
                                         </div>
                                         <div>
-                                                @foreach ($users as $itemUsers)
-                                                
-                                                NAMA:{{$itemUsers->NAMALENGKAP}}<br>
-                                                Email:{{$itemUsers->email}}<br>
-                                                TANGGAL LAHIR:{{$itemUsers->TANGGALLAHIR}}<br>
-                                                Gambar:{{$itemUsers->GAMBAR}}
-                                            @endforeach
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Student Profile</span>
+                                            <li><span class="bread-blod">MyProfile</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -416,56 +395,85 @@
         <div class="single-pro-review-area mt-t-30 mg-b-15">
             <div class="container-fluid">
                 <div class="row">
+                    @foreach ($users as $itemUsers)
                     <div class="col-lg-4 col-md-4 col-sm-4 col-xs-12">
                         <div class="profile-info-inner">
                             <div class="profile-img">
-                                <img src="{{asset('assetLogin/img/profile/1.jpg')}}" alt="" />
+                                <h3>Profile</h3>
+                                <span>{{$itemUsers->STATUSUSER}}</span>
+                                <img src="{{asset('assetLogin/img/profile/'.$itemUsers->GAMBAR)}}" width="400px" height="400px" alt="" />
                             </div>
                             <div class="profile-details-hr">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr">
-                                            <p><b>Nama</b><br /> Marfuah SI,KOMP,BBC,ACCDE</p>
+                                            @if ($itemUsers->STATUSUSER == "UMKM")
+                                            <p><b>Nama</b><br /> {{$itemUsers->NAMAUMKM}}</p>
+                                            @elseif($itemUsers->STATUSUSER == "NARASUMBER")
+                                            <p><b>Nama</b><br /> {{$itemUsers->NAMALENGKAP}}</p>
+                                            @else
+                                            <p><b>Nama</b><br /> {{$itemUsers->NAMALENGKAP}}</p>
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
+                                        @if ($itemUsers->STATUSUSER == "UMKM")
                                         <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                            <p><b>Lembaga</b><br /> Universitas Universal</p>
+                                            <p><b>Lembaga</b><br /> {{$itemUsers->NAMAUMKM}}</p>
                                         </div>
+                                        @elseif ($itemUsers->STATUSUSER == "NARASUMBER")
+                                        <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
+                                            <p><b>Tanggal Lahir</b><br /> {{ \Carbon\Carbon::parse($itemUsers->TANGGALLAHIR)->format('d-m-Y')}}</p>
+                                        </div>                                            
+                                        @endif
                                     </div>
                                 </div>
                                 <hr>
                                 <div class="row">
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr">
-                                            <p><b>Email</b><br /> marfuah916@gmail.com</p>
+                                            <p><b>Email</b><br />{{$itemUsers->email}}<br></p>
                                         </div>
                                     </div>
                                     <div class="col-lg-6 col-md-12 col-sm-12 col-xs-6">
                                         <div class="address-hr tb-sm-res-d-n dps-tb-ntn">
-                                            <p><b>Hanphone</b>
+                                            @if ($itemUsers->STATUSUSER == "NARASUMBER")
+                                            <p><b>Handphone</b>
                                                 <i class="fa fa-mobile fa-lg" aria-hidden="true"></i><br />
-                                                +6287664729212</p>
+                                                {{$itemUsers->NOHP}}</p>
+                                            @elseif($itemUsers->STATUSUSER == "UMKM")
                                             <p><b>Telepon Lembaga</b>
                                                 <i class="fa fa-phone fa-lg" aria-hidden="true"></i><br />
-                                                +6287664729212</p>
+                                                {{$itemUsers->NOHPUMKM}}</p>
+                                            @else
+                                                <p><b>Handphone</b>
+                                                <i class="fa fa-mobile fa-lg" aria-hidden="true"></i><br />
+                                                {{$itemUsers->NOHP}}</p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
-                                <hr>
                                 <div class="row">
                                     <div class="col-lg-12">
                                         <div class="address-hr">
+                                            @if ($itemUsers->STATUSUSER == "UMKM")
+                                            <hr>
                                             <p><b>Alamat Lembaga</b><br />
-                                                Komplek, Jl. Mitra Raya No.29, Tlk. Tering,
-                                                Kec.
-                                                Batam Kota, Kota Batam, Kepulauan Riau 29444 </p>
+                                                {{$itemUsers->ALAMATUMKM}}
+                                            </p>
+                                            @elseif($itemUsers->STATUSUSER == "NARASUMBER")
+                                            <hr>
+                                            <p><b>Jenis Jelamin</b><br />
+                                                {{$itemUsers->JENISKL}}
+                                            </p>
+                                            @endif
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    @endforeach
                     <div class="col-lg-8 col-md-8 col-sm-8 col-xs-12">
                         <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
                             <ul id="myTabedu1" class="tab-review-design">
@@ -476,32 +484,13 @@
                             <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
                                 <div class="product-tab-list tab-pane fade active in" id="Biography">
                                     <div class="row">
+                                        @foreach ($users as $bioProfil)
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div class="row">
                                                     <div class="col-lg-12">
                                                         <div class="content-profile">
-                                                            <p>Donec pede justo, fringilla vel, aliquet nec, vulputate
-                                                                eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                                                                venenatis vitae, justo. Nullam dictum felis eu pede
-                                                                mollis pretium. Integer tincidunt.Cras
-                                                                dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                                eleifend tellus. Aenean leo ligula, porttitor eu,
-                                                                consequat vitae, eleifend ac, enim.</p>
-                                                            <p>Donec pede justo, fringilla vel, aliquet nec, vulputate
-                                                                eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                                                                venenatis vitae, justo. Nullam dictum felis eu pede
-                                                                mollis pretium. Integer tincidunt.Cras
-                                                                dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                                eleifend tellus. Aenean leo ligula, porttitor eu,
-                                                                consequat vitae, eleifend ac, enim.</p>
-                                                            <p>Donec pede justo, fringilla vel, aliquet nec, vulputate
-                                                                eget, arcu. In enim justo, rhoncus ut, imperdiet a,
-                                                                venenatis vitae, justo. Nullam dictum felis eu pede
-                                                                mollis pretium. Integer tincidunt.Cras
-                                                                dapibus. Vivamus elementum semper nisi. Aenean vulputate
-                                                                eleifend tellus. Aenean leo ligula, porttitor eu,
-                                                                consequat vitae, eleifend ac, enim.</p>
+                                                            <p align="justify">{{$bioProfil->BIOGRAFI}}</p>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -566,34 +555,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row">
-                                                    <div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="skill-title">
-                                                                    <h2>Subjects</h2>
-                                                                    <hr />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="ex-pro">
-                                                            <ul>
-                                                                <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor
-                                                                    sit amet, consectetur adipiscing elit.</li>
-                                                                <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor
-                                                                    sit amet, consectetur adipiscing elit.</li>
-                                                                <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor
-                                                                    sit amet, consectetur adipiscing elit.</li>
-                                                                <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor
-                                                                    sit amet, consectetur adipiscing elit.</li>
-                                                                <li><i class="fa fa-angle-right"></i> Lorem ipsum dolor
-                                                                    sit amet, consectetur adipiscing elit.</li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                                 <div class="product-tab-list tab-pane fade" id="reviews">
@@ -769,24 +733,40 @@
                                 </div>
                                 <div class="product-tab-list tab-pane fade" id="updateProfile">
                                     <div class="row">
+                                        @foreach ($users as $profile)
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div class="row">
                                                     <div class="col-lg-6">
-                                                        <div class="form-group">
-                                                            <label>Nama Lembaga</label>
-                                                            <input name="number" type="text" class="form-control"
-                                                                placeholder="Nama Lembaga">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Alamat Lembaga</label>
-                                                            <input type="text" class="form-control"
-                                                                placeholder="Alamat Lembaga">
-                                                        </div>
-                                                        <div class="form-group">
-                                                            <label>Phone</label>
-                                                            <input type="text" class="form-control" placeholder="Phone">
-                                                        </div>
+                                                        <form action="{{route('myprofile.store')}}" method="POST" enctype="multipart/form-data">
+                                                            @csrf
+                                                            <input type="hidden" name="statUser" value="{{$profile->STATUSUSER}}">
+                                                            <input type="hidden" name="idProfile" value="{{$profile->PROFILE_ID}}">
+                                                            @if ($profile->STATUSUSER == "UMKM")
+                                                                <div class="form-group">
+                                                                    <label>Alamat Lembaga</label>
+                                                                    <input type="text" name="addrsLembaga" value="{{$profile->ALAMATUMKM}}" class="form-control"
+                                                                        placeholder="Alamat Lembaga">
+                                                                </div>
+                                                            @endif
+                                                             @if ($profile->STATUSUSER =="UMKM")
+                                                                <div class="form-group">
+                                                                    <label>No Telp UMKM</label>
+                                                                    <input type="text" class="form-control" value="{{$profile->NOHPUMKM}}" name="profileTelpUMKM" maxlength="13" placeholder="No Tlp UMKM">
+                                                                </div>
+                                                            @elseif($profile->STATUSUSER =="NARASUMBER")
+                                                                <div class="form-group">
+                                                                    <label>Biography</label>
+                                                                    <textarea name="bioNarasumber" placeholder="Biography">
+                                                                        {{$profile->BIOGRAFI}}
+                                                                    </textarea>
+                                                                </div>
+
+                                                                 <div class="form-group">
+                                                                    <label>HandPhone</label>
+                                                                    <input type="text" class="form-control" name="profileHandphoneNarasumber" maxlength="13" placeholder="Handphone">
+                                                                </div>
+                                                            @endif
                                                         <div class="file-upload-inner ts-forms">
                                                             <div class="input prepend-big-btn">
                                                                 <label class="icon-right" for="prepend-big-btn">
@@ -794,7 +774,7 @@
                                                                 </label>
                                                                 <div class="file-button">
                                                                     Browse
-                                                                    <input type="file"
+                                                                    <input type="file" name="docProfile"
                                                                         onchange="document.getElementById('prepend-big-btn').value = this.value;">
                                                                 </div>
                                                                 <input type="text" id="prepend-big-btn"
@@ -802,28 +782,26 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                    @if ($profile->STATUSUSER == "NARASUMBER")
                                                     <div class="col-lg-6">
-                                                        <label>Jenis Kelamin</label>
-                                                        <div class="form-group">
-                                                            <select class="form-control">
-                                                                <option>Select Gender</option>
-                                                                <option>Male</option>
-                                                                <option>Female</option>
-                                                            </select>
+                                                            <label>Jenis Kelamin</label>
+                                                            <div class="form-group">
+                                                                <select name="profileJK" class="form-control">
+                                                                    @if ($profile->JENISKL == "")
+                                                                        <option>Select Gender</option>
+                                                                        <option value="Perempuan">Perempuan</option>
+                                                                        <option value="Laki-Laki">Laki-Laki</option>
+                                                                    @elseif ($profile->JENISKL == "Laki-Laki")
+                                                                        <option value="{{$profile->JENISKL}}">{{$profile->JENISKL}}</option>
+                                                                        <option value="Perempuan">Perempuan</option>
+                                                                    @else
+                                                                    <option value="{{$profile->JENISKL}}">{{$profile->JENISKL}}</option>
+                                                                    <option value="Laki-Laki">Laki-Laki</option>
+                                                                    @endif
+                                                                </select>
+                                                            </div>
                                                         </div>
-                                                        <label>Wilayah</label>
-                                                        <div class="form-group">
-                                                            <select class="form-control">
-                                                                <option>Wilayah</option>
-                                                                <option>India</option>
-                                                                <option>Pakistan</option>
-                                                                <option>Amerika</option>
-                                                                <option>China</option>
-                                                                <option>Dubai</option>
-                                                                <option>Nepal</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
+                                                    @endif
                                                     <div class="row">
                                                         <div class="col-lg-12">
                                                             <br>
@@ -833,9 +811,11 @@
                                                             </div>
                                                         </div>
                                                     </div>
+                                                </form>
                                                 </div>
                                             </div>
                                         </div>
+                                        @endforeach
                                     </div>
                                 </div>
                             </div>

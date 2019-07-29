@@ -51,7 +51,96 @@ class profileUsers extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //stat user
+        $statUser   = $request->statUser;
+        $profileID  = $request->idProfile;
+        
+        if($statUser == "UMKM"){
+            $file       = $request->file('docProfile'); 
+            if($file == ""){
+                $addrsLembaga = $request->addrsLembaga;
+                $profileTelpUMKM = $request->profileTelpUMKM;
+                $replace =str_replace(" ","",$profileTelpUMKM);
+
+                // dd("INI UMKM".$statUser.$profileID.$addrsLembaga.$replace);
+                //update
+                $profileUser = DB::table('profileusers')
+                ->where('PROFILE_ID',$profileID)
+                ->update(
+                    [
+                    'NOHPUMKM' => $replace,
+                    'ALAMATUMKM' => $addrsLembaga,
+                    ]);
+                Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                return redirect('panel/myprofile?myProfile='.$profileID);
+            }else{
+                //images
+                $nameProf   = $file->hashName();
+                $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
+
+                $addrsLembaga = $request->addrsLembaga;
+                $profileTelpUMKM = $request->profileTelpUMKM;
+                $replace =str_replace(" ","",$profileTelpUMKM);
+
+                //update
+                $profileUser = DB::table('profileusers')
+                ->where('PROFILE_ID',$profileID)
+                ->update(
+                    [
+                    'NOHPUMKM' => $replace,
+                    'GAMBAR' => $nameProf,
+                    'ALAMATUMKM' => $addrsLembaga,
+                    ]);
+                Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                return redirect('panel/myprofile?myProfile='.$profileID);
+            }
+            
+        }elseif ($statUser == "NARASUMBER"){
+            $file       = $request->file('docProfile');            
+                if($file == ""){
+                    $profileHandphoneNarasumber = $request->profileHandphoneNarasumber;
+                    $profileJK = $request->profileJK;
+                    $bioNarasumber = $request->bioNarasumber;
+        
+                    //update
+                    $profileUser = DB::table('profileusers')
+                    ->where('PROFILE_ID',$profileID)
+                    ->update(
+                        [
+                        'NOHP' => $profileHandphoneNarasumber,
+                        'BIOGRAFI' => $bioNarasumber,
+                        'JENISKL' => $profileJK,
+                        ]);
+                    Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                    return redirect('panel/myprofile?myProfile='.$profileID);
+                }else{
+                    $nameProf   = $file->hashName();
+                    $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
+                                
+                    $profileHandphoneNarasumber = $request->profileHandphoneNarasumber;
+                    $profileJK = $request->profileJK;
+                    $bioNarasumber = $request->bioNarasumber;
+
+                    //update
+                    $profileUser = DB::table('profileusers')
+                    ->where('PROFILE_ID',$profileID)
+                    ->update(
+                        [
+                        'NOHP' => $profileHandphoneNarasumber,
+                        'GAMBAR' => $nameProf,
+                        'BIOGRAFI' => $bioNarasumber,
+                        'JENISKL' => $profileJK,
+                        ]);
+                    Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                    return redirect('panel/myprofile?myProfile='.$profileID);
+                }
+        }else{
+            Alert::error('Update Gagal ', 'Hubungi Pihak Terkait')->persistent('Close')->autoclose(3000);
+            return redirect('panel/myprofile?myProfile='.$profileID);
+        }
+        
+        Alert::error('Update Gagal ', 'Hubungi Pihak Terkait')->persistent('Close')->autoclose(3000);
+        return redirect('panel/myprofile?myProfile='.$profileID);
     }
 
     /**
@@ -63,6 +152,7 @@ class profileUsers extends Controller
     public function show($id)
     {
         //
+
     }
 
     /**
@@ -86,6 +176,7 @@ class profileUsers extends Controller
     public function update(Request $request, $id)
     {
         //
+        
     }
 
     /**
