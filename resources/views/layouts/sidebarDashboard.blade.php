@@ -5,7 +5,9 @@
     <div class="left-sidebar-pro">
       <nav id="sidebar" class="">
           <div class="sidebar-header">
-              <a href="{{ route('src.index') }}"><img class="main-logo" src="{{asset('assetLogin/img/logo/logo.png')}}" alt="" /></a>
+              <a href="{{ route('src.index') }}">
+                {{-- <img class="main-logo" src="{{asset('assetLogin/img/logo/logo.png')}}" alt="" /> --}}
+              </a>
               <strong><a href="{{ route('src.index') }}"><img src="{{asset('assetLogin/img/logo/logosn.png')}}" alt="" /></a></strong>
           </div>
           <div class="left-custom-menu-adp-wrap comment-scrollbar">
