@@ -165,22 +165,28 @@
                                                     <a href="#" data-toggle="dropdown" role="button"
                                                         aria-expanded="false" class="nav-link dropdown-toggle">
                                                         <img src="{{asset('assetLogin/img/product/pro4.jpg')}}" alt="" />
-                                                        <span class="admin-name">Prof.Anderson</span>
+                                                        <span class="admin-name">{{Auth::user()->USERNAME}}</span>
                                                         <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
                                                     </a>
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li>
-                                                            <a href="{{route('myprofile.index')}}">
-                                                                <span class="edu-icon edu-user-rounded author-log-ic">
-                                                                </span>MyProfile</a>
+                                                            <a class="dropdown-item" href="{{url('panel/myprofile?myProfile='.Auth::user()->PROFILEUSERS_ID)}}">
+                                                                MyProfile
+                                                            </a>
                                                         </li>
-                                                        <li>
-                                                            <a href="#">
-                                                                <span class="edu-icon edu-locked author-log-ic">
-                                                                </span>LogOut</a>
+                                                        <li> 
+                                                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                                            onclick="event.preventDefault();
+                                                                          document.getElementById('logout-form').submit();">
+                                                             {{ __('Logout') }}
+                                                            </a>
+                                                         <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                             @csrf
+                                                         </form>
+                                                           
                                                         </li>
-                                                    </ul>
+                                                    </ul>   
                                                 </li>
                                                 <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown"
                                                         role="button" aria-expanded="false"
@@ -515,7 +521,7 @@
                                         <div class="breadcome-heading">
                                             <form role="search" class="sr-input-func">
                                                 <input type="text" placeholder="Search..."
-                                                    class="search-int form-control">
+                                                    class="search-int form-control" id="search" name="search">
                                                 <a href="#"><i class="fa fa-search"></i></a>
                                             </form>
                                         </div>
@@ -538,104 +544,22 @@
         <div class="contacts-area mg-b-15">
             <div class="container-fluid">
                 <div class="row">
+                    @foreach ($dataNarasumber as $itemNarasumber)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="student-inner-std res-mg-b-30">
                             <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/1.jpg')}}" alt="" />
+                                <img src="{{asset('/assetLogin/img/profile/'.$itemNarasumber->GAMBAR)}}" alt="" />
                             </div>
                             <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
+                                <h2>{{$itemNarasumber->NAMALENGKAP}}</h2>
+                                <a href="tel:{{$itemNarasumber->NOHP}}" class="dp">{{$itemNarasumber->NOHP}}</a>
+                                <p class="dp-ag"><b>Tanggal Lahir:</b> {{ \Carbon\Carbon::parse($itemNarasumber->TANGGALLAHIR)->formatLocalized('%d-%B-%Y')}}</p>
+                                <a href="#" class="btn btn-danger">Permintaan</a>
+                                <a href="#" class="btn btn-primary">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std res-mg-b-30">
-                            <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/2.jpg')}}" alt="" />
-                            </div>
-                            <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std res-mg-b-30 res-tablet-mg-t-30 dk-res-t-pro-30">
-                            <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/3.jpg')}}" alt="" />
-                            </div>
-                            <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std res-tablet-mg-t-30 dk-res-t-pro-30">
-                            <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/4.jpg')}}" alt="" />
-                            </div>
-                            <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std mg-t-30">
-                            <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/1.jpg')}}" alt="" />
-                            </div>
-                            <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std mg-t-30">
-                            <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/2.jpg')}}" alt="" />
-                            </div>
-                            <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std mg-t-30">
-                            <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/3.jpg')}}" alt="" />
-                            </div>
-                            <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std mg-t-30">
-                            <div class="student-img">
-                                <img src="{{asset('assetLogin/img/student/4.jpg')}}" alt="" />
-                            </div>
-                            <div class="student-dtl">
-                                <h2>Alexam Angles</h2>
-                                <p class="dp">Computer Science</p>
-                                <p class="dp-ag"><b>Age:</b> 20 Years</p>
-                            </div>
-                        </div>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

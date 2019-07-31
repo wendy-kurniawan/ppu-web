@@ -99,14 +99,15 @@ class profileUsers extends Controller
             $file       = $request->file('docProfile');            
                 if($file == ""){
                     $profileHandphoneNarasumber = $request->profileHandphoneNarasumber;
-                    $profileJK = $request->profileJK;
-                    $bioNarasumber = $request->bioNarasumber;
-        
+                    $profileJK      = $request->profileJK;
+                    $bioNarasumber  = $request->bioNarasumber;
+                    $tglLahir       = $request->tglLahirprofile;
                     //update
                     $profileUser = DB::table('profileusers')
                     ->where('PROFILE_ID',$profileID)
                     ->update(
                         [
+                        'TANGGALLAHIR' =>$tglLahir,
                         'NOHP' => $profileHandphoneNarasumber,
                         'BIOGRAFI' => $bioNarasumber,
                         'JENISKL' => $profileJK,

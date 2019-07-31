@@ -152,15 +152,9 @@
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li>
-                                                            <a class="dropdown-item"  href="{{ route('myprofile.index') }}"
-                                                                onclick="event.preventDefault();
-                                                                              document.getElementById('my-profile').submit();">
-                                                                 {{ __('MyProfile') }}
-                                                                </a>
-                                                             <form id="my-profile" action="{{ route('myprofile.index') }}" method="GET" style="display: none;">
-                                                                 @csrf
-                                                                 <input type="text" name="myProfile" value="{{Auth::user()->PROFILEUSERS_ID}}"/>
-                                                             </form>
+                                                            <a class="dropdown-item" href="{{url('panel/myprofile?myProfile='.Auth::user()->PROFILEUSERS_ID)}}">
+                                                                MyProfile
+                                                            </a>
                                                         </li>
                                                         <li> 
                                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -764,7 +758,7 @@
 
                                                                  <div class="form-group">
                                                                     <label>HandPhone</label>
-                                                                    <input type="text" class="form-control" name="profileHandphoneNarasumber" maxlength="13" placeholder="Handphone">
+                                                                    <input type="text" class="form-control" name="profileHandphoneNarasumber" value="{{$profile->NOHP}}" maxlength="13" placeholder="Handphone">
                                                                 </div>
                                                             @endif
                                                         <div class="file-upload-inner ts-forms">
@@ -800,6 +794,10 @@
                                                                     @endif
                                                                 </select>
                                                             </div>
+                                                            <label>Tanggal Lahir</label>
+                                                            <div class="form-group">
+                                                                <input type="text" class="form-control" name="tglLahirprofile" value="{{$profile->TANGGALLAHIR}}" id="datepicker" placeholder="yyyy-mm-dd">
+                                                            </div>
                                                         </div>
                                                     @endif
                                                     <div class="row">
@@ -828,9 +826,12 @@
 @endsection
 
 @section('customScript')
-    <!-- jquery
+        <!-- jquery
 		============================================ -->
         <script src="{{asset('assetLogin/js/vendor/jquery-1.12.4.min.js')}}"></script>
+        <!--Jquery UI-->
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!-- bootstrap JS
 		============================================ -->
         <script src="{{asset('assetLogin/js/bootstrap.min.js')}}"></script>
@@ -881,4 +882,7 @@
         <!-- tawk chat JS
 		============================================ -->
         <script src="{{asset('assetLogin/js/tawk-chat.js')}}"></script>
+        <!-- date picker-->
+        <script src="{{asset('myjs/datepicker.js')}}"></script>
+
 @endsection

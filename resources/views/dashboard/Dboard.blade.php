@@ -147,15 +147,9 @@
                                                     <ul role="menu"
                                                         class="dropdown-header-top author-log dropdown-menu animated zoomIn">
                                                         <li>
-                                                            <a class="dropdown-item"  href="{{ route('myprofile.index') }}"
-                                                                onclick="event.preventDefault();
-                                                                              document.getElementById('my-profile').submit();">
-                                                                 {{ __('MyProfile') }}
-                                                                </a>
-                                                             <form id="my-profile" action="{{ route('myprofile.index') }}" method="GET" style="display: none;">
-                                                                 @csrf
-                                                                 <input type="text" name="myProfile" value="{{Auth::user()->PROFILEUSERS_ID}}"/>
-                                                             </form>
+                                                            <a class="dropdown-item" href="{{url('panel/myprofile?myProfile='.Auth::user()->PROFILEUSERS_ID)}}">
+                                                                MyProfile
+                                                            </a>
                                                         </li>
                                                         <li> 
                                                             <a class="dropdown-item" href="{{ route('logout') }}"

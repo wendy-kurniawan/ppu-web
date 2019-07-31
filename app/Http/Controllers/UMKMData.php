@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UMKMData extends Controller
 {
@@ -13,8 +14,16 @@ class UMKMData extends Controller
      */
     public function index()
     {
-        //
-        return view('dashboard/add-dataUMKM');
+        //get data
+        $dataUMKM = DB::table('users')
+        ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
+        ->select('users.*','profileusers.*')
+        ->where('STATUSUSER', '=', 'UMKM')
+        ->get();
+        return view('dashboard/add-dataUMKM',
+        [
+            'dataUMKM' => $dataUMKM,
+        ]);
     }
 
     /**

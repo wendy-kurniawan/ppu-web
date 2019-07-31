@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class narasumberData extends Controller
 {
@@ -14,7 +15,17 @@ class narasumberData extends Controller
     public function index()
     {
         //
-        return view('dashboard/add-dataNarasumber');
+        $dataNarasumber = DB::table('users')
+        ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
+        ->select('users.*','profileusers.*')
+        ->where('STATUSUSER', '=', 'NARASUMBER')
+        ->get();
+        // dd($dataNarasumber);
+
+        return view('dashboard/add-dataNarasumber',
+        [
+            'dataNarasumber' => $dataNarasumber,
+        ]);
     }
 
     /**
