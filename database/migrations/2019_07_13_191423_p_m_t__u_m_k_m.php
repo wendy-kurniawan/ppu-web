@@ -16,7 +16,7 @@ class PMTUMKM extends Migration
         Schema::create('PMT_UMKM', function (Blueprint $table) {
             $table->bigIncrements('NO');
             $table->char('IDNARASUMBER',12);
-            $table->char('IDUMKM VARCHAR',12);
+            $table->char('IDUMKM',12);
             $table->mediumText('KETERANGANPMT');
             $table->mediumText('PERMASALAHAN');
             $table->enum('STATUSPMT',['WAIT','REJECT','APPROVE']);

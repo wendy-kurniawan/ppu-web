@@ -13,12 +13,14 @@
           <div class="left-custom-menu-adp-wrap comment-scrollbar">
               <nav class="sidebar-nav left-sidebar-menu-pro">
                   <ul class="metismenu" id="menu1">
+                      {{-- Menu Home --}}
                       <li class="active">
                           <a title="Landing Page" href="{{ route('src.index') }}" aria-expanded="false"><span
                                   class="fa fa-home icon-wrap" aria-hidden="true"></span>
                               <span class="mini-click-non">Home</span></a>
                       </li>
                         @if (Auth::user()->STATUSUSER == "ADMIN")
+                        {{-- Menu Input --}}
                         <li>
                             <a class="has-arrow" href="#" aria-expanded="false">
                                 <span class="fa fa-pencil-square icon-wrap"></span>
@@ -38,13 +40,37 @@
                                 </li>                     
                             </ul>
                         </li>
-                        @elseif (Auth::user()->STATUSUSER == "UMKM")
-                                {{-- do something --}}
-                        @else
-                            {{-- do something narasumber --}}
-                        @endif 
+                        {{-- Form Permintaan --}}
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-question-circle-o icon-wrap"></span>
+                            <span class="mini-click-non">Form Permintaan</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li>
+                                        <a title="All Professors" href="{{route('permintaan.index')}}">
+                                        <span class="mini-sub-pro">Input Permintaan</span></a>
+                                    </li>
+                                </ul>
+                        </li>
+                        {{-- Menu Data --}}
+                        <li>
+                            <a class="has-arrow" href="#" aria-expanded="false">
+                            <span class="fa fa-database icon-wrap"></span>
+                            <span class="mini-click-non">Data</span></a>
+                            <ul class="submenu-angle" aria-expanded="false">
+                                <li>
+                                    <a title="All Professors" href="{{route('datanarasumber.index')}}">
+                                    <span class="mini-sub-pro">Narasumber</span></a>
+                                </li>
+                                <li>
+                                    <a title="All Professors" href="{{route('dataumkm.index')}}">
+                                    <span class="mini-sub-pro">UMKM</span></a>
+                                </li>
+                            </ul>
+                        </li>
 
-                        @if (Auth::user()->STATUSUSER == "ADMIN")
+                        @elseif (Auth::user()->STATUSUSER == "UMKM")
+                            {{-- Menu Permintaan Narsumber --}}
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
                                 <span class="fa fa-question-circle-o icon-wrap"></span>
@@ -56,26 +82,25 @@
                                         </li>
                                     </ul>
                             </li>
-                        @elseif (Auth::user()->STATUSUSER == "UMKM")
-                            {{-- do something --}}
+                            {{-- Menu Data --}}
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                    <span class="fa fa-database icon-wrap"></span>
+                                    <span class="mini-click-non">Data</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li>
+                                        <a title="All Professors" href="{{route('datanarasumber.index')}}">
+                                            <span class="mini-sub-pro">Narasumber</span></a>
+                                    </li>
+                                    <li>
+                                        <a title="All Professors" href="{{route('dataumkm.index')}}">
+                                            <span class="mini-sub-pro">UMKM</span></a>
+                                    </li>
+                                </ul>
+                            </li>
                         @else
                             {{-- do something narasumber --}}
                         @endif
-                      <li>
-                          <a class="has-arrow" href="#" aria-expanded="false">
-                              <span class="fa fa-database icon-wrap"></span>
-                              <span class="mini-click-non">Data</span></a>
-                          <ul class="submenu-angle" aria-expanded="false">
-                              <li>
-                                  <a title="All Professors" href="{{route('datanarasumber.index')}}">
-                                      <span class="mini-sub-pro">Narasumber</span></a>
-                              </li>
-                              <li>
-                                  <a title="All Professors" href="{{route('dataumkm.index')}}">
-                                      <span class="mini-sub-pro">UMKM</span></a>
-                              </li>
-                          </ul>
-                      </li>
                       <li>
                           <a title="Landing Page" href="#" aria-expanded="false"><span
                                   class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>

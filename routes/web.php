@@ -28,6 +28,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('panel/datanarasumber', 'narasumberData');
     Route::resource('panel/dataumkm', 'UMKMData');
     Route::resource('panel/myprofile', 'profileUsers');
+    Route::resource('panel/detailnarasumber', 'NarasumberDetail');
 });
 
 Route::get('/event', 'Event@index')->name('event');;

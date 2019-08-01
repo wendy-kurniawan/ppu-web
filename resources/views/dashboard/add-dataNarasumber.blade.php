@@ -555,7 +555,7 @@
                                 <a href="tel:{{$itemNarasumber->NOHP}}" class="dp">{{$itemNarasumber->NOHP}}</a>
                                 <p class="dp-ag"><b>Tanggal Lahir:</b> {{ \Carbon\Carbon::parse($itemNarasumber->TANGGALLAHIR)->formatLocalized('%d-%B-%Y')}}</p>
                                 <a href="#" class="btn btn-danger">Permintaan</a>
-                                <a href="#" class="btn btn-primary">Selengkapnya</a>
+                                <a href="{{url('panel/detailnarasumber?&idNarasumber='.$itemNarasumber->PROFILE_ID.'&'.'idUMKM='.Auth::user()->PROFILEUSERS_ID) }}" class="btn btn-primary">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
