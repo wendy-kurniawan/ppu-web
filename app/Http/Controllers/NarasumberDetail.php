@@ -67,12 +67,40 @@ class NarasumberDetail extends Controller
      */
     public function store(Request $request)
     {
+        
+        //date
+        $current_date_time = Carbon::now()->toDateTimeString();
+        //data
         $idUMKM         = $request->idUMKM;
         $idNarasumber   = $request->idNarasumber;
         $masalahUMKM    = $request->permasalahanUMKM;
         $tlpUMKM        = $request->tlpUMKM;
-        //data
-        dd($idUMKM.$idNarasumber.$masalahUMKM.$tlpUMKM);
+        //GENERATE IDMASALAH
+        $subKalimat =  substr($idUMKM,0,3);
+        $pmt            = DB::table('pmt_umkm')->count();
+        $lastNumber     = $pmt + (int) 1;
+        $idMasalah      = $subKalimat."msl".sprintf("%06s",$lastNumber);
+        // arraySelect
+        $datajkMasalah    = $request->jkMasalah;
+        //loop to db pmt_jp
+        for($i=0; $i < count($datajkMasalah); $i++){
+            echo $datajkMasalah[$i];
+            DB::table('pmt_jp')->insert([
+                'IDMASALAH' => $idMasalah,
+                'JKMASALAH' => $datajkMasalah[$i],
+                'created_at' => $current_date_time
+            ]);
+        }
+        DB::table('pmt_umkm')->insert([
+            'IDMASALAH' => $idMasalah,
+            'IDNARASUMBER' => $idNarasumber,
+            'IDUMKM' => $idUMKM,
+            'KETERANGANPMT'  => $masalahUMKM,
+            'TLPUMKM' => $tlpUMKM,
+            'created_at' => $current_date_time
+        ]);
+        Alert::success('Berhasil Mengajukan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        return redirect('panel/detailnarasumber?idNarasumber='.$idNarasumber.'&idUMKM='.$idUMKM);
     }
 
     /**

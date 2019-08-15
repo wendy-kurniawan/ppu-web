@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class PMTUMKM extends Migration
+class PMTJP extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,10 @@ class PMTUMKM extends Migration
      */
     public function up()
     {
-        Schema::create('PMT_UMKM', function (Blueprint $table) {
+        Schema::create('PMT_JP', function (Blueprint $table) {
             $table->bigIncrements('NO');
             $table->char('IDMASALAH',12);
-            $table->char('IDNARASUMBER',12);
-            $table->char('IDUMKM',12);
-            $table->mediumText('KETERANGANPMT')->nullable();
-            $table->char('TLPUMKM',13)->nullable();
-            $table->enum('STATUSPMT',['WAIT','REJECT','APPROVE']);
+            $table->char('JKMASALAH',120)->nullablle();
             $table->timestamps();
         });
     }
@@ -32,6 +28,6 @@ class PMTUMKM extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('PMT_UMKM');
+        Schema::dropIfExists('PMT_JP');
     }
 }
