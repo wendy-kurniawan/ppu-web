@@ -558,11 +558,6 @@
                                                                     <input type="hidden" class="form-control" name="idNarasumber" value="{{$idNarsumber}}"  placeholder="ID Narsumber" readonly>
                                                                     <input type="text" class="form-control" name="namaNarasumber" value="{{$profile->NAMALENGKAP}}"  placeholder="Nama Narsumber" readonly>                                                                
                                                                 </div>
-                                                                <div class="form-group">
-                                                                    <label>Keterangan Masalah</label>
-                                                                    <textarea name="permasalahanUMKM" placeholder="Keterangan Masalah">
-                                                                    </textarea>
-                                                                </div>
                                                     </div>
                                                     <div class="col-lg-6">
                                                             @foreach ($profileUMKM as $item)
@@ -587,10 +582,12 @@
                                                                             <option value="Anguilla">Anguilla</option>
                                                                     </select>
                                                             </div>
-                                                            <div class="form-group">
-                                                                <label>Tanggal Acara</label>
-                                                                <input type="date" class="form-control" name="" id="">
-                                                            </div>
+                                                    </div>
+                                                    <div class="col-lg-12">
+                                                        <div class="form-group">
+                                                            <label>Keterangan Masalah</label>
+                                                            <textarea name="permasalahanUMKM" class="form-control" placeholder="Keterangan Masalah"></textarea>
+                                                        </div>
                                                     </div>
 
                                                     <div class="row">

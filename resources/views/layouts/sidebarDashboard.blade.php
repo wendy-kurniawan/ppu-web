@@ -70,18 +70,6 @@
                         </li>
 
                         @elseif (Auth::user()->STATUSUSER == "UMKM")
-                            {{-- Menu Permintaan Narsumber --}}
-                            <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
-                                <span class="fa fa-question-circle-o icon-wrap"></span>
-                                <span class="mini-click-non">Form Permintaan</span></a>
-                                    <ul class="submenu-angle" aria-expanded="false">
-                                        <li>
-                                            <a title="All Professors" href="{{route('permintaan.index')}}">
-                                            <span class="mini-sub-pro">Input Permintaan</span></a>
-                                        </li>
-                                    </ul>
-                            </li>
                             {{-- Menu Data --}}
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
@@ -98,6 +86,18 @@
                                     </li>
                                 </ul>
                             </li>
+                            {{-- Menu Permintaan Narsumber --}}
+                            <li>
+                                    <a class="has-arrow" href="#" aria-expanded="false">
+                                    <span class="fa fa-question-circle-o icon-wrap"></span>
+                                    <span class="mini-click-non">Data Permintaan</span></a>
+                                        <ul class="submenu-angle" aria-expanded="false">
+                                            <li>
+                                                <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                                <span class="mini-sub-pro">Data Permintaan</span></a>
+                                            </li>
+                                        </ul>
+                                </li>
                         @else
                             {{-- do something narasumber --}}
                         @endif

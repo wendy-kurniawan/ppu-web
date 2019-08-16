@@ -185,7 +185,12 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">MyProfile</span>
+                                            <li>
+                                                <span class="bread-blod">Profile 
+                                                @foreach ($profileUMKM as $namaUMKM)
+                                                    {{$namaUMKM->NAMAUMKM}}
+                                                @endforeach
+                                                </span>
                                             </li>
                                         </ul>
                                     </div>
