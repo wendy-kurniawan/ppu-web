@@ -548,12 +548,15 @@
                                                         <form action="{{route('detailnarasumber.store')}}" method="POST" >
                                                             @csrf
                                                                 <div class="form-group">
-                                                                    <label>ID UMKM Anda</label>
-                                                                    <input type="text" name="idUMKM" class="form-control" value="{{Auth::user()->PROFILEUSERS_ID}}" placeholder="ID UMKM" readonly>
+                                                                    <label>Nama UMKM ANDA</label>
+                                                                    <input type="hidden" name="idUMKM" class="form-control" value="{{Auth::user()->PROFILEUSERS_ID}}" placeholder="ID UMKM" readonly>
+                                                                    <input type="text" name="namaUMKM" class="form-control" value="{{Auth::user()->NAMAUMKM}}" placeholder="NAMA UMKM" readonly>                                                                    
                                                                 </div>
                                                                 <div class="form-group">
-                                                                    <label>ID Narasumber</label>
-                                                                    <input type="text" class="form-control" name="idNarasumber" value="{{$idNarsumber}}"  placeholder="ID Narsumber" readonly>
+                                                                    <label>Kepada Narasumber</label>
+                                                                    <input type="hidden" class="form-control" name="imgNarasumber" value="{{$profile->GAMBAR}}" placeholder="Gambar Narasumber" readonly>
+                                                                    <input type="hidden" class="form-control" name="idNarasumber" value="{{$idNarsumber}}"  placeholder="ID Narsumber" readonly>
+                                                                    <input type="text" class="form-control" name="namaNarasumber" value="{{$profile->NAMALENGKAP}}"  placeholder="Nama Narsumber" readonly>                                                                
                                                                 </div>
                                                                 <div class="form-group">
                                                                     <label>Keterangan Masalah</label>
@@ -570,7 +573,7 @@
                                                             @endforeach
                                                             <div class="form-group">
                                                                     <label>Jenis Pemasalahan</label>
-                                                                    <select name="jkMasalah[]" data-placeholder="Choose a Country..." class="form-control chosen-select" multiple="multiple" tabindex="-1">
+                                                                    <select name="jkMasalah[]" data-placeholder="Jenis Permasalahan" class="form-control chosen-select" multiple="multiple" tabindex="-1">
                                                                             <option value="">Select</option>
                                                                             <option value="United States">United States</option>
                                                                             <option value="United Kingdom">United Kingdom</option>

@@ -15,7 +15,7 @@ class PMTJP extends Migration
     {
         Schema::create('PMT_JP', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('IDMASALAH',12);
+            $table->char('IDMASALAHJP',12);
             $table->char('JKMASALAH',120)->nullablle();
             $table->timestamps();
         });

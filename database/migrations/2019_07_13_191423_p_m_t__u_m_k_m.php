@@ -18,6 +18,8 @@ class PMTUMKM extends Migration
             $table->char('IDMASALAH',12);
             $table->char('IDNARASUMBER',12);
             $table->char('IDUMKM',12);
+            $table->char('NAMANARASUMBER',70);
+            $table->char('GAMBARNARASUMBER',191)->nullable();
             $table->mediumText('KETERANGANPMT')->nullable();
             $table->char('TLPUMKM',13)->nullable();
             $table->enum('STATUSPMT',['WAIT','REJECT','APPROVE']);

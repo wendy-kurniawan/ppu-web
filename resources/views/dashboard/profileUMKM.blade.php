@@ -281,7 +281,7 @@
                         <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#Biography">Biography</a></li>
-                                <li><a href="#reviews"> Activity</a></li>
+                                <li><a href="#activityUMKM"> Activity</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
                                 <div class="product-tab-list tab-pane fade active in" id="Biography">
@@ -366,172 +366,34 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="reviews">
+                                <div class="product-tab-list tab-pane fade" id="activityUMKM">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div class="chat-discussion" style="height: auto">
+                                                    @foreach ($activity as $itemactivity)
                                                     <div class="chat-message">
                                                         <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/1.jpg')}}" alt="">
+                                                            <img class="message-avatar" src="{{asset('assetLogin/img/profile/'.$itemactivity->GAMBARNARASUMBER)}}" alt="">
                                                         </div>
                                                         <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Mon Jan 26 2015 - 18:39:23
+                                                            <a class="message-author" href="#"> {{$itemactivity->NAMANARASUMBER}} </a>
+                                                            <span class="message-date">
+                                                                {{ \Carbon\Carbon::parse($itemactivity->created_at)->format('d M Y')}}
                                                             </span>
-                                                            <span class="message-content">Lorem ipsum dolor sit amet,
-                                                                consectetuer adipiscing elit, sed diam nonummy nibh
-                                                                euismod tincidunt ut laoreet dolore magna aliquam erat
-                                                                volutpat.
+                                                            <span class="message-content">
+                                                                {{$itemactivity->KETERANGANPMT}}
                                                             </span>
                                                             <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
+                                                                <a href="https://www.google.com" class="btn btn-xs btn-default">
+                                                                    <i class="fa fa-info"></i> Selengkapnya 
+                                                                </a>
                                                                 <a class="btn btn-xs btn-success"><i
-                                                                        class="fa fa-heart"></i> Love</a>
+                                                                    class="fa fa-heart"></i> Love</a>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/2.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Karl Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                Many desktop publishing packages and web page editors
-                                                                now use Lorem Ipsum as their default model text, and a
-                                                                search for 'lorem ipsum' will uncover.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                                <a class="btn btn-xs btn-primary"><i
-                                                                        class="fa fa-pencil"></i> Message</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/3.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have suffered alteration.
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/4.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Alice Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-warning"><i
-                                                                        class="fa fa-eye"></i> Nudge</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/1.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Mark Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-success"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/2.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Karl Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                Many desktop publishing packages and web page editors
-                                                                now use Lorem Ipsum as their default model text, and a
-                                                                search for 'lorem ipsum' will uncover.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                                <a class="btn btn-xs btn-primary"><i
-                                                                        class="fa fa-pencil"></i> Message</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/3.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have suffered alteration.
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/4.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Alice Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>

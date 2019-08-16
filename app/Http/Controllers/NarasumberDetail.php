@@ -17,13 +17,14 @@ class NarasumberDetail extends Controller
     public function index(Request $request)
     {
          //show profileNarasumber
-         $idNarsumber   = $request->idNarasumber;
-         $idUMKM        = $request->idUMKM;
+         $idNarsumber    = $request->idNarasumber;
+         $idUMKM         = $request->idUMKM;
+
          
          //method Narasumber
          $profileNarasumber = $this->dataNarasumber($idNarsumber);
          $profileUMKM = $this->dataUMKM($idUMKM);
-
+         
          return view('dashboard/profileNarasumber',
          [
              'profileNarasumber' => $profileNarasumber,
@@ -75,6 +76,8 @@ class NarasumberDetail extends Controller
         $idNarasumber   = $request->idNarasumber;
         $masalahUMKM    = $request->permasalahanUMKM;
         $tlpUMKM        = $request->tlpUMKM;
+        $namaNarasumber = $request->namaNarasumber;
+        $fotoNarasumber = $request->imgNarasumber;
         //GENERATE IDMASALAH
         $subKalimat =  substr($idUMKM,0,3);
         $pmt            = DB::table('pmt_umkm')->count();
@@ -86,7 +89,7 @@ class NarasumberDetail extends Controller
         for($i=0; $i < count($datajkMasalah); $i++){
             echo $datajkMasalah[$i];
             DB::table('pmt_jp')->insert([
-                'IDMASALAH' => $idMasalah,
+                'IDMASALAHJP' => $idMasalah,
                 'JKMASALAH' => $datajkMasalah[$i],
                 'created_at' => $current_date_time
             ]);
@@ -95,6 +98,8 @@ class NarasumberDetail extends Controller
             'IDMASALAH' => $idMasalah,
             'IDNARASUMBER' => $idNarasumber,
             'IDUMKM' => $idUMKM,
+            'NAMANARASUMBER' => $namaNarasumber,
+            'GAMBARNARASUMBER'  => $fotoNarasumber, 
             'KETERANGANPMT'  => $masalahUMKM,
             'TLPUMKM' => $tlpUMKM,
             'created_at' => $current_date_time

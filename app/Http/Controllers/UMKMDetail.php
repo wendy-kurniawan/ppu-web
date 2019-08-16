@@ -48,16 +48,32 @@ class UMKMDetail extends Controller
      */
     public function show($id)
     {
-         //show profileUMKM
-        $profileUMKM = DB::table('users')
-        ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
+        //show profileUMKM
+        $profileUMKM = $this->dataUMKM($id);
+        $activity    = $this->tUMKM($id);    
+        // dd($activity);
+
+        return view('dashboard/profileUMKM',[
+            'profileUMKM' => $profileUMKM,
+            'activity'  => $activity
+        ]);
+    }
+
+    private function dataUMKM($idUMKM){
+        return DB::table('users')
+        ->join('profileusers', 'users.PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
         ->select('users.*', 'profileusers.*')
-        ->where('PROFILE_ID','=', $id)
+        ->where('PROFILE_ID','=', $idUMKM)
         ->get();
-        
-         return view('dashboard/profileUMKM',[
-             'profileUMKM' => $profileUMKM
-         ]);
+    }
+
+    private function tUMKM($idUMKM){
+        return DB::table('profileusers')
+        ->join('pmt_umkm','profileusers.PROFILE_ID', '=', 'pmt_umkm.IDUMKM')
+        ->select('profileusers.*','pmt_umkm.*')
+        ->where('IDUMKM', '=', $idUMKM)
+        ->orderBy('pmt_umkm.created_at','desc')
+        ->get();
     }
 
     /**
