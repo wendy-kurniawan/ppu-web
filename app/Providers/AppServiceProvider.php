@@ -33,13 +33,16 @@ class AppServiceProvider extends ServiceProvider
         //Get ID when login to passing all view
         View::composer('*', function($view)
         {
-            $idLogin = Auth::User()->PROFILEUSERS_ID;
-            $dataIMG = DB::table('users')
-            ->join('profileusers', 'users.PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
-            ->select('users.PROFILEUSERS_ID', 'profileusers.GAMBAR')
-            ->where('profileusers.PROFILE_ID', '=', $idLogin )
-            ->first();
-            View::share('dataIMG', $dataIMG);
+            if (Auth::check()){
+                $idLogin = Auth::User()->PROFILEUSERS_ID;
+                $dataIMG = DB::table('users')
+                ->join('profileusers', 'users.PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
+                ->select('users.PROFILEUSERS_ID', 'profileusers.GAMBAR')
+                ->where('profileusers.PROFILE_ID', '=', $idLogin )
+                ->first();
+                View::share('dataIMG', $dataIMG);
+            }
         });
+        
     }
 }

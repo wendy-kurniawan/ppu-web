@@ -175,6 +175,7 @@
                                                                         <th>Nama Narasumber</th>
                                                                     @endif
                                                                     <th>Permasalahan</th>
+                                                                    <th>Jenis Permsalahan</th>
                                                                     <th>Status Permintaan</th>
                                                                     <th>Tanggal Submit</th>
                                                                     <th>Action</th>
@@ -187,6 +188,11 @@
                                                                     <td>{{$no++}}</td>
                                                                     <td>{{$itemPermintaan->NAMAUMKMPMT}}</td>
                                                                     <td>{{$itemPermintaan->KETERANGANPMT}}</td>
+                                                                    <td>
+                                                                        @foreach ($itemPermintaan->IDMASALAH as $item)
+                                                                        <span class="label label-primary">{{$item->JKMASALAH}}</span>
+                                                                        @endforeach
+                                                                    </td>
                                                                     <td class="text-center">
                                                                         @if ($itemPermintaan->STATUSPMT == "APPROVE")
                                                                             <span class="label label-success">{{$itemPermintaan->STATUSPMT}}</span>
@@ -230,6 +236,7 @@
                                                                     <th>No</th>
                                                                     <th>Nama Narasumber</th>
                                                                     <th>Permasalahan</th>
+                                                                    <th>Jenis Permsalahan</th>
                                                                     <th>Status Permintaan</th>
                                                                     <th>Tanggal Submit</th>
                                                                 </tr>
@@ -241,6 +248,11 @@
                                                                     <td>{{$no++}}</td>
                                                                     <td>{{$itemPermintaan->NAMANARASUMBER}}</td>
                                                                     <td>{{$itemPermintaan->KETERANGANPMT}}</td>
+                                                                    <td>
+                                                                        @foreach ($itemPermintaan->IDMASALAH as $item)
+                                                                        <span class="label label-primary">{{$item->JKMASALAH}}</span>
+                                                                        @endforeach
+                                                                    </td>
                                                                     <td class="text-center">
                                                                         @if ($itemPermintaan->STATUSPMT == "APPROVE")
                                                                             <span class="label label-success">{{$itemPermintaan->STATUSPMT}}</span>
@@ -250,6 +262,7 @@
                                                                             <span class="label label-warning">{{$itemPermintaan->STATUSPMT}}</span>
                                                                         @endif
                                                                     </td>
+
                                                                     <td>{{ \Carbon\Carbon::parse($itemPermintaan->created_at)->format('d M Y')}}</td>
                                                                 </tr>
                                                                 @endforeach

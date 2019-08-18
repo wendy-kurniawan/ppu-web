@@ -85,12 +85,15 @@ class penerimaanData extends Controller
     {
         //show data byid UMKM
         $dataPermintaan = $this->listDataUMKM($id);
+        $jenisMasalahUMKM = $this->listJKMasalah($dataPermintaan);
         //show data byid NARASUMBER
         $dataPNarasumber = $this->listDataNarasumber($id);
+        $jenisMasalah    = $this->listJKMasalah($dataPNarasumber);
 
+        // dd($jenisMasalah);
         return view('dashboard/listPermintaan',[
             'dataPermintaan' => $dataPermintaan,
-            'dataPNarasumber' => $dataPNarasumber
+            'dataPNarasumber' => $dataPNarasumber,
         ]);
         
         
@@ -108,6 +111,19 @@ class penerimaanData extends Controller
         ->where('IDNARASUMBER', '=', $idNarasumber)
         ->orderBy('created_at', 'Desc')
         ->get();
+    }
+    //Data Jenis Masalah
+    private function listJKMasalah($idMasalah){
+        foreach ($idMasalah as $key => $value) {
+            $jkMasalah = DB::table('pmt_jp')
+            ->where('IDMASALAHJP', '=', $value->IDMASALAH)
+            ->get();
+            $value->IDMASALAH = $jkMasalah;
+            $idMasalah[$key] = $value;
+        }
+        return $idMasalah;
+        
+
     }
 
     /**

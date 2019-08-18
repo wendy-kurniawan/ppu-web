@@ -31,7 +31,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('panel/myprofile', 'profileUsers');
     Route::resource('panel/detailnarasumber', 'NarasumberDetail');
     Route::resource('panel/detailUMKM', 'UMKMDetail');
-
+    Route::resource('panel/kegiatanUMKM', 'KegiatanUMKM');
 });
 
 Route::get('/event', 'Event@index')->name('event');;

@@ -80,10 +80,6 @@
                                         <a title="All Professors" href="{{route('datanarasumber.index')}}">
                                             <span class="mini-sub-pro">Narasumber</span></a>
                                     </li>
-                                    <li>
-                                        <a title="All Professors" href="{{route('dataumkm.index')}}">
-                                            <span class="mini-sub-pro">UMKM</span></a>
-                                    </li>
                                 </ul>
                             </li>
                             {{-- Menu Permintaan Narsumber --}}
@@ -100,6 +96,18 @@
                             </li>
                         @else
                             {{-- do something narasumber --}}
+                            {{-- Input Data Kegiatan --}}
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                    <span class="fa fa-pencil"></span>
+                                    <span class="mini-click-non">Input Kegiatan </span></a>
+                                    <ul class="submenu-angle" aria-expanded="false">
+                                        <li>
+                                            <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <span class="mini-sub-pro">Kegiatan UMKM</span></a>
+                                        </li>
+                                    </ul>
+                            </li>
                             {{-- Menu Permintaan Narsumber --}}
                             <li>
                                 <a class="has-arrow" href="#" aria-expanded="false">
@@ -118,10 +126,6 @@
                                 <span class="fa fa-database icon-wrap"></span>
                                 <span class="mini-click-non">Data</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
-                                    <li>
-                                        <a title="All Professors" href="{{route('datanarasumber.index')}}">
-                                        <span class="mini-sub-pro">Narasumber</span></a>
-                                    </li>
                                     <li>
                                         <a title="All Professors" href="{{route('dataumkm.index')}}">
                                         <span class="mini-sub-pro">UMKM</span></a>
