@@ -19,6 +19,7 @@ class PMTUMKM extends Migration
             $table->char('IDNARASUMBER',12);
             $table->char('IDUMKM',12);
             $table->char('NAMANARASUMBER',70);
+            $table->char('NAMAUMKMPMT',70);
             $table->char('GAMBARNARASUMBER',191)->nullable();
             $table->mediumText('KETERANGANPMT')->nullable();
             $table->char('TLPUMKM',13)->nullable();

@@ -88,18 +88,46 @@
                             </li>
                             {{-- Menu Permintaan Narsumber --}}
                             <li>
-                                    <a class="has-arrow" href="#" aria-expanded="false">
+                                <a class="has-arrow" href="#" aria-expanded="false">
                                     <span class="fa fa-question-circle-o icon-wrap"></span>
                                     <span class="mini-click-non">Data Permintaan</span></a>
-                                        <ul class="submenu-angle" aria-expanded="false">
-                                            <li>
-                                                <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
-                                                <span class="mini-sub-pro">Data Permintaan</span></a>
-                                            </li>
-                                        </ul>
-                                </li>
+                                    <ul class="submenu-angle" aria-expanded="false">
+                                        <li>
+                                            <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <span class="mini-sub-pro">Data Permintaan</span></a>
+                                        </li>
+                                    </ul>
+                            </li>
                         @else
                             {{-- do something narasumber --}}
+                            {{-- Menu Permintaan Narsumber --}}
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                    <span class="fa fa-question-circle-o icon-wrap"></span>
+                                    <span class="mini-click-non">Data Permintaan</span></a>
+                                    <ul class="submenu-angle" aria-expanded="false">
+                                        <li>
+                                            <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <span class="mini-sub-pro">Data Permintaan</span></a>
+                                        </li>
+                                    </ul>
+                            </li>
+                            {{-- Menu Data --}}
+                            <li>
+                                <a class="has-arrow" href="#" aria-expanded="false">
+                                <span class="fa fa-database icon-wrap"></span>
+                                <span class="mini-click-non">Data</span></a>
+                                <ul class="submenu-angle" aria-expanded="false">
+                                    <li>
+                                        <a title="All Professors" href="{{route('datanarasumber.index')}}">
+                                        <span class="mini-sub-pro">Narasumber</span></a>
+                                    </li>
+                                    <li>
+                                        <a title="All Professors" href="{{route('dataumkm.index')}}">
+                                        <span class="mini-sub-pro">UMKM</span></a>
+                                    </li>
+                                </ul>
+                            </li>
                         @endif
                       <li>
                           <a title="Landing Page" href="#" aria-expanded="false"><span

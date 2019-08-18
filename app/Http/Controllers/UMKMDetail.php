@@ -50,8 +50,10 @@ class UMKMDetail extends Controller
     {
         //show profileUMKM
         $profileUMKM = $this->dataUMKM($id);
-        $activity    = $this->tUMKM($id);    
-        // dd($activity);
+        $activity    = $this->tUMKM($id);
+        $jkMasalah   = $this->jkMasalah($activity);
+        
+        // dd($activity,$jkMasalah);
 
         return view('dashboard/profileUMKM',[
             'profileUMKM' => $profileUMKM,
@@ -74,6 +76,18 @@ class UMKMDetail extends Controller
         ->where('IDUMKM', '=', $idUMKM)
         ->orderBy('pmt_umkm.created_at','desc')
         ->get();
+    }
+
+    private function jkMasalah($idMasalah){
+        foreach ($idMasalah as $key => $value) {
+            $saveMasalah = DB::table('pmt_jp')
+            ->where('IDMASALAHJP', '=', $value->IDMASALAH)
+            ->get();
+            $value->masalah = $saveMasalah;
+            $idMasalah[$key] = $value;
+        }
+
+        return $idMasalah;
     }
 
     /**

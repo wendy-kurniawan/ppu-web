@@ -120,7 +120,7 @@
 
                                             <h3>
                                                 <i class="social-edu-ctn fa fa-pencil"></i>
-                                                List Data Permintaan {{Auth::User()->STATUSUSER}}
+                                                List Data Permintaan
                                             </h3>
 
                                             <!-- <form role="search" class="sr-input-func">
@@ -134,7 +134,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">List Data Permintaan {{Auth::User()->STATUSUSER}}</span>
+                                            <li><span class="bread-blod">List Data Permintaan</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -152,7 +152,7 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design text-center">
-                                <li class="active"><a href="#listPermintaan">List Data Permintaan {{Auth::User()->STATUSUSER}}</a></li>
+                                <li class="active"><a href="#listPermintaan">List Data Permintaan</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="listPermintaan">
@@ -162,11 +162,68 @@
                                                 @if(Auth::User()->STATUSUSER == "ADMIN")
                                                     
                                                 @elseif(Auth::User()->STATUSUSER == "NARASUMBER")
-                                                
-                                                
+                                                    
+                                                    <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    @if (Auth::User()->STATUSUSER == "ADMIN")
+                                                                        
+                                                                    @elseif (Auth::User()->STATUSUSER == "NARASUMBER")
+                                                                        <th>Nama UMKM</th>
+                                                                    @else
+                                                                        <th>Nama Narasumber</th>
+                                                                    @endif
+                                                                    <th>Permasalahan</th>
+                                                                    <th>Status Permintaan</th>
+                                                                    <th>Tanggal Submit</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                                <?php $no =1?>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($dataPNarasumber as $itemPermintaan)
+                                                                <tr>
+                                                                    <td>{{$no++}}</td>
+                                                                    <td>{{$itemPermintaan->NAMAUMKMPMT}}</td>
+                                                                    <td>{{$itemPermintaan->KETERANGANPMT}}</td>
+                                                                    <td class="text-center">
+                                                                        @if ($itemPermintaan->STATUSPMT == "APPROVE")
+                                                                            <span class="label label-success">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @elseif ($itemPermintaan->STATUSPMT == "REJECT")
+                                                                            <span class="label label-danger">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @else
+                                                                            <span class="label label-warning">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @endif
+                                                                    </td>
+                                                                <form id="add-department" action="{{route('listpenerimaan.store')}}" method="POST" class="add-department">
+                                                                        @csrf
+                                                                    <td>
+                                                                        <input type="hidden" name="tglPMT" value="{{ \Carbon\Carbon::parse($itemPermintaan->created_at)->format('Y-m-d')}}">
+                                                                        {{ \Carbon\Carbon::parse($itemPermintaan->created_at)->format('d M Y')}}
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="hidden" name="idPermintaanNARASUMBER" value="{{$itemPermintaan->IDNARASUMBER}}">
+                                                                        <input type="hidden" name="idPermintaanUMKM" value="{{$itemPermintaan->IDUMKM}}">
+                                                                        @if ($itemPermintaan->STATUSPMT == "WAIT")
+                                                                            <button type="submit" name="pApprove" value="APPROVE" class="btn btn-success">Approve</button>            
+                                                                            <button type="submit" name="pReject" value="REJECT" class="btn btn-danger">Reject</button>
+                                                                        @else
+                                                                        <button type="submit" name="pApprove" value="APPROVE" class="btn btn-success" disabled>Approve</button>            
+                                                                        <button type="submit" name="pReject" value="REJECT" class="btn btn-danger" disabled>Reject</button>
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                                 </form>                                                                                                            
+                                                                @endforeach
+
+                                                            </tbody>
+    
+                                                            <tfoot>
+    
+                                                            </tfoot>
+                                                        </table>
                                                 @elseif(Auth::User()->STATUSUSER == "UMKM")
-                                                    <form id="add-department" action="#" method="POST" class="add-department">
-                                                        @csrf
                                                         <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
                                                             <thead>
                                                                 <tr>
@@ -178,14 +235,21 @@
                                                                 </tr>
                                                                 <?php $no =1?>
                                                             </thead>
-    
                                                             <tbody>
                                                                 @foreach ($dataPermintaan as $itemPermintaan)
                                                                 <tr>
                                                                     <td>{{$no++}}</td>
                                                                     <td>{{$itemPermintaan->NAMANARASUMBER}}</td>
                                                                     <td>{{$itemPermintaan->KETERANGANPMT}}</td>
-                                                                    <td>{{$itemPermintaan->STATUSPMT}}</td>
+                                                                    <td class="text-center">
+                                                                        @if ($itemPermintaan->STATUSPMT == "APPROVE")
+                                                                            <span class="label label-success">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @elseif ($itemPermintaan->STATUSPMT == "REJECT")
+                                                                            <span class="label label-danger">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @else
+                                                                            <span class="label label-warning">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @endif
+                                                                    </td>
                                                                     <td>{{ \Carbon\Carbon::parse($itemPermintaan->created_at)->format('d M Y')}}</td>
                                                                 </tr>
                                                                 @endforeach
@@ -196,7 +260,6 @@
     
                                                             </tfoot>
                                                         </table>
-                                                    </form>
                                                     @else
 
                                                     @endif

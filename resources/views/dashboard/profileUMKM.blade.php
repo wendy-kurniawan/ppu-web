@@ -389,6 +389,12 @@
                                                             <span class="message-content">
                                                                 {{$itemactivity->KETERANGANPMT}}
                                                             </span>
+                                                            <span>
+                                                                <small><b>Jenis Masalah</b></small><br>
+                                                                @foreach ($itemactivity->masalah as $item)
+                                                                    <span class="label label-primary">{{$item->JKMASALAH}}</span>
+                                                                @endforeach
+                                                            </span>
                                                             <div class="m-t-md mg-t-10">
                                                                 <a href="https://www.google.com" class="btn btn-xs btn-default">
                                                                     <i class="fa fa-info"></i> Selengkapnya 

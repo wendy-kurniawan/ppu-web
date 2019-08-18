@@ -38,7 +38,42 @@ class penerimaanData extends Controller
     public function store(Request $request)
     {
         //
+        $tgl            = $request->tglPMT;
+        $idUMKM         = $request->idPermintaanUMKM;
+        $idNarasumber   = $request->idPermintaanNARASUMBER;
+        $approved       = $request->pApprove;
+        $reject         = $request->pReject;
+
+        if($approved =="APPROVE"){
+            $err = $this->pmt_umkmStatus($tgl,$idUMKM,$approved,$idNarasumber);
+            $status  = $approved;
+        }else{
+            $err = $this->pmt_umkmStatus($tgl,$idUMKM,$reject,$idNarasumber);
+            $status = $reject;
+        }
+        if($err){
+            Alert::error('Error Internal Server '.$err, 'Server Down!!!')->persistent('Close')->autoclose(4000);
+            return redirect('panel/listpenerimaan/'.$idNarasumber);
+        }else{
+            Alert::success('Update Data Berhasil di '.$status, 'Terima Kasih')->persistent('Close')->autoclose(4000);
+            return redirect('panel/listpenerimaan/'.$idNarasumber);
+        }
     }
+    //data
+    private function pmt_umkmStatus($date,$idUMKM,$param,$idNarasumber){
+        try {
+            DB::table('pmt_umkm')
+            ->whereRaw("IDUMKM = '$idUMKM' AND DATE(created_at) = '$date' ")
+            ->update(['STATUSPMT' => $param]);
+            return false;
+        } catch (\Throwable $th) {
+            //throw $th;
+            // dd($th->getMessage());
+            return $th->getMessage();
+        }
+    }
+
+
 
     /**
      * Display the specified resource.
@@ -48,18 +83,29 @@ class penerimaanData extends Controller
      */
     public function show($id)
     {
-        //show data
-        $dataPermintaan = $this->listData($id);
+        //show data byid UMKM
+        $dataPermintaan = $this->listDataUMKM($id);
+        //show data byid NARASUMBER
+        $dataPNarasumber = $this->listDataNarasumber($id);
+
         return view('dashboard/listPermintaan',[
-            'dataPermintaan' => $dataPermintaan
+            'dataPermintaan' => $dataPermintaan,
+            'dataPNarasumber' => $dataPNarasumber
         ]);
         
         
     }
-
-    private function listData($idUser){
+    //Request UMKM
+    private function listDataUMKM($idUser){
         return DB::table('pmt_umkm')
         ->where('IDUMKM', '=', $idUser)
+        ->orderBy('created_at', 'Desc')
+        ->get();
+    }
+    //Request Narasumber
+    private function listDataNarasumber($idNarasumber){
+        return DB::table('pmt_umkm')
+        ->where('IDNARASUMBER', '=', $idNarasumber)
         ->orderBy('created_at', 'Desc')
         ->get();
     }
@@ -73,6 +119,7 @@ class penerimaanData extends Controller
     public function edit($id)
     {
         //
+        
     }
 
     /**

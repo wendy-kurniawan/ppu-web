@@ -77,6 +77,7 @@ class NarasumberDetail extends Controller
         $masalahUMKM    = $request->permasalahanUMKM;
         $tlpUMKM        = $request->tlpUMKM;
         $namaNarasumber = $request->namaNarasumber;
+        $namaUMKM       = $request->namaUMKM;
         $fotoNarasumber = $request->imgNarasumber;
         //GENERATE IDMASALAH
         $subKalimat =  substr($idUMKM,0,3);
@@ -99,6 +100,7 @@ class NarasumberDetail extends Controller
             'IDNARASUMBER' => $idNarasumber,
             'IDUMKM' => $idUMKM,
             'NAMANARASUMBER' => $namaNarasumber,
+            'NAMAUMKMPMT'  => $namaUMKM,
             'GAMBARNARASUMBER'  => $fotoNarasumber, 
             'KETERANGANPMT'  => $masalahUMKM,
             'TLPUMKM' => $tlpUMKM,

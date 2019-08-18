@@ -47,7 +47,7 @@
         <li class="nav-item">
             <a href="#" data-toggle="dropdown" role="button"
                 aria-expanded="false" class="nav-link dropdown-toggle">
-                <img src="{{asset('assetLogin/img/product/pro4.jpg')}}" alt="" />
+                <img src="{{asset('assetLogin/img/profile/'.$dataIMG->GAMBAR)}}" alt="" />
                 <span class="admin-name">{{Auth::user()->USERNAME}}</span>
                 <i class="fa fa-angle-down edu-icon edu-down-arrow"></i>
             </a>
