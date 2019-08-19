@@ -37,18 +37,22 @@ class penerimaanData extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dataRequest
         $tgl            = $request->tglPMT;
         $idUMKM         = $request->idPermintaanUMKM;
         $idNarasumber   = $request->idPermintaanNARASUMBER;
         $approved       = $request->pApprove;
         $reject         = $request->pReject;
+        /*date*/
+        $updatedDate = Carbon::now()->toDateTimeString();
+
+        // dd($current_date_time);
 
         if($approved =="APPROVE"){
-            $err = $this->pmt_umkmStatus($tgl,$idUMKM,$approved,$idNarasumber);
+            $err = $this->pmt_umkmStatus($tgl,$idUMKM,$approved,$idNarasumber,$updatedDate);
             $status  = $approved;
         }else{
-            $err = $this->pmt_umkmStatus($tgl,$idUMKM,$reject,$idNarasumber);
+            $err = $this->pmt_umkmStatus($tgl,$idUMKM,$reject,$idNarasumber,$updatedDate);
             $status = $reject;
         }
         if($err){
@@ -60,11 +64,11 @@ class penerimaanData extends Controller
         }
     }
     //data
-    private function pmt_umkmStatus($date,$idUMKM,$param,$idNarasumber){
+    private function pmt_umkmStatus($date,$idUMKM,$param,$idNarasumber,$updatedDate){
         try {
             DB::table('pmt_umkm')
             ->whereRaw("IDUMKM = '$idUMKM' AND DATE(created_at) = '$date' ")
-            ->update(['STATUSPMT' => $param]);
+            ->update(['STATUSPMT' => $param, 'updated_at' => $updatedDate]);
             return false;
         } catch (\Throwable $th) {
             //throw $th;

@@ -115,8 +115,7 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading">
                                             <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..."
-                                                    class="search-int form-control">
+                                                <input type="text" id="searchData" data-url="{{route('dataumkm.show',['id'=>null])}}" placeholder="Search..." class="search-int form-control">
                                                 <a href="#"><i class="fa fa-search"></i></a>
                                             </form>
                                         </div>
@@ -138,10 +137,10 @@
         </div>
         <div class="contacts-area mg-b-15">
             <div class="container-fluid">
-                <div class="row">
+                <div id="umkmDataResult" class="row">
                     @foreach ($dataUMKM as $itemUMKM)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
-                        <div class="student-inner-std res-mg-b-30">
+                        <div  class="student-inner-std res-mg-b-30">
                             <div class="student-img">
                                 <img src="{{asset('/assetLogin/img/profile/'.$itemUMKM->GAMBAR)}}" alt="" />
                             </div>
@@ -231,4 +230,8 @@
         <!-- tawk chat JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/tawk-chat.js')}}"></script>
+        <!-- search AJAX JS
+            ============================================ -->
+        <script src="{{asset('myjs/ajax.js')}}"></script>
+
 @endsection

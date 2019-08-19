@@ -22,7 +22,9 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-8">
-                    <input type="text" class="form-control mb-2 mr-sm-2 search-box" placeholder="Events...">
+                    <form action="{{route('event.show')}}" method="GET">
+                    <input type="text" class="form-control mb-2 mr-sm-2 search-box" placeholder="Judul Acara">
+                    </form>
                 </div>
             </div>
         </div>
@@ -64,25 +66,44 @@
             </div>
             <div class="col-8">
                 <div class="row">
+                    @foreach ($dataKegiatan as $itemKegiatan)                        
                     <div class="card mx-2 mb-3" style="width: 22rem; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25)">
-                        <p class="card-tag text-white font-weight-bold">Seminar</p>
-                        <img class="card-img-top" src="{{ asset('img/event/download@2x.png') }}" alt="Card image cap">
+                        <p class="card-tag text-white font-weight-bold">{{$itemKegiatan->JKKEGIATAN}}</p>
+                        <img class="card-img-top" src="{{ asset('assetLogin/img/kegiatan/'.$itemKegiatan->GAMBAR) }}" alt="Foto Tidak Ada">
                         <div class="card-body">
-                            <h5 class="card-title text-primary">Card title</h5>
+                            <h5 class="card-title text-primary">{{$itemKegiatan->JUDULACARA}}</h5>
                             <div class="card-author">
-                                <p class="font-weight-bold"><small>oleh: </small>Lembaga</p>
+                                <p class="font-weight-bold"><small>oleh: </small>{{$itemKegiatan->NAMANARASUMBER}}</p>
                             </div>
-                            <p class="card-text overflow-hidden">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                            <p class="card-text overflow-hidden">{{$itemKegiatan->KETKEGIATAN}}</p>
                             <div class="card-skills">
-                                <h6 class="font-weight-bold">Skills</h6>
-                                <p>Java, Python, PHP</p>
+                                <h6 class="font-weight-bold">Lokasi</h6>
+                                <p>{{$itemKegiatan->LOKASI}}</p>
                             </div>
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
-                            <span class="font-weight-bold">10 hari lagi</span>
+                            @if ($itemKegiatan->TGLMULAI < $dateNow)
+                            <span class="font-weight-bold">Selesai</span>
+                            <span class="disable-links">
+                                <button type="#" class="btn btn-danger" disabled>Pendaftar ditutup</button>   
+                            </span>
+                            @elseif (\Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('m') == $cvDateMonthNow)
+                             <span class="font-weight-bold">
+                                Tersisa {{abs($day = (\Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('d'))-$cvDateNow)." Hari" }}
+                            </span>
                             <a href="#" class="btn btn-primary">Daftar</a>
+                            @else
+                            <span class="font-weight-bold">
+                                {{
+                                abs($month = (\Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('m'))-$cvDateMonthNow)."Bulan ".
+                                abs($day = (\Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('d'))-$cvDateNow)."Hari"
+                                }}
+                            </span>
+                            <a href="#" class="btn btn-primary">Daftar</a>
+                            @endif
                         </div>
                     </div>
+                    @endforeach
                 </div>
             </div>
         </div>

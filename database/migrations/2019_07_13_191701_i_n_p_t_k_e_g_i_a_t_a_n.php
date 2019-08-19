@@ -15,13 +15,16 @@ class INPTKEGIATAN extends Migration
     {
         Schema::create('INPTKEGIATAN', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('IDUMKM',12);
+            $table->char('IDKEGIATAN',12);
             $table->char('IDNARASUMBER',12);
-            $table->char('JUDULACARA');
-            $table->mediumText('KETKEGIATAN');
-            $table->dateTime('TGLMULAI');
-            $table->dateTime('TGLSELESAI');
-
+            $table->char('NAMANARASUMBER',70);
+            $table->enum('JKKEGIATAN',['WORKSHOP','SEMINAR']);
+            $table->char('JUDULACARA')->nullable();
+            $table->char('LOKASI',120)->nullable();
+            $table->mediumText('KETKEGIATAN')->nullable();
+            $table->dateTime('TGLMULAI')->nullable();
+            $table->dateTime('TGLSELESAI')->nullable();
+            $table->char('GAMBAR',191);
             $table->timestamps();
         });
     }

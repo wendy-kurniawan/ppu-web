@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Alert;
 
-class Event extends Controller
+class EventController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +16,20 @@ class Event extends Controller
      */
     public function index()
     {
-        return view('pages.event');
+        //
+        $dataKegiatan = DB::table('inptkegiatan')->get();
+        /*date now */
+        $dateNow = Carbon::now()->toDateTimeString();
+            /*date Now */
+            $cvDateNow      = date("d",strtotime($dateNow));
+            $cvDateMonthNow = date("m",strtotime($dateNow));
+            /*count */
+        return view('pages/event',[
+            'dataKegiatan' => $dataKegiatan,
+            'dateNow' => $dateNow,
+            'cvDateNow' => $cvDateNow,
+            'cvDateMonthNow' =>$cvDateMonthNow
+        ]);
     }
 
     /**
@@ -46,6 +62,12 @@ class Event extends Controller
     public function show($id)
     {
         //
+        $data = DB::table('inptkegiatan')
+        ->where('JUDULACARA', 'LIKE', '%'.$id.'%')
+
+        ->get();
+
+        return $data;
     }
 
     /**

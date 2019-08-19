@@ -103,7 +103,7 @@
                                     <span class="mini-click-non">Input Kegiatan </span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
                                         <li>
-                                            <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <a title="All Professors" href="{{route('kegiatanUMKM.index')}}">
                                             <span class="mini-sub-pro">Kegiatan UMKM</span></a>
                                         </li>
                                     </ul>

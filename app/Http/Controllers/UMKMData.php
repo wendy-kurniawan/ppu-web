@@ -56,6 +56,13 @@ class UMKMData extends Controller
     public function show($id)
     {
         //
+        $data = DB::table('users')
+        ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
+        ->select('users.*','profileusers.*')
+        ->whereRaw("users.USERNAME LIKE '%$id%' AND users.STATUSUSER= 'UMKM' ")
+        ->get();
+
+        return $data;
     }
 
     /**
