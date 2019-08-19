@@ -106,6 +106,10 @@
                                             <a title="All Professors" href="{{route('kegiatanUMKM.index')}}">
                                             <span class="mini-sub-pro">Kegiatan UMKM</span></a>
                                         </li>
+                                        <li>
+                                            <a title="All Professors" href="{{url('panel/kegiatanUMKM/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <span class="mini-sub-pro">Data UMKM</span></a>
+                                        </li>
                                     </ul>
                             </li>
                             {{-- Menu Permintaan Narsumber --}}
@@ -134,7 +138,7 @@
                             </li>
                         @endif
                       <li>
-                          <a title="Landing Page" href="#" aria-expanded="false"><span
+                          <a title="Landing Page" href="{{route('event.index')}}" aria-expanded="false"><span
                                   class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
                               <span class="mini-click-non">Event</span></a>
                       </li>

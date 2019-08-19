@@ -1,9 +1,11 @@
 $(function () {
-    var el = $("#umkmDataResult").html();
+    var el = $("#narasumberDataResult").html();
 
-    $("#searchData").keyup(function () {
+
+    $("#searchDataNarasumber").keyup(function () {
+        var idUMKM = document.getElementById('IDUMKM').value;
         if (this.value.length == 0) {
-            $("#umkmDataResult").html(el)
+            $("#narasumberDataResult").html(el)
             return false
         }
         $.ajax({
@@ -14,6 +16,8 @@ $(function () {
                 let dataResult = ``;
 
                 data.forEach(function (item) {
+                    let dataDate = item.TANGGALLAHIR;
+                    let reverseDate = dataDate.split("-").reverse().join("-");
                     dataResult += `
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div  class="student-inner-std res-mg-b-30">
@@ -21,17 +25,17 @@ $(function () {
                                 <img src="${('http://localhost/Project_Web/laravel/project/ppu-web/public/assetLogin/img/profile/'+ item.GAMBAR)}" alt="" />
                             </div>
                             <div class="student-dtl">
-                                <h2>${item.NAMAUMKM}</h2>
-                                <p class="dp">${item.ALAMATUMKM}</p>
-                                <a href="tel:${item.NOHPUMKM}}" class="dp-ag"><b>NoTlp: </b> ${item.NOHPUMKM}</a>
-                                <a href="${('detailUMKM/'+ item.PROFILE_ID) }" class="btn btn-primary">Selengkapnya</a>
+                                <h2>${item.NAMALENGKAP}</h2>
+                                <a href="tel:${item.NOHP}" class="dp">Tlp:${item.NOHP}</a>
+                                <p class="dp-ag"><b>Tanggal Lahir:</b> ${reverseDate}</p>
+                                <a href="${('http://localhost/Project_Web/laravel/project/ppu-web/public/panel/detailnarasumber?&idNarasumber='+item.PROFILE_ID +'&idUMKM='+idUMKM)}" class="btn btn-primary">Selengkapnya</a>
                             </div>
                         </div>
                     </div>
                     `
                 })
-                $("#umkmDataResult").html(dataResult)
+                $("#narasumberDataResult").html(dataResult)
             }
         });
     });
-})
+});

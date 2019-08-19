@@ -1,5 +1,5 @@
 @extends('layouts.appdashboard')
-@section('title','Bidang Keahlian')
+@section('title','List Permintaan')
 @section('customCSS')
     <!-- favicon
 		============================================ -->
@@ -61,7 +61,6 @@
         <!-- modernizr JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}')}}"></script>
-
 @endsection
 @section('contentDashboard')
 
@@ -94,13 +93,13 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                @include('layouts.listheaderinfo')
+                                            @include('layouts.listheaderinfo')                                                
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
-                                            @include('layouts.headerinfo')
+                                                @include('layouts.headerinfo')                                            
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +120,7 @@
 
                                             <h3>
                                                 <i class="social-edu-ctn fa fa-pencil"></i>
-                                                Pemerataan Pemberdayaan UMKM Input Bidang Keahlian
+                                                List Data Kegiatan
                                             </h3>
 
                                             <!-- <form role="search" class="sr-input-func">
@@ -135,7 +134,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Input Bidang Keahlian</span>
+                                            <li><span class="bread-blod">List Data Kegiatan</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -153,66 +152,48 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design text-center">
-                                <li class="active"><a href="#formbidangkeahlian">Input Bidang Keahlian</a></li>
-                                <li><a href="#formDataKeahlian"> Data Bidang Keahlian</a></li>
+                                <li class="active"><a href="#listPermintaan">List Data Permintaan</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
-                                <div class="product-tab-list tab-pane fade active in" id="formbidangkeahlian">
+                                <div class="product-tab-list tab-pane fade active in" id="listPermintaan">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <form id="add-department" action="{{route('bidangkeahlian.store')}}" method="POST" class="add-department">
-                                                            @csrf
-                                                            <div class="form-group">
-                                                                <label>Jenis Bidang Keahlian</label>
-                                                                <input name="jenisKeahlian" type="text" class="form-control"
-                                                                    placeholder="Jenis Keahlian">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="payment-adress">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"
-                                    id="formDataKeahlian">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive ">
-                                                <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>ID_Bidang Keahlian</th>
-                                                                <th>Nama Keahlian</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                                @foreach ($dataSkill as $itemSkill)    
+                                                        <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td>1</td>
-                                                                    <td>{{$itemSkill->ID_SKILL}}</td>
-                                                                    <td>{{$itemSkill->NAMASKILL}}</td>
-                                                                    <td>button</td>
+                                                                    <th>No</th>
+                                                                    <th class="text-center">Nama Narasumber</th>
+                                                                    <th class="text-center">Jenis Kegiatan</th>
+                                                                    <th class="text-center">Judul Acara</th>
+                                                                    <th class="text-center">Lokasi</th>
+                                                                    <th class="text-center">Keterangan</th>
+                                                                    <th class="text-center">Tanggal Mulai</th>
+                                                                    <th class="text-center">Tanggal Selesai</th>
+                                                                </tr>
+                                                                <?php $no =1?>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($dataKegiatanNarasumber as $itemKegiatan)
+                                                                <tr>
+                                                                    <td>{{$no++}}</td>
+                                                                    <td>{{$itemKegiatan->NAMANARASUMBER}}</td>
+                                                                    <td>{{$itemKegiatan->JKKEGIATAN}}</td>
+                                                                    <td>{{$itemKegiatan->JUDULACARA}}</td>
+                                                                    <td>{{$itemKegiatan->LOKASI}}</td>
+                                                                    <td class="text-center">{{$itemKegiatan->KETKEGIATAN}}</td>
+                                                                    <td>{{ \Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('d-m-Y H:m')}}</td>
+                                                                    <td>{{ \Carbon\Carbon::parse($itemKegiatan->TGLSELESAI)->format('d-m-Y H:m')}}</td>
                                                                 </tr>
                                                                 @endforeach
-                                                        </tbody>
-                                                        <tfoot>
-        
-                                                        </tfoot>
-                                                </table>	
+
+                                                            </tbody>
+    
+                                                            <tfoot>
+    
+                                                            </tfoot>
+                                                        </table>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -261,7 +242,7 @@
         <script src="{{asset('assetLogin/js/metisMenu/metisMenu-active.js')}}"></script>
         <!-- data table JS
             ============================================ -->
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <!-- morrisjs JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/sparkline/jquery.sparkline.min.js')}}"></script>

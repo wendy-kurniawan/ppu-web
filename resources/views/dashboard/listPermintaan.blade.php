@@ -350,9 +350,6 @@
         <!-- main JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/main.js')}}"></script>
-        <!-- tawk chat JS
-            ============================================ -->
-        <script src="{{asset('assetLogin/js/tawk-chat.js')}}"></script>
         {{-- My Custome js --}}
         <script src="{{asset('myjs/datatables.js')}}"></script>
 @endsection

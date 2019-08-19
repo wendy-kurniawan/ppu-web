@@ -18,9 +18,8 @@
 Route::get('/', function () {
     return view('pages.index');
 });
-Route::resource('/event', 'EventController');
-
 Auth::routes();
+Route::resource('event', 'EventController');
 
 Route::middleware('auth')->group(function() {
     Route::resource('src', 'Dashboard');

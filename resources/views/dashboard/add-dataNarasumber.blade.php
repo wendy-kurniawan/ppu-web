@@ -115,8 +115,8 @@
                                     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                                         <div class="breadcome-heading">
                                             <form role="search" class="sr-input-func">
-                                                <input type="text" placeholder="Search..."
-                                                    class="search-int form-control" id="search" name="search">
+                                                <input type="hidden" id="IDUMKM" value="{{Auth::user()->PROFILEUSERS_ID}}">
+                                                <input type="text" id="searchDataNarasumber" data-url="{{route('datanarasumber.show',['id'=>null])}}" placeholder="Search..." class="search-int form-control">
                                                 <a href="#"><i class="fa fa-search"></i></a>
                                             </form>
                                         </div>
@@ -138,7 +138,7 @@
         </div>
         <div class="contacts-area mg-b-15">
             <div class="container-fluid">
-                <div class="row">
+                <div id="narasumberDataResult" class="row">
                     @foreach ($dataNarasumber as $itemNarasumber)
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="student-inner-std res-mg-b-30">
@@ -227,7 +227,7 @@
         <!-- main JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/main.js')}}"></script>
-        <!-- tawk chat JS
+        <!-- search AJAX JS
             ============================================ -->
-        <script src="{{asset('assetLogin/js/tawk-chat.js')}}"></script>
+            <script src="{{asset('myjs/ajaxUMKM.js')}}"></script>
 @endsection

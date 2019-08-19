@@ -114,7 +114,15 @@ class KegiatanUMKM extends Controller
      */
     public function show($id)
     {
-        //
+        //dataKegiatan
+        $dataKegiatanNarasumber = DB::table('inptkegiatan')
+        ->where('IDNARASUMBER','=', $id)
+        ->orderBy('TGLMULAI', 'DESC')
+        ->get();
+
+        return view('dashboard/dataKegiatanNARAUMKM',[
+            'dataKegiatanNarasumber' => $dataKegiatanNarasumber
+        ]);
     }
 
     /**

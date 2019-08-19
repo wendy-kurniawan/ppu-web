@@ -363,7 +363,4 @@
         <!-- main JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/main.js')}}"></script>
-        <!-- tawk chat JS
-            ============================================ -->
-        <script src="{{asset('assetLogin/js/tawk-chat.js')}}"></script>
 @endsection

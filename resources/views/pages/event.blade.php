@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    <section id="event-banner" class="mb-5">
+    {{-- <section id="event-banner" class="mb-5">
         <div class="container">
             @include('partials.navigation')
             <div class="row p-5 justify-content-center">
@@ -23,12 +23,12 @@
             <div class="row justify-content-center">
                 <div class="col-8">
                     <form action="{{route('event.show')}}" method="GET">
-                    <input type="text" class="form-control mb-2 mr-sm-2 search-box" placeholder="Judul Acara">
+                    <input type="text" class="form-control mb-2 mr-sm-2 search-box" placeholder="">
                     </form>
                 </div>
             </div>
         </div>
-    </section>
+    </section> --}}
     
     <div class="container">
         <div class="row">

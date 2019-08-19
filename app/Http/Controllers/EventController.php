@@ -24,7 +24,7 @@ class EventController extends Controller
             $cvDateNow      = date("d",strtotime($dateNow));
             $cvDateMonthNow = date("m",strtotime($dateNow));
             /*count */
-        return view('pages/event',[
+        return view('pages.event',[
             'dataKegiatan' => $dataKegiatan,
             'dateNow' => $dateNow,
             'cvDateNow' => $cvDateNow,
@@ -64,7 +64,6 @@ class EventController extends Controller
         //
         $data = DB::table('inptkegiatan')
         ->where('JUDULACARA', 'LIKE', '%'.$id.'%')
-
         ->get();
 
         return $data;
