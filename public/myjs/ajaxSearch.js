@@ -12,7 +12,6 @@ $(document).ready(function () {
             url: $(this).data("url") + "/" + this.value,
 
             success: function (dataResult) {
-                console.log(dataResult);
                 let domHtml = ``;
                 dataResult.forEach(function (itemEvent) {
                     /*date INDO */
