@@ -11,6 +11,7 @@ $(function () {
             url: $(this).data("url") + "/" + this.value,
 
             success: function (data) {
+
                 let dataResult = ``;
 
                 data.forEach(function (item) {

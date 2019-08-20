@@ -1,7 +1,6 @@
 $(function () {
     var el = $("#narasumberDataResult").html();
 
-
     $("#searchDataNarasumber").keyup(function () {
         var idUMKM = document.getElementById('IDUMKM').value;
         if (this.value.length == 0) {

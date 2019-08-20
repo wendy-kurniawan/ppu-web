@@ -14,5 +14,6 @@
     <script src="{{ asset('js/jquery-3.4.1.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/popper/popper.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('myjs/ajaxSearch.js') }}" type="text/javascript"></script>
 </body>
 </html>

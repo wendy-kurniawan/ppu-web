@@ -37,6 +37,10 @@
                                 <li>
                                     <a title="Add Professor" href="{{route('jeniskegiatan.index')}}">
                                     <span class="mini-sub-pro">Jenis Kegiatan</span></a>
+                                </li>
+                                <li>
+                                    <a title="Add Professor" href="{{route('masalah.index')}}">
+                                    <span class="mini-sub-pro">Jenis Masalah</span></a>
                                 </li>                     
                             </ul>
                         </li>

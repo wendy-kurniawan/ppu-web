@@ -119,7 +119,7 @@
 
                                             <h3>
                                                 <i class="social-edu-ctn fa fa-pencil"></i>
-                                                Pemerataan Pemberdayaan UMKM Input Jenis Kegiatan
+                                                Pemerataan Pemberdayaan UMKM Input Jenis Masalah
                                             </h3>
 
                                             <!-- <form role="search" class="sr-input-func">
@@ -133,7 +133,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Input Jenis Kegiatan</span>
+                                            <li><span class="bread-blod">Input Jenis Masalah</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -151,23 +151,22 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design text-center">
-                                <li class="active"><a href="#formJenisKegiatan">Input Jenis Kegiatan</a></li>
-                                <li><a href="#formDataJenisKegiatan"> Data Jenis Kegiatan</a></li>
+                                <li class="active"><a href="#formJenisMasalah">Input Jenis Masalah</a></li>
+                                <li><a href="#formDataJenisMasalah"> Data Jenis Masalah</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
-                                <div class="product-tab-list tab-pane fade active in" id="formJenisKegiatan">
+                                <div class="product-tab-list tab-pane fade active in" id="formJenisMasalah">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
 
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <form id="add-department" action="{{route('jeniskegiatan.store')}}" method="POST" class="add-department">
+                                                        <form id="add-department" action="{{route('masalah.store')}}" method="POST" class="add-department">
                                                             @csrf
                                                             <div class="form-group">
-                                                                <label>Jenis Kegiatan</label>
-                                                                <input name="jenisKegiatan" type="text" class="form-control"
-                                                                    placeholder="Jenis Kegiatan">
+                                                                <label>Jenis Masalah</label>
+                                                                <input name="namaMasalah" type="text" class="form-control" placeholder="Jenis Masalah">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -185,7 +184,7 @@
                                     </div>
                                 </div>
                                 <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"
-                                    id="formDataJenisKegiatan">
+                                    id="formDataJenisMasalah">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
                                                 <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
@@ -198,11 +197,12 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($dataKegiatan as $itemKegiatan)
+                                                            @foreach ($dataMasalah as $itemKegiatan)
+                                                            <?php $no=1; ?>
                                                             <tr>
-                                                                <td>1</td>
-                                                                <td>{{$itemKegiatan->ID_KEGIATAN}}</td>
-                                                                <td>{{$itemKegiatan->NAMA_KEGIATAN}}</td>
+                                                                <td>{{$no++}}</td>
+                                                                <td>{{$itemKegiatan->IDMASALAH}}</td>
+                                                                <td>{{$itemKegiatan->NAMAMASALAH}}</td>
                                                                 <td>button</td>
                                                             </tr>
                                                             @endforeach

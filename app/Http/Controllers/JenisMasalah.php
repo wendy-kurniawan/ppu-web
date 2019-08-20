@@ -7,7 +7,8 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Alert;
 
-class EventController extends Controller
+
+class JenisMasalah extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,18 +18,9 @@ class EventController extends Controller
     public function index()
     {
         //
-        $dataKegiatan = DB::table('inptkegiatan')->get();
-        /*date now */
-        $dateNow = Carbon::now()->toDateTimeString();
-            /*date Now */
-            $cvDateNow      = date("d",strtotime($dateNow));
-            $cvDateMonthNow = date("m",strtotime($dateNow));
-            /*count */
-        return view('pages.eventPg',[
-            'dataKegiatan' => $dataKegiatan,
-            'dateNow' => $dateNow,
-            'cvDateNow' => $cvDateNow,
-            'cvDateMonthNow' =>$cvDateMonthNow
+        $dataMasalah = DB::table('jkmasalah')->get();
+        return view('dashboard/add-JenisMasalah',[
+            'dataMasalah' => $dataMasalah
         ]);
     }
 
@@ -50,7 +42,33 @@ class EventController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //get data by form
+        $namaMasalah = $request->namaMasalah;
+
+        $cekMasalah = DB::table('jkmasalah')->where('NAMAMASALAH', '=',$namaMasalah)->get()->count();
+       
+        if ($cekMasalah > 0) {
+            Alert::error('Data '.$namaMasalah.' telah terdaftar', 'Error')->persistent('Close')->autoclose(3000);
+            return redirect('panel/masalah');
+        }else {
+        /*ambil nama kemudian str_replace lalu susbstr kan */
+        $replacE = str_replace(" ","",$namaMasalah);
+        $subKalimat =  substr($replacE,0,6);
+        /*count form DB */
+        $lastCount = DB::table('jkmasalah')->count();
+        $lastNumber = $lastCount + (int) 1;
+        $idJenisMasalah = $subKalimat.sprintf("%06s",$lastNumber);
+        /*date*/
+        $current_date_time = Carbon::now()->toDateTimeString();
+        DB::table('jkmasalah')->insert([
+            'IDMASALAH' => $idJenisMasalah,
+            'NAMAMASALAH' => $namaMasalah,
+            'created_at' => $current_date_time
+        ]);
+
+        Alert::success('Data '.$namaMasalah.' Telah Tersimpan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        return redirect('panel/masalah');
+        }
     }
 
     /**
@@ -62,12 +80,6 @@ class EventController extends Controller
     public function show($id)
     {
         //
-        $data = DB::table('inptkegiatan')
-        ->select('IDNARASUMBER','JKKEGIATAN','NAMANARASUMBER','JUDULACARA','GAMBAR','KETKEGIATAN','LOKASI','TGLMULAI','TGLSELESAI')
-        ->where('JUDULACARA', 'LIKE', '%'.$id.'%')
-        ->get();
-
-        return $data;
     }
 
     /**

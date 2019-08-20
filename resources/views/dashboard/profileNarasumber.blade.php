@@ -570,16 +570,9 @@
                                                                     <label>Jenis Pemasalahan</label>
                                                                     <select name="jkMasalah[]" data-placeholder="Jenis Permasalahan" class="form-control chosen-select" multiple="multiple" tabindex="-1">
                                                                             <option value="">Select</option>
-                                                                            <option value="United States">United States</option>
-                                                                            <option value="United Kingdom">United Kingdom</option>
-                                                                            <option value="Afghanistan">Afghanistan</option>
-                                                                            <option value="Aland Islands">Aland Islands</option>
-                                                                            <option value="Albania">Albania</option>
-                                                                            <option value="Algeria">Algeria</option>
-                                                                            <option value="American Samoa">American Samoa</option>
-                                                                            <option value="Andorra">Andorra</option>
-                                                                            <option value="Angola">Angola</option>
-                                                                            <option value="Anguilla">Anguilla</option>
+                                                                            <option value="Programming">Programming</option>
+                                                                            <option value="Design">Design</option>
+                                                                            <option value="Psikologi">Psikologi</option>
                                                                     </select>
                                                             </div>
                                                     </div>

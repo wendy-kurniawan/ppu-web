@@ -8,7 +8,7 @@
 @endsection
 
 @section('content')
-    {{-- <section id="event-banner" class="mb-5">
+    <section id="event-banner" class="mb-5">
         <div class="container">
             @include('partials.navigation')
             <div class="row p-5 justify-content-center">
@@ -22,50 +22,16 @@
             </div>
             <div class="row justify-content-center">
                 <div class="col-8">
-                    <form action="{{route('event.show')}}" method="GET">
-                    <input type="text" class="form-control mb-2 mr-sm-2 search-box" placeholder="">
-                    </form>
+                    <input id="searchEvent" data-url="{{route('event.show',['id'=>null])}}" type="text" class="form-control mb-2 mr-sm-2 search-box" placeholder="Temukan Event">
                 </div>
             </div>
         </div>
-    </section> --}}
+    </section>
     
     <div class="container">
         <div class="row">
-            <div class="col-md-4">
-                <div class="dropdown">
-                    <button class="btn btn-primary dropdown-toggle w-100 shadow" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Jenis Kegiatan
-                    </button>
-                    <div class="dropdown-menu w-100 p-4" aria-labelledby="dropdownMenuButton">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                            <label class="form-check-label" for="dropdownCheck">Seminar</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                            <label class="form-check-label" for="dropdownCheck">Workshop</label>
-                        </div>
-                    </div>
-                </div>
-                <div class="dropdown mt-2">
-                    <button class="btn btn-primary dropdown-toggle w-100 shadow" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Bidang Keahlian
-                    </button>
-                    <div class="dropdown-menu w-100 p-4" aria-labelledby="dropdownMenuButton">
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                            <label class="form-check-label" for="dropdownCheck">Programming</label>
-                        </div>
-                        <div class="form-check">
-                            <input type="checkbox" class="form-check-input" id="dropdownCheck">
-                            <label class="form-check-label" for="dropdownCheck">Designing</label>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-8">
-                <div class="row">
+            <div class="col-12">
+                <div class="row" id="dataResultEvent">
                     @foreach ($dataKegiatan as $itemKegiatan)                        
                     <div class="card mx-2 mb-3" style="width: 22rem; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25)">
                         <p class="card-tag text-white font-weight-bold">{{$itemKegiatan->JKKEGIATAN}}</p>
