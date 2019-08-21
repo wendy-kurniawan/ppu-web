@@ -121,9 +121,8 @@
                             <input type="text" name="nohpUMKM" class="form-control" placeholder="Handphone Anda" maxlength="13" required>
                         </div>
                         <input type="submit" class="form-control btn btn-primary" value="Daftar" >
-                    </form<div>
+                    </form>
                 @endauth
-                
             </div>
         </div>
     </div>
