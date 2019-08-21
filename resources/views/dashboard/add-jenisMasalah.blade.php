@@ -197,8 +197,8 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($dataMasalah as $itemKegiatan)
                                                             <?php $no=1; ?>
+                                                            @foreach ($dataMasalah as $itemKegiatan)
                                                             <tr>
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$itemKegiatan->IDMASALAH}}</td>

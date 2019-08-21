@@ -24,12 +24,15 @@ class NarasumberDetail extends Controller
          //method Narasumber
          $profileNarasumber = $this->dataNarasumber($idNarsumber);
          $profileUMKM = $this->dataUMKM($idUMKM);
+        //  jenismasalah Load on select
+        $jenisMasalah   = $this->dataMasalah();
          
          return view('dashboard/profileNarasumber',
          [
              'profileNarasumber' => $profileNarasumber,
              'profileUMKM'  => $profileUMKM,
              'idNarsumber' => $idNarsumber,
+             'jenisMasalah' => $jenisMasalah
          ]);
         
     }
@@ -48,6 +51,9 @@ class NarasumberDetail extends Controller
         ->select('users.*', 'profileusers.*')
         ->where('PROFILE_ID','=', $idUMKM)
         ->get();
+    }
+    private function dataMasalah(){
+        return DB::table('jkmasalah')->get();
     }
 
     /**

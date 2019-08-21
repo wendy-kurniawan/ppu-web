@@ -570,9 +570,9 @@
                                                                     <label>Jenis Pemasalahan</label>
                                                                     <select name="jkMasalah[]" data-placeholder="Jenis Permasalahan" class="form-control chosen-select" multiple="multiple" tabindex="-1">
                                                                             <option value="">Select</option>
-                                                                            <option value="Programming">Programming</option>
-                                                                            <option value="Design">Design</option>
-                                                                            <option value="Psikologi">Psikologi</option>
+                                                                            @foreach ($jenisMasalah as $itemJenisMasalah)
+                                                                            <option value="{{$itemJenisMasalah->NAMAMASALAH}}">{{$itemJenisMasalah->NAMAMASALAH}}</option>
+                                                                            @endforeach
                                                                     </select>
                                                             </div>
                                                     </div>
