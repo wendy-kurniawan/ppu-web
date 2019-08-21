@@ -57,7 +57,7 @@
                              <span class="font-weight-bold">
                                 Tersisa {{abs($day = (\Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('d'))-$cvDateNow)." Hari" }}
                             </span>
-                            <a href="#" class="btn btn-primary">Daftar</a>
+                            <a href="{{url('eventregister/'.$itemKegiatan->NO)}}" class="btn btn-primary">Daftar</a>
                             @else
                             <span class="font-weight-bold">
                                 {{
@@ -65,7 +65,7 @@
                                 abs($day = (\Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('d'))-$cvDateNow)."Hari"
                                 }}
                             </span>
-                            <a href="#" class="btn btn-primary">Daftar</a>
+                            <a href="{{url('eventregister/'.$itemKegiatan->NO)}}" class="btn btn-primary">Daftar</a>
                             @endif
                         </div>
                     </div>

@@ -3,8 +3,13 @@ nav {
     z-index: 1;
 }
 
-.navbar-brand, .nav-link {
+.navbar-brand,
+.nav-link {
     color: #FFF !important;
+}
+
+.nav-color {
+    color: #000 !important;
 }
 
 .nav-item {
@@ -14,7 +19,9 @@ nav {
 }
 
 @media only screen and (max-width: 991px) {
-    .navbar-brand, .nav-link {
+
+    .navbar-brand,
+    .nav-link {
         color: #000 !important;
     }
 }

@@ -20,6 +20,7 @@ Route::get('/', function () {
 });
 Auth::routes();
 Route::resource('event', 'EventController');
+Route::resource('eventregister', 'EventRegisterController');
 
 Route::middleware('auth')->group(function() {
     Route::resource('src', 'Dashboard');
