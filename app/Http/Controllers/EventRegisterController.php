@@ -51,9 +51,13 @@ class EventRegisterController extends Controller
         $namaUMKM = $request->namaOrganisasi;
         $email  = $request->emailUMKM;
         $HP = $request->nohpUMKM;
+        $userID = $request->noidUser;
+        // dateNOW
+        $dateNow = Carbon::now()->toDateTimeString();
+        $cekdate = date("Y-m-d");
         // check login
-        $cekRegisterGuest = DB::table('regiskegiatan')->where('EMAILPESERTA', '=',$guestEmail)->get()->count();
-        $cekRegisterLogin = DB::table('regiskegiatan')->where('EMAILPESERTA', '=',$email)->get()->count();
+        $cekRegisterGuest = DB::table('regiskegiatan')->whereRaw("EMAILPESERTA = '$guestEmail' AND DATE(created_at) = '$cekdate' ")->get()->count();
+        $cekRegisterLogin = DB::table('regiskegiatan')->whereRaw("EMAILPESERTA = '$email' AND DATE(created_At) = '$cekdate' ")->get()->count();
         //Logic
         if($cekRegisterGuest || $cekRegisterLogin > 0 ){
             Alert::error('Terima Kasih', 'Anda Telah Terdaftar')->persistent('Close')->autoclose(3000);
@@ -62,20 +66,24 @@ class EventRegisterController extends Controller
         elseif($statusLogin == "LOGIN"){
             DB::table('regiskegiatan')->insert([
                 'IDKEGIATAN' => $idKegiatanlogin,
+                'IDUSER'    => $userID,
                 'NAMAPESERTA' => $nama,
                 'NAMAUMKM' => $namaUMKM,
                 'EMAILPESERTA' => $email,
-                'HANDPHONEPESERTA' => $HP
+                'HANDPHONEPESERTA' => $HP,
+                'created_at' => $dateNow
             ]);
             Alert::success('Terima Kasih','Selamat '.$nama.' Anda Telah Terdaftar')->persistent('Close')->autoclose(3000);
             return redirect('eventregister/'.$page);
         }else{
             DB::table('regiskegiatan')->insert([
                 'IDKEGIATAN' => $idkegiatanGuest,
+                'IDUSER'    => "",
                 'NAMAPESERTA' => $guestName,
                 'NAMAUMKM' => "",
                 'EMAILPESERTA' => $guestEmail,
-                'HANDPHONEPESERTA' => $guestHP
+                'HANDPHONEPESERTA' => $guestHP,
+                'created_at' => $dateNow
             ]);
             Alert::success('Terima Kasih','Selamat '.$guestName.' Anda Telah Terdaftar')->persistent('Close')->autoclose(3000);
             return redirect('eventregister/'.$page);

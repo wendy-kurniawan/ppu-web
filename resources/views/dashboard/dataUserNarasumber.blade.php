@@ -1,5 +1,5 @@
 @extends('layouts.appdashboard')
-@section('title','List Permintaan')
+@section('title','List Data User')
 @section('customCSS')
     <!-- favicon
 		============================================ -->
@@ -120,7 +120,7 @@
 
                                             <h3>
                                                 <i class="social-edu-ctn fa fa-pencil"></i>
-                                                List Data Kegiatan
+                                                List Data User
                                             </h3>
 
                                             <!-- <form role="search" class="sr-input-func">
@@ -134,7 +134,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">List Data Kegiatan</span>
+                                            <li><span class="bread-blod">List Data User</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -152,47 +152,65 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design text-center">
-                                <li class="active"><a href="#listPermintaan">List Data Permintaan</a></li>
+                                <li class="active"><a href="#listPermintaan">List Data User</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
                                 <div class="product-tab-list tab-pane fade active in" id="listPermintaan">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section table-responsive">
-                                                        <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th>No</th>
-                                                                    <th class="text-center">Nama Narasumber</th>
-                                                                    <th class="text-center">Jenis Kegiatan</th>
-                                                                    <th class="text-center">Judul Acara</th>
-                                                                    <th class="text-center">Lokasi</th>
-                                                                    <th class="text-center">Keterangan</th>
-                                                                    <th class="text-center">Tanggal Mulai</th>
-                                                                    <th class="text-center">Tanggal Selesai</th>
-                                                                </tr>
-                                                                <?php $no =1?>
-                                                            </thead>
-                                                            <tbody>
-                                                                @foreach ($dataKegiatanNarasumber as $itemKegiatan)
-                                                                <tr>
-                                                                    <td>{{$no++}}</td>
-                                                                    <td>{{$itemKegiatan->NAMANARASUMBER}}</td>
-                                                                    <td>{{$itemKegiatan->JKKEGIATAN}}</td>
-                                                                    <td>{{$itemKegiatan->JUDULACARA}}</td>
-                                                                    <td>{{$itemKegiatan->LOKASI}}</td>
-                                                                    <td class="text-center">{{$itemKegiatan->KETKEGIATAN}}</td>
-                                                                    <td>{{ \Carbon\Carbon::parse($itemKegiatan->TGLMULAI)->format('d-m-Y H:m')}}</td>
-                                                                    <td>{{ \Carbon\Carbon::parse($itemKegiatan->TGLSELESAI)->format('d-m-Y H:m')}}</td>
-                                                                </tr>
+                                                <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
+                                                    <thead>
+                                                        <tr>
+                                                            <th class="text-center" colspan="3"><h3>Data User Mengikuti Seminar/Workshop</h3></th>
+                                                        </tr>
+                                                    </thead>
+                                                    <?php $no=1;?>
+                                                    <?php $noUser=1;?>
+                                                    <tbody>
+                                                    @foreach ($dataKegiatan as $itemPendaftaran)                                                        
+                                                        <tr>
+                                                            <td rowspan="6">
+                                                                NO: {{$no++}}
+                                                                <img src="{{asset('assetLogin/img/kegiatan/'.$itemPendaftaran->GAMBAR)}}" width="200" />
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td><b>Judul Acara</b></td>
+                                                            <td><b>{{$itemPendaftaran->JUDULACARA}}</b></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Jenis Kegiatan</td>
+                                                            <td>{{$itemPendaftaran->JKKEGIATAN}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tanggal Mulai</td>
+                                                            <td>{{ \Carbon\Carbon::parse($itemPendaftaran->TGLMULAI)->format('d M Y H:i:m')}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Tanggal Selesai</td>
+                                                            <td>{{ \Carbon\Carbon::parse($itemPendaftaran->TGLSELESAI)->format('d M Y H:i:m')}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td class="text-center">Nama Pendaftar</td>
+                                                            <td>
+                                                                @foreach ($itemPendaftaran->IDKEGIATAN as $itemUSER)                                                                    
+                                                                <ul>
+                                                                    <li>{{"No:".$noUser++}}</li>
+                                                                    <li>Nama Peserta: {{$itemUSER->NAMAPESERTA}}</li>
+                                                                    <li>Nama UMKM: {{$itemUSER->NAMAUMKM}} </li>
+                                                                    <li>Email Peserta: <a href="mailto:{{$itemUSER->EMAILPESERTA}}">{{$itemUSER->EMAILPESERTA}}</a></li>
+                                                                    <li>Handphone Peserta: <a href="tel:{{$itemUSER->HANDPHONEPESERTA}}">{{$itemUSER->HANDPHONEPESERTA}}</a></li>
+                                                                    <li>Tanggal User Daftar: 22-08-2019</li>
+                                                                    <hr>
+                                                                </ul>
                                                                 @endforeach
+                                                            </td>
+                                                        </tr>
+                                                        @endforeach
 
-                                                            </tbody>
-    
-                                                            <tfoot>
-    
-                                                            </tfoot>
-                                                        </table>
+                                                    </tbody>    
+                                                </table>
                                             </div>
                                         </div>
                                     </div>

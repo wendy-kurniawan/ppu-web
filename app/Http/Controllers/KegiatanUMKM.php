@@ -94,7 +94,7 @@ class KegiatanUMKM extends Controller
                 'KETKEGIATAN' => $keterangan,
                 'TGLMULAI' => $MulaiKegiatan,
                 'TGLSELESAI' => $selesaiKegiatan,
-                'GAMBAR' => "",
+                'GAMBAR' => "imgnAv.jpg",
                 'created_at' => $dateNow
             ]);
             Alert::success('Kegiatan '.$judul.' Berhasil Ditambahkan', 'Terima Kasih')->persistent('Close')->autoclose(3000);

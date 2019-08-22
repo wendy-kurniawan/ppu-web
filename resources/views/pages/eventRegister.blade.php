@@ -96,7 +96,8 @@
                     <div class="form-group">
                         @foreach ($dataEvent as $idEvent)
                         <input type="hidden" name="statuslogin" class="form-control" value="LOGIN" readonly>
-                        <input type="hidden" name="nopage" class="form-control" value="{{$idEventGuest->NO}}" readonly>
+                        <input type="hidden" name="nopage" class="form-control" value="{{$idEvent->NO}}" readonly>
+                        <input type="hidden" name="noidUser" class="form-control" value="{{Auth::User()->PROFILEUSERS_ID}}" readonly>
                         <input type="hidden" name="idKegiatan" class="form-control" value="{{$idEvent->IDKEGIATAN}}" readonly>
                         @endforeach
                     </div>

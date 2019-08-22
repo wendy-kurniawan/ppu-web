@@ -36,4 +36,5 @@ Route::middleware('auth')->group(function() {
     Route::resource('panel/detailnarasumber', 'NarasumberDetail');
     Route::resource('panel/detailUMKM', 'UMKMDetail');
     Route::resource('panel/kegiatanUMKM', 'KegiatanUMKM');
+    Route::resource('panel/dataregisterkegiatan', 'dataKegiatanUser');
 });

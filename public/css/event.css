@@ -1,5 +1,5 @@
 #event-banner {
-    background: linear-gradient(180deg, #1A22FF, #6C00FB);
+    background: linear-gradient(180deg, rgba(26, 34, 255, 0.5), rgba(108, 0, 251, 0.5)) fixed, url('../img/background/traditional-business.png') fixed;
     background-repeat: no-repeat;
     background-size: cover;
 }

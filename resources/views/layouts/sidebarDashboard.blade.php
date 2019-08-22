@@ -112,7 +112,11 @@
                                         </li>
                                         <li>
                                             <a title="All Professors" href="{{url('panel/kegiatanUMKM/'.Auth::User()->PROFILEUSERS_ID)}}">
-                                            <span class="mini-sub-pro">Data UMKM</span></a>
+                                            <span class="mini-sub-pro">Data Kegiatan Anda</span></a>
+                                        </li>
+                                        <li>
+                                            <a title="All Professors" href="{{url('panel/dataregisterkegiatan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <span class="mini-sub-pro">Data User Anda</span></a>
                                         </li>
                                     </ul>
                             </li>

@@ -16,6 +16,7 @@ class REGISKEGIATAN extends Migration
         Schema::create('REGISKEGIATAN', function (Blueprint $table) {
             $table->bigIncrements('NO');
             $table->char('IDKEGIATAN',12);
+            $table->char('IDUSER',12)->nullable();
             $table->char('NAMAPESERTA',70);
             $table->char('NAMAUMKM',70)->nullable();
             $table->char('EMAILPESERTA',120);
