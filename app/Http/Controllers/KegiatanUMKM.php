@@ -43,6 +43,8 @@ class KegiatanUMKM extends Controller
         $namaNarasumber  = $request->namaNarasumber;
         $jkKegiatan     = $request->JKKegiatan;
         $judul          = $request->judulKegiatan;
+        /*input Qusioner Request */
+        $arrayFromField = $request->field_ques;
         //Date Start
         $reqtglMulaiKegiatan       = $request->tglMulai;
         $reqtimeMulaiKegiatan      = $request->timeMulai;
@@ -65,6 +67,16 @@ class KegiatanUMKM extends Controller
         /*date now */
         $dateNow = Carbon::now()->toDateTimeString();
         /*Insert DB */
+         //loop to db QUISIONER
+         for($i=0; $i < count($arrayFromField); $i++){
+            // echo $arrayFromField[$i]."<br>";
+            DB::table('kuesioner')->insert([
+                'IDKEGIATAN' => $idKegiatan,
+                'PERTANYAAN' => $arrayFromField[$i],
+                'created_at' => $dateNow
+            ]);
+        }
+       
         if($gambar != null){
         $hashGambar             = $gambar->hashName();
         $move = $gambar->move(public_path('\assetLogin\img\kegiatan'), $hashGambar);

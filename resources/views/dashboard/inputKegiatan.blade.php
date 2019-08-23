@@ -56,6 +56,10 @@
         <!-- responsive CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/responsive.css')}}">
+        <!-- smartWizard CSS        
+        ============================================ -->
+        <link rel="stylesheet" href="{{asset('smartwizard/css/smart_wizard.css')}}">
+        <link rel="stylesheet" href="{{asset('smartwizard/css/smart_wizard_theme_arrows.css')}}">
         <!-- modernizr JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}')}}"></script>
@@ -148,94 +152,133 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
-                            <ul id="myTabedu1" class="tab-review-design text-center">
+                            {{-- <ul id="myTabedu1" class="tab-review-design text-center">
                                 <li class="active"><a href="#inputPermintaan">Input Kegiatan</a></li>
-                            </ul>
+                            </ul> --}}
                             <div id="myTabContent" class="tab-content custom-product-edit">
-                                <div class="product-tab-list tab-pane fade active in" id="inputPermintaan">
-                                    <div class="row">
+                                <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                <form id="add-department" action="{{route('kegiatanUMKM.store')}}" method="POST" class="add-department" enctype="multipart/form-data">
+                                                <form action="{{route('kegiatanUMKM.store')}}" method="POST" class="add-department" enctype="multipart/form-data">
                                                     @csrf
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                            <div class="form-group">
-                                                                <label>Nama</label>
-                                                                <input type="hidden" name="idNarasumber" value="{{Auth::User()->PROFILEUSERS_ID}}" class="form-control" placeholder="Nama" readonly>
-                                                                <input type="text" name="namaNarasumber" value="{{Auth::User()->USERNAME}}" class="form-control" placeholder="Nama" readonly>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Jenis Kegiatan</label>
-                                                                <select name="JKKegiatan" class="form-control">
-                                                                    <option value="" >Pilih Jenis Kegiatan</option>
-                                                                    <option value="SEMINAR">Seminar</option>
-                                                                    <option value="WORKSHOP">Workshop</option>
-                                                                </select>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Judul Kegiatan</label>
-                                                                <input type="text" name="judulKegiatan"  class="form-control" placeholder="Judul Kegiatan" >
-                                                            </div>
-                                                            <div class="form-group">
-                                                                    <label>Tanggal Mulai</label>
-                                                                    <label class="pull-right">Jam Mulai</label>
-                                                                    <div class="input-group date">
-                                                                        <input type="date" name="tglMulai" class="form-control"  />
-                                                                            <span class="input-group-addon">
-                                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                                            </span>
-                                                                        {{-- Jam --}}
-                                                                        <input type="time" name="timeMulai" class="form-control" />
-                                                                            <span class="input-group-addon">
-                                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                                            </span>
+                                                    <div id="smartwizard">
+                                                            <ul>
+                                                                <li><a href="#step-1">Step 1<br /><h5>Input Kegiatan</h5></a></li>
+                                                                <li><a href="#step-2">Step 2<br /><h5>Quisioner</h5></a></li>
+                                                            </ul>
+                                                         
+                                                            <div>
+                                                                <div id="step-1" class="">
+                                                                        <div class="row">
+                                                                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                                                                <div class="form-group">
+                                                                                    <label>Nama</label>
+                                                                                    <input type="hidden" name="idNarasumber" value="{{Auth::User()->PROFILEUSERS_ID}}" class="form-control" placeholder="Nama" readonly>
+                                                                                    <input type="text" name="namaNarasumber" value="{{Auth::User()->USERNAME}}" class="form-control" placeholder="Nama" readonly>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Jenis Kegiatan</label>
+                                                                                    <select name="JKKegiatan" class="form-control">
+                                                                                        <option value="" >Pilih Jenis Kegiatan</option>
+                                                                                        <option value="SEMINAR">Seminar</option>
+                                                                                        <option value="WORKSHOP">Workshop</option>
+                                                                                    </select>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                    <label>Judul Kegiatan</label>
+                                                                                    <input type="text" name="judulKegiatan"  class="form-control" placeholder="Judul Kegiatan" >
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                        <label>Tanggal Mulai</label>
+                                                                                        <label class="pull-right">Jam Mulai</label>
+                                                                                    <div class="input-group date">
+                                                                                        <input type="date" name="tglMulai" class="form-control"  />
+                                                                                        <span class="input-group-addon">
+                                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                                        </span>
+                                                                                            {{-- Jam --}}
+                                                                                        <input type="time" name="timeMulai" class="form-control" />
+                                                                                        <span class="input-group-addon">
+                                                                                            <span class="glyphicon glyphicon-calendar"></span>
+                                                                                        </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="form-group">
+                                                                                        <label>Tanggal Selesai</label>
+                                                                                        <label class="pull-right">Jam Mulai</label>
+                                                                                    <div class="input-group date">
+                                                                                        <input type="date" name="tglSelesai" class="form-control"  />
+                                                                                            <span class="input-group-addon">
+                                                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                                                            </span>
+                                                                                        {{-- Jam --}}
+                                                                                        <input type="time" name="timeSelesai" class="form-control" />
+                                                                                            <span class="input-group-addon">
+                                                                                                <span class="glyphicon glyphicon-calendar"></span>
+                                                                                            </span>
+                                                                                    </div>
+                                                                                </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Keterangan</label>
+                                                                                        <textarea name="keteranganKegiatan" placeholder="Keterangan.."></textarea>
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <label>Lokasi Acara</label>
+                                                                                        <input type="text" name="lokasiKegiatan"  class="form-control" placeholder="Lokasi Acara" >
+                                                                                    </div>
+                                                                                    <div class="form-group">
+                                                                                        <div class="file-button">
+                                                                                            <label>Upload Gambar Lokasi</label>
+                                                                                            <input type="file" name="gambarLokasi" class="form-control">
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                </div>
+                                                                <div id="step-2">
+                                                                    <div class="row">
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group" id="addform">
+                                                                                <label>Pertanyaan 1</label>
+                                                                                <input type="text" name="field_ques[]"  class="form-control" value="Bagaimana Dengan Materi Hari Ini?" placeholder="Pertanyaan 1" readonly>                                                                            
+                                                                            
+                                                                                <label>Pertanyaan 2</label>
+                                                                                <input type="text" name="field_ques[]"  class="form-control" value="Apakah Bermanfaat?" placeholder="Pertanyaan 2" readonly>                                                                            
+                                                                       
+                                                                                <label>Pertanyaan 3</label>
+                                                                                <input type="text" name="field_ques[]"  class="form-control" value="Kejelasan Moderator Dalam Memimpin Jalannya Seminar?" placeholder="Pertanyaan 3" readonly>                                                                            
+                                                                                
+                                                                                <label>Pertanyaan 4</label>
+                                                                                <input type="text" name="field_ques[]"  class="form-control" value="Kejelasan Susunan Acara?" placeholder="Pertanyaan 4" readonly>                                                                            
+                                                                                
+                                                                                <label>Pertanyaan 5</label>
+                                                                                <input type="text" name="field_ques[]"  class="form-control" value="Apakah Membantu Anda Kedepan?" placeholder="Pertanyaan 5" readonly>                                                                            
+                                                                                
+                                                                            </div>
+                                                                            <div class="form-group" id="plusInput">
+                                                                                <div>
+                                                                                    <label>Pertanyaan 6</label>
+                                                                                    <input type="text" name="field_ques[]" class="form-control"  placeholder="Pertanyaan" required/>
+                                                                                    <a href="javascript:void(0);" class="add_button" title="Add field">
+                                                                                        <i class="fa fa-plus-circle fa-2x" aria-hidden="true"></i>
+                                                                                    </a>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+
+                                                                        <div class="col-lg-12">
+                                                                            <div class="form-group">
+                                                                                <button type="submit" class="btn btn-primary waves-effect waves-light">Submit</button>
+                                                                            </div>
+                                                                        </div>
+                                                                        </form>
                                                                     </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                    <label>Tanggal Selesai</label>
-                                                                    <label class="pull-right">Jam Mulai</label>
-                                                                    <div class="input-group date">
-                                                                        <input type="date" name="tglSelesai" class="form-control"  />
-                                                                            <span class="input-group-addon">
-                                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                                            </span>
-                                                                        {{-- Jam --}}
-                                                                        <input type="time" name="timeSelesai" class="form-control" />
-                                                                            <span class="input-group-addon">
-                                                                                <span class="glyphicon glyphicon-calendar"></span>
-                                                                            </span>
-                                                                    </div>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Keterangan</label>
-                                                                <textarea name="keteranganKegiatan" placeholder="Keterangan.."></textarea>
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <label>Lokasi Acara</label>
-                                                                <input type="text" name="lokasiKegiatan"  class="form-control" placeholder="Lokasi Acara" >
-                                                            </div>
-                                                            <div class="form-group">
-                                                                <div class="file-button">
-                                                                    <label>Upload Gambar Lokasi</label>
-                                                                    <input type="file" name="gambarLokasi" class="form-control">
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="payment-adress">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -279,16 +322,6 @@
             ============================================ -->
         <script src="{{asset('assetLogin/js/metisMenu/metisMenu.min.js')}}"></script>
         <script src="{{asset('assetLogin/js/metisMenu/metisMenu-active.js')}}"></script>
-        <!-- data table JS
-            ============================================ -->
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/tableExport.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/data-table-active.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table-editable.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-editable.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table-resizable.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/colResizable-1.5.source.js')}}"></script>
-        <script src="{{asset('assetLogin/js/data-table/bootstrap-table-export.js')}}"></script>
         <!-- morrisjs JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/sparkline/jquery.sparkline.min.js')}}"></script>
@@ -312,8 +345,10 @@
         <!-- main JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/main.js')}}"></script>
-        <!-- DatePicker JS
+        <!-- smartWizard JS
             ============================================ -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/eonasdan-bootstrap-datetimepicker/4.17.47/js/bootstrap-datetimepicker.min.js"></script>
-        
+            <script src="{{asset('smartwizard/js/jquery.smartWizard.min.js')}}"></script>
+            <script src="{{asset('myjs/customsmartWizard.js')}}"></script>
+            <script src="{{asset('myjs/addform.js')}}"></script>
+     
 @endsection
