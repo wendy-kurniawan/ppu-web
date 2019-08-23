@@ -1,44 +1,99 @@
 <ul class="nav navbar-nav mai-top-nav header-right-menu">
-        <li class="nav-item"><a href="#" data-toggle="dropdown" role="button"
-                aria-expanded="false" class="nav-link dropdown-toggle"><i
-                    class="educate-icon educate-bell"
-                    aria-hidden="true"></i><span
-                    class="indicator-nt"></span></a>
+    {{-- notification --}}
+        <li class="nav-item">
+            @if (Auth::User()->STATUSUSER == "ADMIN")
+            
+            @elseif (Auth::User()->STATUSUSER == "NARASUMBER")
+            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                    <i class="educate-icon educate-bell" aria-hidden="true"></i>
+                @if ($countnotifNarsumber == 0)
+                    <span class="indicator"></span>
+                @elseif($countnotifNarsumber > 99)
+                    <small class="badge badge-info" style="background-color: #ffffff;color:black">99+</small>
+                @else
+                    <small class="badge badge-info" style="background-color: #ffffff;color:black">{{$countnotifNarsumber}}</small>
+                @endif
+            </a>
+            
+            @else
+            <a href="#" data-toggle="dropdown" role="button" aria-expanded="false" class="nav-link dropdown-toggle">
+                    <i class="educate-icon educate-bell" aria-hidden="true"></i>
+                @if ($countnotifUMKM == 0)
+                    <span class="indicator"></span>
+                @elseif($countnotifUMKM > 99)
+                    <small class="badge badge-info" style="background-color: #ffffff;color:black">99+</small>
+                @else
+                    <small class="badge badge-info" style="background-color: #ffffff;color:black">{{$countnotifUMKM}}</small>
+                @endif
+            </a>
+
+            @endif
+            
             <div role="menu"
                 class="notification-author dropdown-menu animated zoomIn">
                 <div class="notification-single-top">
                     <h1>Notifications</h1>
                 </div>
+                {{-- Body Notification --}}
+                @if (Auth::User()->STATUSUSER == "ADMIN")
+
+                @elseif(Auth::User()->STATUSUSER == "NARASUMBER")
+                    <ul class="notification-menu">
+                        @if ($countnotifNarsumber == 0)
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <p class="text-center">Tidak Ada Waiting List Kegiatan</p>
+                        @else
+                            @foreach ($notifNarasumber as $itemNotifNarasumber)
+                                <li>
+                                    <a href="#">
+                                        <div class="notification-icon">
+                                            {{-- <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i> --}}
+                                            <img src="{{asset('assetLogin/img/profile/'.$itemNotifNarasumber->GAMBARNARASUMBER)}}">
+                                        </div>
+                                        <div class="notification-content col-md-9 col-xs-8">
+                                            <h2>Dari: {{$itemNotifNarasumber->NAMAUMKMPMT}}</h2>
+                                            <p><small>Pengajuan:<b>{{ \Carbon\Carbon::parse($itemNotifNarasumber->created_at)->format('d-m-Y')}}</b></small></p>
+                                            <p>Status Pengajuan <b>{{$itemNotifNarasumber->STATUSPMT}}</b></p>
+                                        </div>
+                                    </a>
+                                </li><hr>
+                            @endforeach
+                        @endif
+                    </ul>
+                @elseif(Auth::User()->STATUSUSER == "UMKM")
                 <ul class="notification-menu">
-                    <li>
-                        <a href="#">
-                            <div class="notification-icon">
-                                <i class="educate-icon educate-checked edu-checked-pro admin-check-pro"
-                                    aria-hidden="true"></i>
-                            </div>
-                            <div class="notification-content">
-                                <span class="notification-date">16 Sept</span>
-                                <h2>Advanda Cro</h2>
-                                <p>Please done this project as soon possible.
-                                </p>
-                            </div>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#">
-                            <div class="notification-icon">
-                                <i class="fa fa-cloud edu-cloud-computing-down"
-                                    aria-hidden="true"></i>
-                            </div>
-                            <div class="notification-content">
-                                <span class="notification-date">16 Sept</span>
-                                <h2>Sulaiman din</h2>
-                                <p>Please done this project as soon possible.
-                                </p>
-                            </div>
-                        </a>
-                    </li>
-                </ul>
+                    @if ($countnotifUMKM == 0)
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <br>
+                            <p class="text-center">Tidak Ada Pengajuan Permintaan Ke Narasumber</p>
+                    @else
+                        @foreach ($notif as $itemNotif)
+                        <li>
+                            <a href="#">
+                                <div class="notification-icon">
+                                    {{-- <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i> --}}
+                                    <img src="{{asset('assetLogin/img/profile/'.$itemNotif->GAMBARNARASUMBER)}}">
+                                </div>
+                                <div class="notification-content col-md-9 col-xs-8">
+                                    <h2>Dari: {{$itemNotif->NAMANARASUMBER}}</h2>
+                                    <p><small>Pengajuan:<b>{{ \Carbon\Carbon::parse($itemNotif->updated_at)->format('d-m-Y')}}</b></small></p>
+                                    <p>Kegiatan Yang Anda Ajukan di <b>{{$itemNotif->STATUSPMT}}</b></p>
+                                </div>
+                            </a>
+                        </li><hr>
+                        @endforeach
+                        @endif
+                    </ul>
+                @else
+
+                @endif
                 <div class="notification-view">
                     <a href="#">View All Notification</a>
                 </div>

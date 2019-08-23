@@ -35,12 +35,31 @@ class AppServiceProvider extends ServiceProvider
         {
             if (Auth::check()){
                 $idLogin = Auth::User()->PROFILEUSERS_ID;
+                /*for profile picture */ 
                 $dataIMG = DB::table('users')
                 ->join('profileusers', 'users.PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
                 ->select('users.PROFILEUSERS_ID', 'profileusers.GAMBAR')
                 ->where('profileusers.PROFILE_ID', '=', $idLogin )
                 ->first();
                 View::share('dataIMG', $dataIMG);
+                
+                /*for notif UMKM*/
+                $notif = DB::table('pmt_umkm')->where('IDUMKM', '=', $idLogin)->get();
+                View::share('notif', $notif);
+                /*for bell on notif */
+                $countnotifUMKM = DB::table('pmt_umkm')->where('IDUMKM', '=', $idLogin)->count();
+                View::share('countnotifUMKM', $countnotifUMKM);
+
+                /*for notif Narasumber */
+                $notifNarasumber = DB::table('pmt_umkm')
+                ->whereRaw("IDNARASUMBER = '$idLogin' AND STATUSPMT ='WAIT' ")
+                ->get();
+                View::share('notifNarasumber', $notifNarasumber);
+                /*for bell on notif */
+                $countnotifNarsumber = DB::table('pmt_umkm')
+                ->whereRaw("IDNARASUMBER = '$idLogin' AND STATUSPMT ='WAIT' ")->count();
+                View::share('countnotifNarsumber', $countnotifNarsumber);
+
             }
         });
         
