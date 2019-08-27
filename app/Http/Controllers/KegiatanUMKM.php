@@ -112,7 +112,6 @@ class KegiatanUMKM extends Controller
             Alert::success('Kegiatan '.$judul.' Berhasil Ditambahkan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
             return redirect('panel/kegiatanUMKM');
         }
-
         // dd($idKegiatan,$idNarasumber,$namaNarasumber,$jkKegiatan,$judul,$MulaiKegiatan,$selesaiKegiatan,$keterangan,$lokasiAcara,$gambar);
 
     }

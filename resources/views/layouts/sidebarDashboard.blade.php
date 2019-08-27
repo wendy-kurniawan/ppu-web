@@ -98,6 +98,12 @@
                                         </li>
                                     </ul>
                             </li>
+                            {{-- Menu Kuesioner --}}
+                            <li>
+                                <a title="Landing Page" href="{{URL('panel/datakuesioner/'.Auth::User()->PROFILEUSERS_ID)}}" aria-expanded="false">
+                                <span class="fa fa-filter icon-wrap sub-icon-mg" aria-hidden="true"></span>
+                                <span class="mini-click-non">Kuesioner</span></a>
+                            </li>
                         @else
                             {{-- do something narasumber --}}
                             {{-- Input Data Kegiatan --}}

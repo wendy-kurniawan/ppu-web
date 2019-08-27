@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Alert;
 
-class narasumberData extends Controller
+class formKuesioner extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +17,6 @@ class narasumberData extends Controller
     public function index()
     {
         //
-        $dataNarasumber = DB::table('users')
-        ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
-        ->select('users.*','profileusers.*')
-        ->where('STATUSUSER', '=', 'NARASUMBER')
-        ->get();
-        // dd($dataNarasumber);
-
-        return view('dashboard/add-dataNarasumber',
-        [
-            'dataNarasumber' => $dataNarasumber,
-        ]);
     }
 
     /**
@@ -46,7 +37,31 @@ class narasumberData extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //insert to db
+        $kegiatanID = $request->idKegiatan;    
+        $idUser     = $request->userID;    
+        $jwbUser    = $request->jwb;
+        /*date now */
+        $dateNow = Carbon::now()->toDateTimeString();
+        // dd($request->all());
+        for ($i=0; $i < count($jwbUser); $i++) { 
+            // echo $jwbUser[$i]."<br>";
+            DB::table('hasilkuesioner')->insert([
+                'IDKEGIATAN' => $kegiatanID,
+                'IDUSER' => $idUser,
+                'JAWABAN'=> $jwbUser[$i],
+                'created_at' => $dateNow
+            ]);
+        }
+        //update
+        DB::table('regiskegiatan')->whereRaw("IDKEGIATAN = '$kegiatanID' AND IDUSER = '$idUser' ")
+        ->update(['STATUSKUESIONER' => 'DONE','updated_at' => $dateNow]);
+        /*for optimize database */
+        DB::disconnect('regiskegiatan');
+        
+        Alert::success('Data Kuesioner Telah Tersubmit', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        return redirect('panel/datakuesioner/'.$idUser);
+        
     }
 
     /**
@@ -58,13 +73,17 @@ class narasumberData extends Controller
     public function show($id)
     {
         //
-        $data = DB::table('users')
-        ->join('profileusers', 'users.PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
-        ->select('users.*','profileusers.*')
-        ->whereRaw("users.USERNAME LIKE '%$id%' AND users.STATUSUSER= 'NARASUMBER' ")
-        ->get();
+        $dataKuesioner  = $this->dbKuesioner($id);
 
-        return $data;
+        return view('dashboard/detailKuesioner',[
+            'dataKuesioner' => $dataKuesioner,
+        ]);
+    }
+    /*data Kuesioner */
+    private function dbKuesioner($idKegiatan){
+        return DB::table('kuesioner')
+        ->where('IDKEGIATAN', '=', $idKegiatan)
+        ->get();
     }
 
     /**

@@ -37,4 +37,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('panel/detailUMKM', 'UMKMDetail');
     Route::resource('panel/kegiatanUMKM', 'KegiatanUMKM');
     Route::resource('panel/dataregisterkegiatan', 'dataKegiatanUser');
+    Route::resource('panel/datakuesioner', 'dataKuesioner');
+    Route::resource('panel/detailkuesioner', 'formKuesioner');
+
 });

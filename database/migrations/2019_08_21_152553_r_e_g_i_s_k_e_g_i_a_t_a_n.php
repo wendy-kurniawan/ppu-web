@@ -21,6 +21,7 @@ class REGISKEGIATAN extends Migration
             $table->char('NAMAUMKM',70)->nullable();
             $table->char('EMAILPESERTA',120);
             $table->char('HANDPHONEPESERTA',13);
+            $table->enum('STATUSKUESIONER',['UNDONE','DONE']);
             $table->timestamps();
         });
     }

@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
+use Alert;
 
-class narasumberData extends Controller
+class dataKuesioner extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,17 +17,6 @@ class narasumberData extends Controller
     public function index()
     {
         //
-        $dataNarasumber = DB::table('users')
-        ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
-        ->select('users.*','profileusers.*')
-        ->where('STATUSUSER', '=', 'NARASUMBER')
-        ->get();
-        // dd($dataNarasumber);
-
-        return view('dashboard/add-dataNarasumber',
-        [
-            'dataNarasumber' => $dataNarasumber,
-        ]);
     }
 
     /**
@@ -57,14 +48,20 @@ class narasumberData extends Controller
      */
     public function show($id)
     {
-        //
-        $data = DB::table('users')
-        ->join('profileusers', 'users.PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
-        ->select('users.*','profileusers.*')
-        ->whereRaw("users.USERNAME LIKE '%$id%' AND users.STATUSUSER= 'NARASUMBER' ")
+        //func data
+        $dataKuesioner       = $this->registerKegiatan($id);
+        // dd($dataKuesioner);
+        return view ('dashboard/kuesionerTable',[
+            'dataKuesioner' => $dataKuesioner,
+        ]);
+    }
+    /*data Kuesioner */
+    private function registerKegiatan($idUser){
+        return DB::table('regiskegiatan')
+        ->join('inptkegiatan', 'regiskegiatan.IDKEGIATAN', '=', 'inptkegiatan.IDKEGIATAN')
+        ->select('inptkegiatan.IDKEGIATAN','inptkegiatan.NAMANARASUMBER','inptkegiatan.JUDULACARA','inptkegiatan.GAMBAR','inptkegiatan.TGLMULAI','inptkegiatan.TGLSELESAI','regiskegiatan.STATUSKUESIONER')
+        ->whereRaw("IDUSER = '$idUser' AND STATUSKUESIONER= 'UNDONE' ")
         ->get();
-
-        return $data;
     }
 
     /**
