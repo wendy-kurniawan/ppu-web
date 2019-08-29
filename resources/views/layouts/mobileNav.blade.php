@@ -63,6 +63,7 @@
                                 <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                 <ul id="inputForm" class="collapse dropdown-header-top">
                                     <li><a href="{{route('dataumkm.index')}}">UMKM</a></li>
+                                    <li><a href="{{URL('panel/ratekuesioner/'.Auth::User()->PROFILEUSERS_ID)}}">Kuesioner</a></li>
                                 </ul>
                             </li>
                             @else
