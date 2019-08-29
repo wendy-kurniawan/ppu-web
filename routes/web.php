@@ -39,5 +39,7 @@ Route::middleware('auth')->group(function() {
     Route::resource('panel/dataregisterkegiatan', 'dataKegiatanUser');
     Route::resource('panel/datakuesioner', 'dataKuesioner');
     Route::resource('panel/detailkuesioner', 'formKuesioner');
+    Route::resource('panel/ratekuesioner', 'datarateKuesioner');
+    Route::resource('panel/detailratekuesioner', 'datadetailrateKuesioner');
 
 });

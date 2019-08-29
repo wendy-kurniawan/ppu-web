@@ -6,7 +6,6 @@ $(document).ready(function () {
             $("#dataResultEvent").html(el);
             return false
         }
-
         $.ajax({
             type: "GET",
             url: $(this).data("url") + "/" + this.value,
@@ -69,7 +68,7 @@ $(document).ready(function () {
                     </div>
                     `;
                 })
-                $("#dataResultEvent").html(domHtml)
+                $('#dataResultEvent').html(domHtml);
             }
         });
     });

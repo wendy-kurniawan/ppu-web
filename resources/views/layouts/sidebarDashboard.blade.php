@@ -148,6 +148,10 @@
                                         <a title="All Professors" href="{{route('dataumkm.index')}}">
                                         <span class="mini-sub-pro">UMKM</span></a>
                                     </li>
+                                    <li>
+                                        <a title="All Professors" href="{{URL('panel/ratekuesioner/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                        <span class="mini-sub-pro">Kuesioner</span></a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif
