@@ -18,6 +18,9 @@
 Route::get('/', function () {
     return view('pages.index');
 });
+
+Route::get('/narasumber', 'NarasumberController@index')->name('narasumber.index');
+
 Auth::routes();
 Route::resource('event', 'EventController');
 Route::resource('eventregister', 'EventRegisterController');
