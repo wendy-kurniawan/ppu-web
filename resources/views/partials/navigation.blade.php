@@ -13,6 +13,9 @@
                     <a class="nav-link" href="{{ route('event.index') }}">Event</a>
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('narasumber.index') }}">Narasumber</a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="#services">Services</a>
                 </li>
                 <li class="nav-item">

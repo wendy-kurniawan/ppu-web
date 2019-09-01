@@ -22,5 +22,17 @@
     <script src="{{ asset('js/popper/popper.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('js/bootstrap/bootstrap.min.js') }}" type="text/javascript"></script>
     <script src="{{ asset('myjs/ajaxSearch.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('js/jquery.easypiechart.js') }}"></script>
+    <script>
+        $(function() {
+            $('.chart').easyPieChart({
+                barColor: '#31EAF1',
+                scaleColor: false,
+                trackColor: '#E9E9E9',
+                lineWidth: 10,
+                animate: 1500
+            });
+        });
+    </script>
 </body>
 </html>
