@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class HASILKUESIONER extends Migration
+class Auditlog extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,9 @@ class HASILKUESIONER extends Migration
      */
     public function up()
     {
-        Schema::create('hasilkuesioner', function (Blueprint $table) {
+        Schema::create('auditlog', function (Blueprint $table) {
             $table->bigIncrements('NO');
-            $table->char('IDKEGIATAN',12);            
-            $table->char('IDUSER',12)->nullable();
-            $table->integer('JAWABAN');
+            $table->char('AKTIVITASUSER');
             $table->timestamps();
         });
     }
@@ -29,6 +27,6 @@ class HASILKUESIONER extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('hasilkuesioner');
+        Schema::dropIfExists('auditlog');
     }
 }

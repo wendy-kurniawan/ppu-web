@@ -90,7 +90,8 @@
 
                             
                             @endif
-                            <li><a href="#">Event</a></li>
+                            <li><a href="{{route('rangking.index')}}">Rangking</a></li>
+                            <li><a href="{{route('event.index')}}">Event</a></li>
                             
                         </ul>
                     </nav>

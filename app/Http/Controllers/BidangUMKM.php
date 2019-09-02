@@ -67,6 +67,13 @@ class BidangUMKM extends Controller
             'NAMA_UMKM' => $namaUMKM,
             'created_at' => $current_date_time
         ]);
+         /*
+            Audit Log
+        */
+        DB::table('auditlog')->insert([
+            'AKTIVITASUSER' => "Admin Menginput ".$namaUMKM,
+            'created_at' => $current_date_time
+        ]);
 
         Alert::success('Data '.$namaUMKM.' Telah Tersimpan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
         return redirect('panel/bidangumkm');

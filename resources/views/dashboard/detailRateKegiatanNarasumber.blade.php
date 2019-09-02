@@ -191,7 +191,11 @@
                                     @if ($itemDetail->totalJawaban == 0)
                                     <span class="label label-default">0%</span><br><br>
                                     @else
-                                    <?php $totalRate =(($itemDetail->totalPertayaan/$itemDetail->totalJawaban)/$itemDetail->totalUser)*100 ?>
+                                    <?php 
+                                    $totalQuestion  = ($itemDetail->totalPertayaan*5);
+                                    $totalUser      = ($itemDetail->totalUser);
+                                    $total          = ($totalQuestion*$totalUser);
+                                    $totalRate =($total/$itemDetail->totalJawaban)*100 ?>
                                         @if ($totalRate <= 25.00)
                                         <span class="label label-danger">{{round($totalRate,2)."%"}}</span><br><br>
                                         @elseif ($totalRate <= 50.00)

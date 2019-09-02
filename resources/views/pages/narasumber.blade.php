@@ -13,7 +13,7 @@
                 <div id="rank-first" class="ranking__card">
                     <img src="{{ asset('img/icons/crown_gold.svg') }}" alt="crown" class="card__crown">
                     <div class="profile">
-                        <img src="{{ asset('assetLogin\img\profile') }}" alt="profile picture"/>
+                        <img src="{{ asset('assetLogin\img\profile\c6bxe8ljoIDfA0JTmW4C6wQMnWg19yFA9b9yeBxq.png') }}" alt="profile picture"/>
                     </div>
                     <h5 class="card__name">Nama User</h5>
                     <p class="card__skill">Java, Programming, Design, Machine Learning, Teaching</p>
@@ -22,7 +22,7 @@
                 <div id="rank-first" class="ranking__card">
                     <img src="{{ asset('img/icons/crown_silver.svg') }}" alt="crown" class="card__crown">
                     <div class="profile">
-                        <img src="{{ asset('assetLogin\img\profile') }}" alt="profile picture"/>
+                        <img src="{{ asset('assetLogin\img\profile\10ox2lVTAzKnDLiBM3gtgCeLHndDk81Q0gbflplo.png') }}" alt="profile picture"/>
                     </div>
                     <h5 class="card__name">Nama User</h5>
                     <p class="card__skill">Java, Programming, Design, Machine Learning, Teaching</p>
@@ -31,7 +31,7 @@
                 <div id="rank-first" class="ranking__card">
                     <img src="{{ asset('img/icons/crown_bronze.svg') }}" alt="crown" class="card__crown">
                     <div class="profile">
-                        <img src="{{ asset('assetLogin\img\profile') }}" alt="profile picture"/>
+                        <img src="{{ asset('assetLogin\img\profile\PtbXBIVgs1K6roFk3bxnLGDtUWbESnYSXYcQAbxO.png') }}" alt="profile picture"/>
                     </div>
                     <h5 class="card__name">Nama User</h5>
                     <p class="card__skill">Java, Programming, Design, Machine Learning, Teaching</p>
@@ -45,7 +45,7 @@
                     </div>
                     <div class="list__picture">
                         <div class="profile">
-                            <img src="{{ asset('assetLogin\img\profile') }}" alt="profile picture"/>
+                            <img src="{{ asset('assetLogin\img\profile\guest.jpg') }}" alt="profile picture"/>
                         </div>
                     </div>
                     <div class="list__profile">

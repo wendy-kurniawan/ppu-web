@@ -3,11 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use Carbon\Carbon;
-use Alert;
 
-class datarateKuesioner extends Controller
+class rangkingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -49,42 +46,8 @@ class datarateKuesioner extends Controller
     public function show($id)
     {
         //
-        $dataKegiatan = $this->dataKegiatan($id);
-        $pertayaan    = $this->rateKegiatan($dataKegiatan);
-
-        // dd($dataKegiatan);
-        /*for optimize database */
-        DB::disconnect('kuesioner');
-        DB::disconnect('hasilkuesioner');
-        DB::disconnect('regiskegiatan');
-
-        return view ('dashboard/rateKuesioner',[
-            'dataKegiatan'  => $dataKegiatan,
-        ]);
     }
-    //dataKegiatan
-    private function dataKegiatan($idNarasumber){
-        return DB::table('inptkegiatan')
-        ->where('IDNARASUMBER', '=', $idNarasumber)
-        ->get();
-    }
-    //Cari Rate
-    private function rateKegiatan($idkegiatan){
-        foreach ($idkegiatan as $key => $value) {
-            $pertayaan = DB::table('kuesioner')
-            ->where('IDKEGIATAN', '=', $value->IDKEGIATAN)->count('PERTANYAAN');
-            $value->totalPertayaan = $pertayaan;
 
-            $totJawaban = DB::table('hasilkuesioner')
-            ->where('IDKEGIATAN','=',$value->IDKEGIATAN)->sum('JAWABAN');
-            $value->totalJawaban = $totJawaban;
-
-            $totUser    = DB::table('regiskegiatan')
-            ->where('IDKEGIATAN', '=', $value->IDKEGIATAN)->count('EMAILPESERTA');
-            $value->totalUser   = $totUser;
-        }
-        return $idkegiatan;
-    }
     /**
      * Show the form for editing the specified resource.
      *

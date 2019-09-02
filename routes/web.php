@@ -20,10 +20,11 @@ Route::get('/', function () {
 });
 
 Route::get('/narasumber', 'NarasumberController@index')->name('narasumber.index');
-
 Auth::routes();
 Route::resource('event', 'EventController');
 Route::resource('eventregister', 'EventRegisterController');
+Route::resource('checkkuesioner', 'EventCheckController');
+Route::resource('kuesioner', 'KuesionerGuest');
 
 Route::middleware('auth')->group(function() {
     Route::resource('src', 'Dashboard');
@@ -44,5 +45,6 @@ Route::middleware('auth')->group(function() {
     Route::resource('panel/detailkuesioner', 'formKuesioner');
     Route::resource('panel/ratekuesioner', 'datarateKuesioner');
     Route::resource('panel/detailratekuesioner', 'datadetailrateKuesioner');
+    Route::resource('panel/rangking', 'rangkingController');
 
 });

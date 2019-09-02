@@ -73,6 +73,13 @@ class EventRegisterController extends Controller
                 'HANDPHONEPESERTA' => $HP,
                 'created_at' => $dateNow
             ]);
+             /*
+            Audit Log
+            */
+            DB::table('auditlog')->insert([
+                'AKTIVITASUSER' => $nama." Mengisi Form Kegiatan ".$idKegiatanlogin,
+                'created_at' => $dateNow
+            ]);
             Alert::success('Terima Kasih','Selamat '.$nama.' Anda Telah Terdaftar')->persistent('Close')->autoclose(3000);
             return redirect('eventregister/'.$page);
         }else{
@@ -83,6 +90,13 @@ class EventRegisterController extends Controller
                 'NAMAUMKM' => "",
                 'EMAILPESERTA' => $guestEmail,
                 'HANDPHONEPESERTA' => $guestHP,
+                'created_at' => $dateNow
+            ]);
+             /*
+            Audit Log
+            */
+            DB::table('auditlog')->insert([
+                'AKTIVITASUSER' => $guestName." Mengisi Form Kegiatan ".$idkegiatanGuest,
                 'created_at' => $dateNow
             ]);
             Alert::success('Terima Kasih','Selamat '.$guestName.' Anda Telah Terdaftar')->persistent('Close')->autoclose(3000);

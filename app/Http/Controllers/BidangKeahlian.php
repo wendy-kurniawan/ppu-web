@@ -68,6 +68,14 @@ class BidangKeahlian extends Controller
             'NAMASKILL' => $namaKeahlian,
             'created_at' => $current_date_time
         ]);
+         /*
+            Audit Log
+        */
+        DB::table('auditlog')->insert([
+            'AKTIVITASUSER' => "Admin Menginput ".$namaKeahlian,
+            'created_at' => $current_date_time
+        ]);
+        
 
         Alert::success('Data '.$namaKeahlian.' Telah Tersimpan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
         return redirect('panel/bidangkeahlian');

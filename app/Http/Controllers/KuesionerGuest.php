@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Alert;
 
-class formKuesioner extends Controller
+class KuesionerGuest extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +17,7 @@ class formKuesioner extends Controller
     public function index()
     {
         //
+        return view('pages/kuesionerGuest');
     }
 
     /**
@@ -37,38 +38,42 @@ class formKuesioner extends Controller
      */
     public function store(Request $request)
     {
-        //insert to db
-        $kegiatanID = $request->idKegiatan;    
-        $idUser     = $request->userID;    
-        $jwbUser    = $request->jwb;
+        //
+        $emailGuest         = $request->emailGuest;
+        $idKegiatanGuest    = $request->idkegiatanGuest;
+        $jwbGuest           = $request->jwb;
         /*date now */
         $dateNow = Carbon::now()->toDateTimeString();
-        // dd($request->all());
-        for ($i=0; $i < count($jwbUser); $i++) { 
-            // echo $jwbUser[$i]."<br>";
+        $data = $request->all();
+        // dd($jwbGuest);
+        for ($i=0; $i < count($jwbGuest); $i++) { 
+            echo "No[$i] ".$jwbGuest[$i]."<br>";
             DB::table('hasilkuesioner')->insert([
-                'IDKEGIATAN' => $kegiatanID,
-                'IDUSER' => $idUser,
-                'JAWABAN'=> $jwbUser[$i],
+                'IDKEGIATAN' => $idKegiatanGuest,
+                'IDUSER' => "Guest",
+                'JAWABAN'=> $jwbGuest[$i],
                 'created_at' => $dateNow
             ]);
         }
-         /*
-        Audit Log
+        // dd($data);
+        // update
+        DB::table('regiskegiatan')->whereRaw("IDKEGIATAN = '$idKegiatanGuest' AND EMAILPESERTA = '$emailGuest' ")
+        ->update(['STATUSKUESIONER' => 'DONE','updated_at' => $dateNow]);
+        /*
+            Audit Log
         */
         DB::table('auditlog')->insert([
-            'AKTIVITASUSER' => $idUser." Mengisi Jawban Kuesioner dengan idkegiatan ".$idKegiatan,
+            'AKTIVITASUSER' => $emailGuest." Mengisi Kuesioner dengan idkegiatan: ".$idKegiatanGuest,
             'created_at' => $dateNow
         ]);
-        //update
-        DB::table('regiskegiatan')->whereRaw("IDKEGIATAN = '$kegiatanID' AND IDUSER = '$idUser' ")
-        ->update(['STATUSKUESIONER' => 'DONE','updated_at' => $dateNow]);
+
         /*for optimize database */
         DB::disconnect('regiskegiatan');
+        DB::disconnect('hasilkuesioner');
+        DB::disconnect('auditlog');
         
         Alert::success('Data Kuesioner Telah Tersubmit', 'Terima Kasih')->persistent('Close')->autoclose(3000);
-        return redirect('panel/datakuesioner/'.$idUser);
-        
+        return redirect('checkkuesioner');
     }
 
     /**
@@ -80,17 +85,27 @@ class formKuesioner extends Controller
     public function show($id)
     {
         //
-        $dataKuesioner  = $this->dbKuesioner($id);
+        $getGuest       = $this->dataregisKegiatan($id);
+        $getKuesioner   = $this->dbKuesioner($getGuest);
+        // dd($getGuest,$getKuesioner);
 
-        return view('dashboard/detailKuesioner',[
-            'dataKuesioner' => $dataKuesioner,
+        return view('pages/kuesionerGuest',[
+            'getGuest'  => $getGuest,
         ]);
     }
-    /*data Kuesioner */
-    private function dbKuesioner($idKegiatan){
-        return DB::table('kuesioner')
-        ->where('IDKEGIATAN', '=', $idKegiatan)
-        ->get();
+    //dataUser
+    private function dataregisKegiatan($idGuest){
+        return DB::table('regiskegiatan')
+        ->join('inptkegiatan', 'inptkegiatan.IDKEGIATAN', '=', 'regiskegiatan.IDKEGIATAN')
+        ->whereRaw("EMAILPESERTA = '$idGuest' AND STATUSKUESIONER= 'UNDONE' ")->get();
+    }
+    /*get data kuesioner */
+    private function dbKuesioner($idKegiatan){ 
+        foreach ($idKegiatan as $key => $value) {
+            $kuesioner = DB::table('kuesioner')->where('IDKEGIATAN', '=', $value->IDKEGIATAN)->get();
+            $value->totalKuesioner = $kuesioner;
+        }
+        return $idKegiatan;
     }
 
     /**

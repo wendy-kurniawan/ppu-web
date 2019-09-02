@@ -65,6 +65,13 @@ class JenisKegiatan extends Controller
             'NAMA_KEGIATAN' => $namaKegiatan,
             'created_at' => $current_date_time
         ]);
+        /*
+            Audit Log
+        */
+        DB::table('auditlog')->insert([
+            'AKTIVITASUSER' => "Admin Menginput ".$namaUMKM,
+            'created_at' => $current_date_time
+        ]);
 
         Alert::success('Data '.$namaKegiatan.' Telah Tersimpan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
         return redirect('panel/jeniskegiatan');

@@ -169,8 +169,8 @@
                                                                 <input type="hidden" name="idKegiatan" value="{{$itemKuesioner->IDKEGIATAN}}">
                                                                 <input type="hidden" name="userID" value="{{Auth::User()->PROFILEUSERS_ID}}">
                                                                     <label>{{$itemKuesioner->PERTANYAAN}}</label>
-                                                                    <select class="form-control" name="jwb[]">
-                                                                        <option>Pilih Salah Satu</option>
+                                                                    <select class="form-control" name="jwb[]" required>
+                                                                        <option value="">Pilih Salah Satu</option>
                                                                         <option value="1">1 (Kurang)</option>
                                                                         <option value="2">2 (Baik)</option>
                                                                         <option value="3">3 (Cukup)</option>

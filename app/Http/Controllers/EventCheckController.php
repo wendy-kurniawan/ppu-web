@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\DB;
 use Carbon\Carbon;
 use Alert;
 
-class datarateKuesioner extends Controller
+class EventCheckController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,6 +17,7 @@ class datarateKuesioner extends Controller
     public function index()
     {
         //
+        return view('pages/eventCheck');
     }
 
     /**
@@ -38,6 +39,17 @@ class datarateKuesioner extends Controller
     public function store(Request $request)
     {
         //
+        $emailGuest = $request->emailGuest;
+        /*Check */
+        $cek    = DB::table('regiskegiatan') ->whereRaw("EMAILPESERTA = '$emailGuest' AND STATUSKUESIONER= 'UNDONE' ")->count(); 
+        if($cek == 0){
+            Alert::info('Email: '.$emailGuest.'Sudah Mengisi Kuesioner', 'Informasi')->persistent('Close')->autoclose(4000);
+            return redirect('checkkuesioner');
+        }else{
+            Alert::info('Email: '.$emailGuest.' Terdaftar', 'Info')->persistent('Close')->autoclose(4000);
+            return redirect('kuesioner/'.$emailGuest);
+        }
+        // dd($cek);
     }
 
     /**
@@ -49,42 +61,8 @@ class datarateKuesioner extends Controller
     public function show($id)
     {
         //
-        $dataKegiatan = $this->dataKegiatan($id);
-        $pertayaan    = $this->rateKegiatan($dataKegiatan);
-
-        // dd($dataKegiatan);
-        /*for optimize database */
-        DB::disconnect('kuesioner');
-        DB::disconnect('hasilkuesioner');
-        DB::disconnect('regiskegiatan');
-
-        return view ('dashboard/rateKuesioner',[
-            'dataKegiatan'  => $dataKegiatan,
-        ]);
     }
-    //dataKegiatan
-    private function dataKegiatan($idNarasumber){
-        return DB::table('inptkegiatan')
-        ->where('IDNARASUMBER', '=', $idNarasumber)
-        ->get();
-    }
-    //Cari Rate
-    private function rateKegiatan($idkegiatan){
-        foreach ($idkegiatan as $key => $value) {
-            $pertayaan = DB::table('kuesioner')
-            ->where('IDKEGIATAN', '=', $value->IDKEGIATAN)->count('PERTANYAAN');
-            $value->totalPertayaan = $pertayaan;
 
-            $totJawaban = DB::table('hasilkuesioner')
-            ->where('IDKEGIATAN','=',$value->IDKEGIATAN)->sum('JAWABAN');
-            $value->totalJawaban = $totJawaban;
-
-            $totUser    = DB::table('regiskegiatan')
-            ->where('IDKEGIATAN', '=', $value->IDKEGIATAN)->count('EMAILPESERTA');
-            $value->totalUser   = $totUser;
-        }
-        return $idkegiatan;
-    }
     /**
      * Show the form for editing the specified resource.
      *

@@ -1,5 +1,5 @@
 @extends('layouts.appdashboard')
-@section('title','Bidang Keahlian')
+@section('title','List Permintaan')
 @section('customCSS')
     <!-- favicon
 		============================================ -->
@@ -61,7 +61,6 @@
         <!-- modernizr JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}')}}"></script>
-
 @endsection
 @section('contentDashboard')
 
@@ -94,13 +93,13 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                @include('layouts.listheaderinfo')
+                                            @include('layouts.listheaderinfo')                                                
                                             </ul>
                                         </div>
                                     </div>
                                     <div class="col-lg-5 col-md-5 col-sm-12 col-xs-12">
                                         <div class="header-right-info">
-                                            @include('layouts.headerinfo')
+                                                @include('layouts.headerinfo')                                            
                                         </div>
                                     </div>
                                 </div>
@@ -121,7 +120,7 @@
 
                                             <h3>
                                                 <i class="social-edu-ctn fa fa-pencil"></i>
-                                                Pemerataan Pemberdayaan UMKM Input Bidang Keahlian
+                                                List Data Permintaan
                                             </h3>
 
                                             <!-- <form role="search" class="sr-input-func">
@@ -135,7 +134,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Input Bidang Keahlian</span>
+                                            <li><span class="bread-blod">List Data Permintaan</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -153,65 +152,132 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design text-center">
-                                <li class="active"><a href="#formbidangkeahlian">Input Bidang Keahlian</a></li>
-                                <li><a href="#formDataKeahlian"> Data Bidang Keahlian</a></li>
+                                <li class="active"><a href="#listPermintaan">List Data Permintaan</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
-                                <div class="product-tab-list tab-pane fade active in" id="formbidangkeahlian">
+                                <div class="product-tab-list tab-pane fade active in" id="listPermintaan">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
-                                                    <div class="row">
-                                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <form id="add-department" action="{{route('bidangkeahlian.store')}}" method="POST" class="add-department">
-                                                            @csrf
-                                                            <div class="form-group">
-                                                                <label>Jenis Bidang Keahlian</label>
-                                                                <input name="jenisKeahlian" type="text" class="form-control" placeholder="Jenis Keahlian">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="payment-adress">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"
-                                    id="formDataKeahlian">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive ">
-                                                <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
-                                                        <thead>
-                                                            <tr>
-                                                                <th>No</th>
-                                                                <th>ID_Bidang Keahlian</th>
-                                                                <th>Nama Keahlian</th>
-                                                                <th>Status</th>
-                                                            </tr>
-                                                        </thead>
-                                                        <tbody>
-                                                                @foreach ($dataSkill as $itemSkill)    
+                                                @if(Auth::User()->STATUSUSER == "ADMIN")
+                                                    
+                                                @elseif(Auth::User()->STATUSUSER == "NARASUMBER")
+                                                    
+                                                    <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
+                                                            <thead>
                                                                 <tr>
-                                                                    <td>1</td>
-                                                                    <td>{{$itemSkill->ID_SKILL}}</td>
-                                                                    <td>{{$itemSkill->NAMASKILL}}</td>
-                                                                    <td>button</td>
+                                                                    <th>No</th>
+                                                                    @if (Auth::User()->STATUSUSER == "ADMIN")
+                                                                        
+                                                                    @elseif (Auth::User()->STATUSUSER == "NARASUMBER")
+                                                                        <th>Nama UMKM</th>
+                                                                    @else
+                                                                        <th>Nama Narasumber</th>
+                                                                    @endif
+                                                                    <th>Permasalahan</th>
+                                                                    <th>Jenis Permsalahan</th>
+                                                                    <th>Status Permintaan</th>
+                                                                    <th>Tanggal Submit</th>
+                                                                    <th>Action</th>
+                                                                </tr>
+                                                                <?php $no =1?>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($dataPNarasumber as $itemPermintaan)
+                                                                <tr>
+                                                                    <td>{{$no++}}</td>
+                                                                    <td>{{$itemPermintaan->NAMAUMKMPMT}}</td>
+                                                                    <td>{{$itemPermintaan->KETERANGANPMT}}</td>
+                                                                    <td>
+                                                                        @foreach ($itemPermintaan->IDMASALAH as $item)
+                                                                        <span class="label label-primary">{{$item->JKMASALAH}}</span>
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        @if ($itemPermintaan->STATUSPMT == "APPROVE")
+                                                                            <span class="label label-success">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @elseif ($itemPermintaan->STATUSPMT == "REJECT")
+                                                                            <span class="label label-danger">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @else
+                                                                            <span class="label label-warning">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @endif
+                                                                    </td>
+                                                                <form id="add-department" action="{{route('listpenerimaan.store')}}" method="POST" class="add-department">
+                                                                        @csrf
+                                                                    <td>
+                                                                        <input type="hidden" name="tglPMT" value="{{ \Carbon\Carbon::parse($itemPermintaan->created_at)->format('Y-m-d')}}">
+                                                                        {{ \Carbon\Carbon::parse($itemPermintaan->created_at)->format('d M Y')}}
+                                                                    </td>
+                                                                    <td>
+                                                                        <input type="hidden" name="idPermintaanNARASUMBER" value="{{$itemPermintaan->IDNARASUMBER}}">
+                                                                        <input type="hidden" name="idPermintaanUMKM" value="{{$itemPermintaan->IDUMKM}}">
+                                                                        @if ($itemPermintaan->STATUSPMT == "WAIT")
+                                                                            <button type="submit" name="pApprove" value="APPROVE" class="btn btn-success">Approve</button>            
+                                                                            <button type="submit" name="pReject" value="REJECT" class="btn btn-danger">Reject</button>
+                                                                        @else
+                                                                        <button type="submit" name="pApprove" value="APPROVE" class="btn btn-success" disabled>Approve</button>            
+                                                                        <button type="submit" name="pReject" value="REJECT" class="btn btn-danger" disabled>Reject</button>
+                                                                        @endif
+                                                                    </td>
+                                                                </tr>
+                                                                 </form>                                                                                                            
+                                                                @endforeach
+
+                                                            </tbody>
+    
+                                                            <tfoot>
+    
+                                                            </tfoot>
+                                                        </table>
+                                                @elseif(Auth::User()->STATUSUSER == "UMKM")
+                                                        <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
+                                                            <thead>
+                                                                <tr>
+                                                                    <th>No</th>
+                                                                    <th>Nama Narasumber</th>
+                                                                    <th>Permasalahan</th>
+                                                                    <th>Jenis Permsalahan</th>
+                                                                    <th>Status Permintaan</th>
+                                                                    <th>Tanggal Submit</th>
+                                                                </tr>
+                                                                <?php $no =1?>
+                                                            </thead>
+                                                            <tbody>
+                                                                @foreach ($dataPermintaan as $itemPermintaan)
+                                                                <tr>
+                                                                    <td>{{$no++}}</td>
+                                                                    <td>{{$itemPermintaan->NAMANARASUMBER}}</td>
+                                                                    <td>{{$itemPermintaan->KETERANGANPMT}}</td>
+                                                                    <td>
+                                                                        @foreach ($itemPermintaan->IDMASALAH as $item)
+                                                                        <span class="label label-primary">{{$item->JKMASALAH}}</span>
+                                                                        @endforeach
+                                                                    </td>
+                                                                    <td class="text-center">
+                                                                        @if ($itemPermintaan->STATUSPMT == "APPROVE")
+                                                                            <span class="label label-success">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @elseif ($itemPermintaan->STATUSPMT == "REJECT")
+                                                                            <span class="label label-danger">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @else
+                                                                            <span class="label label-warning">{{$itemPermintaan->STATUSPMT}}</span>
+                                                                        @endif
+                                                                    </td>
+
+                                                                    <td>{{ \Carbon\Carbon::parse($itemPermintaan->created_at)->format('d M Y')}}</td>
                                                                 </tr>
                                                                 @endforeach
-                                                        </tbody>
-                                                        <tfoot>
-        
-                                                        </tfoot>
-                                                </table>	
+
+                                                            </tbody>
+    
+                                                            <tfoot>
+    
+                                                            </tfoot>
+                                                        </table>
+                                                    @else
+
+                                                    @endif
+                                                
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +326,7 @@
         <script src="{{asset('assetLogin/js/metisMenu/metisMenu-active.js')}}"></script>
         <!-- data table JS
             ============================================ -->
-        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <!-- morrisjs JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/sparkline/jquery.sparkline.min.js')}}"></script>

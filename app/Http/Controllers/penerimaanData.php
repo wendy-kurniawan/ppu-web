@@ -51,9 +51,23 @@ class penerimaanData extends Controller
         if($approved =="APPROVE"){
             $err = $this->pmt_umkmStatus($tgl,$idUMKM,$approved,$idNarasumber,$updatedDate);
             $status  = $approved;
+            /*
+            Audit Log
+            */
+            DB::table('auditlog')->insert([
+                'AKTIVITASUSER' => $idNarasumber." Memberikan Status APPROVE untuk permintaan umkm ". $idUMKM,
+                'created_at' => $updatedDate
+            ]);
         }else{
             $err = $this->pmt_umkmStatus($tgl,$idUMKM,$reject,$idNarasumber,$updatedDate);
             $status = $reject;
+            /*
+            Audit Log
+            */
+            DB::table('auditlog')->insert([
+                'AKTIVITASUSER' => $idNarasumber." Memberikan Status REJECT untuk permintaan umkm ". $idUMKM,
+                'created_at' => $updatedDate
+            ]);
         }
         if($err){
             Alert::error('Error Internal Server '.$err, 'Server Down!!!')->persistent('Close')->autoclose(4000);

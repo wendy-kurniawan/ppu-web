@@ -20,7 +20,7 @@
                     <div class="col-lg-6 col-sm-12 header-text text-center">
                         <h1 class="mb-3">Pemerataan Pemberdayaan UMKM</h1>
                         <h4 class="mb-4">Yuk,Share Masalah Anda</h4>
-                        <a href="#" class="btn-start">Get Started</a>
+                        <a href="#services" class="btn-start">Get Started</a>
                     </div>
                     <div class="col-lg-6">
                         <img src="{{ asset('img/illustrations/business.svg') }}" alt="Illustration Business">

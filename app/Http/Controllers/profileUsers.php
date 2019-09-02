@@ -54,6 +54,7 @@ class profileUsers extends Controller
         //stat user
         $statUser   = $request->statUser;
         $profileID  = $request->idProfile;
+        $dateNow = Carbon::now()->toDateTimeString();
         
         if($statUser == "UMKM"){
             $file       = $request->file('docProfile'); 
@@ -71,6 +72,13 @@ class profileUsers extends Controller
                     'NOHPUMKM' => $replace,
                     'ALAMATUMKM' => $addrsLembaga,
                     ]);
+                /*
+                Audit Log
+                */
+                DB::table('auditlog')->insert([
+                    'AKTIVITASUSER' => "UMKM ".$profileID." Mengupdate Profile ".$addrsLembaga.",".$profileTelpUMKM,
+                    'created_at' => $dateNow
+                ]);
                 Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                 return redirect('panel/myprofile?myProfile='.$profileID);
             }else{
@@ -91,6 +99,13 @@ class profileUsers extends Controller
                     'GAMBAR' => $nameProf,
                     'ALAMATUMKM' => $addrsLembaga,
                     ]);
+                 /*
+                Audit Log
+                */
+                DB::table('auditlog')->insert([
+                    'AKTIVITASUSER' => "UMKM ".$profileID." Mengupdate Profile ".$addrsLembaga.",".$profileTelpUMKM."dan Gambar ".$nameProf,
+                    'created_at' => $dateNow
+                ]);
                 Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                 return redirect('panel/myprofile?myProfile='.$profileID);
             }
@@ -112,6 +127,14 @@ class profileUsers extends Controller
                         'BIOGRAFI' => $bioNarasumber,
                         'JENISKL' => $profileJK,
                         ]);
+                    /*
+                    Audit Log
+                    */
+                    DB::table('auditlog')->insert([
+                        'AKTIVITASUSER' => "Narasumber ".$profileID." Mengupdate Profile ".$profileHandphoneNarasumber.",".$profileJK."dan tglLahir ".$tglLahir,
+                        'created_at' => $dateNow
+                    ]);
+                    
                     Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                     return redirect('panel/myprofile?myProfile='.$profileID);
                 }else{
@@ -132,6 +155,13 @@ class profileUsers extends Controller
                         'BIOGRAFI' => $bioNarasumber,
                         'JENISKL' => $profileJK,
                         ]);
+                    /*
+                    Audit Log
+                    */
+                    DB::table('auditlog')->insert([
+                        'AKTIVITASUSER' => "Narasumber ".$profileID." Mengupdate Profile ".$profileHandphoneNarasumber.",".$profileJK."dan tglLahir ".$tglLahir,
+                        'created_at' => $dateNow
+                    ]);
                     Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                     return redirect('panel/myprofile?myProfile='.$profileID);
                 }

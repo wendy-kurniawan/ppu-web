@@ -156,9 +156,14 @@
                             </li>
                         @endif
                       <li>
-                          <a title="Landing Page" href="{{route('event.index')}}" aria-expanded="false"><span
-                                  class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
-                              <span class="mini-click-non">Event</span></a>
+                            <a title="Landing Page" href="{{route('rangking.index')}}" aria-expanded="false"><span
+                                class="fa fa-trophy icon-wrap sub-icon-mg" aria-hidden="true"></span>
+                            <span class="mini-click-non">Rangking</span></a>
+                      </li>
+                      <li>
+                        <a title="Landing Page" href="{{route('event.index')}}" aria-expanded="false"><span
+                            class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
+                        <span class="mini-click-non">Event</span></a>
                       </li>
                   </ul>
               </nav>
