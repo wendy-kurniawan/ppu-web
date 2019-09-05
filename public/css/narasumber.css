@@ -61,6 +61,7 @@ p {
 
 /* ---- Ranking ---- */
 .ranking__container {
+    height: 100%;
     background: linear-gradient(to bottom, #FC466B, #3F5EFB);
     background-repeat: no-repeat;
     background-position: center;
@@ -151,33 +152,28 @@ p {
     .ranking_top {
         flex-direction: column;
     }
+
     .ranking__number p, .list__profile p{
         font-size: 16px;
     }
 
-    .list__picture .profile, .list__picture .profile img {
-        width: 60px;
-        height: 60px;
-    } 
+    .ranking__list {
+        flex-direction: column;
+        text-align: center;
+        align-items: center;
+        box-sizing: border-box;
+        text-align: center;
+        border-radius: 10px;
+        margin-bottom: 20px;
+    }
     
     .list__profile h5 {
+        margin-top: 20px;
         font-size: 18px;
     }
 
     .list__skill {
         width: 200px;
         height: 46px;
-    }
-
-    .list__chart .chart {
-        width: 80px;
-        height: 80px;
-        line-height: 80px;
-        font-size: 16px;
-    }
-
-    .list__chart .chart canvas{
-        width: 80px;
-        height: 80px;
     }
 }
