@@ -11,11 +11,11 @@
     <section id="event-banner" class="mb-5">
         <div class="container">
             @include('partials.navigation')
-            <div class="row p-5 justify-content-center">
-                <div class="col ml-5">
+            <div class="event-banner row p-5 justify-content-center">
+                <div class="col">
                     <img src="{{ asset('img/illustrations/search_keyword.svg') }}" alt="search illustration" width="400">
                 </div>
-                <div class="col-5 text-white align-self-center mr-5">
+                <div class="col text-white align-self-center">
                     <h1>Temukan Eventmu</h1>
                     <p class="font-weight-bold">Cari event workshop dan seminar yang menjadi solusi dari UMKM anda</p>
                 </div>

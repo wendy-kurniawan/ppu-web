@@ -9,10 +9,10 @@
 @section('content')
     <div class="container">
         <div class="row"> 
-            <div class="col text-center">
+            <div class="col-lg-6 text-center section-illustration">
                 <img src="{{ asset('img/illustrations/user-register.svg') }}" alt="illustration">
             </div>
-            <div class="col justify-content-center align-self-center">
+            <div class="col-lg-6 col-sm-12 justify-content-center align-self-center">
                 <div class="shadow overflow-auto p-5 bg-white ">
                     <div class="form-group text-center">
                         <h3>Sign Up</h3>
