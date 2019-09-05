@@ -9,13 +9,11 @@
 
 @section('content')
     <img src="img/illustrations/abstract-shape.svg" alt="abstract" class="abstract">
-    <div class="container">
-        @include('partials.navigation')
-    </div>
 
     <section id="banner">
         <div class="jumbotron jumbotron-fluid">
             <div class="container mt-5">
+                    @include('partials.navigation')
                 <div class="row">
                     <div class="col-lg-6 col-sm-12 header-text text-center">
                         <h1 class="mb-3">Pemerataan Pemberdayaan UMKM</h1>

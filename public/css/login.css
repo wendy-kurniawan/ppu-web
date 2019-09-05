@@ -14,4 +14,8 @@ form {
     img {
         display: none;
     }
+
+    .form-section {
+        margin-top: 100px;
+    }
 }

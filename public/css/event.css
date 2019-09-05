@@ -33,3 +33,14 @@
     padding: 10px 20px;
     right: 0;
 }
+
+/* ---- Responsive ---- */
+@media only screen and (max-width: 991px) {
+    .event-banner {
+        text-align: center;
+    }
+
+    .event-banner img {
+        width: 250px;
+    }
+}

@@ -18,10 +18,14 @@ nav {
     text-transform: uppercase;
 }
 
+.navbar-toggler {
+    background-color: #FFF !important;
+}
+
 @media only screen and (max-width: 991px) {
 
     .navbar-brand,
     .nav-link {
-        color: #000 !important;
+        color: #FFF !important;
     }
 }
