@@ -3,11 +3,13 @@
 @section('title', 'Sign Up')
 
 @section('styles')
+    <link rel="stylesheet" href="{{ asset('css/nav.css') }}" type="text/css">
     <link rel="stylesheet" href="{{ asset('css/register.css') }}" type="text/css">
 @endsection
 
 @section('content')
     <div class="container">
+        @include('partials.navigation')
         <div class="row"> 
             <div class="col-lg-6 text-center section-illustration">
                 <img src="{{ asset('img/illustrations/user-register.svg') }}" alt="illustration">

@@ -2,14 +2,14 @@
 
 @section('styles')
     <link rel="stylesheet" href="{{ asset('css/nav.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('css/narasumber.css') }}" type="text/css">
+    <link rel="stylesheet" href="{{ asset('css/event.css') }}" type="text/css">
 @endsection
 
 @section('content')
     <div class="ranking__container">
         @include('partials.navigation')
             <form action="{{route('kuesioner.store')}}" method="POST">
-                @csrf
+            @csrf
             @foreach ($getGuest as $itemGuest)
             <div class="ranking_top container">
                     <div class="card ranking__card container col-md-12" style="width: 18rem;">

@@ -10,6 +10,10 @@ form {
     border-radius: 12px;
 }
 
+.nav-tabs .nav-link {
+    color: #000 !important;
+}
+
 /* ---- responsive ---- */
 @media only screen and (max-width: 991px) {
     img {
