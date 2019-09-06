@@ -15,14 +15,14 @@
                   <ul class="metismenu" id="menu1">
                       {{-- Menu Home --}}
                       <li class="active">
-                          <a title="Landing Page" href="{{ route('src.index') }}" aria-expanded="false"><span
+                          <a title="Home" href="{{ route('src.index') }}" aria-expanded="false"><span
                                   class="fa fa-home icon-wrap" aria-hidden="true"></span>
                               <span class="mini-click-non">Home</span></a>
                       </li>
                         @if (Auth::user()->STATUSUSER == "ADMIN")
                         {{-- Menu Input --}}
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false">
+                            <a title="Input Form" class="has-arrow" href="#" aria-expanded="false">
                                 <span class="fa fa-pencil-square icon-wrap"></span>
                                 <span class="mini-click-non">Input Form</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
@@ -46,7 +46,7 @@
                         </li>
                         {{-- Form Permintaan --}}
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false">
+                            <a title="Form Permintaan" class="has-arrow" href="#" aria-expanded="false">
                             <span class="fa fa-question-circle-o icon-wrap"></span>
                             <span class="mini-click-non">Form Permintaan</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
@@ -58,7 +58,7 @@
                         </li>
                         {{-- Menu Data --}}
                         <li>
-                            <a class="has-arrow" href="#" aria-expanded="false">
+                            <a title="Data" class="has-arrow" href="#" aria-expanded="false">
                             <span class="fa fa-database icon-wrap"></span>
                             <span class="mini-click-non">Data</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
@@ -76,7 +76,7 @@
                         @elseif (Auth::user()->STATUSUSER == "UMKM")
                             {{-- Menu Data --}}
                             <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
+                                <a title ="Data" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="fa fa-database icon-wrap"></span>
                                     <span class="mini-click-non">Data</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
@@ -88,7 +88,7 @@
                             </li>
                             {{-- Menu Permintaan Narsumber --}}
                             <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
+                                <a title="Data Permintaan" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="fa fa-question-circle-o icon-wrap"></span>
                                     <span class="mini-click-non">Data Permintaan</span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
@@ -100,7 +100,7 @@
                             </li>
                             {{-- Menu Kuesioner --}}
                             <li>
-                                <a title="Landing Page" href="{{URL('panel/datakuesioner/'.Auth::User()->PROFILEUSERS_ID)}}" aria-expanded="false">
+                                <a title="Kuesioner" href="{{URL('panel/datakuesioner/'.Auth::User()->PROFILEUSERS_ID)}}" aria-expanded="false">
                                 <span class="fa fa-filter icon-wrap sub-icon-mg" aria-hidden="true"></span>
                                 <span class="mini-click-non">Kuesioner</span></a>
                             </li>
@@ -108,7 +108,7 @@
                             {{-- do something narasumber --}}
                             {{-- Input Data Kegiatan --}}
                             <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
+                                <a title="Input Kegiatan" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="fa fa-pencil"></span>
                                     <span class="mini-click-non">Input Kegiatan </span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
@@ -128,7 +128,7 @@
                             </li>
                             {{-- Menu Permintaan Narsumber --}}
                             <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
+                                <a title="Data Permintaan" class="has-arrow" href="#" aria-expanded="false">
                                     <span class="fa fa-question-circle-o icon-wrap"></span>
                                     <span class="mini-click-non">Data Permintaan</span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
@@ -140,7 +140,7 @@
                             </li>
                             {{-- Menu Data --}}
                             <li>
-                                <a class="has-arrow" href="#" aria-expanded="false">
+                                <a title="Data" class="has-arrow" href="#" aria-expanded="false">
                                 <span class="fa fa-database icon-wrap"></span>
                                 <span class="mini-click-non">Data</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
@@ -156,12 +156,12 @@
                             </li>
                         @endif
                       <li>
-                            <a title="Landing Page" href="{{route('rangking.index')}}" aria-expanded="false"><span
+                            <a title="Rangking" href="{{route('rangking.index')}}" aria-expanded="false"><span
                                 class="fa fa-trophy icon-wrap sub-icon-mg" aria-hidden="true"></span>
                             <span class="mini-click-non">Rangking</span></a>
                       </li>
                       <li>
-                        <a title="Landing Page" href="{{route('event.index')}}" aria-expanded="false"><span
+                        <a title="Event" href="{{route('event.index')}}" aria-expanded="false"><span
                             class="educate-icon educate-event icon-wrap sub-icon-mg" aria-hidden="true"></span>
                         <span class="mini-click-non">Event</span></a>
                       </li>

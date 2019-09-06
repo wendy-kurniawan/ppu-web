@@ -141,7 +141,7 @@
             </div> <!-- Mobile Menu end -->
         </div>
 
-        <div class="traffic-analysis-area">
+        {{-- <div class="traffic-analysis-area">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
@@ -182,9 +182,9 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         <!-- for space -->
-        <div class="library-book-area mg-t-30">
+        {{-- <div class="library-book-area mg-t-30">
             <div class="container-fluid">
                 <div class="row">
                 </div>
@@ -292,7 +292,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> --}}
         @include('layouts.footer')
     </div>
 @endsection

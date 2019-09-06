@@ -43,8 +43,6 @@
                             <br>
                             <br>
                             <br>
-                            <br>
-                            <br>
                             <p class="text-center">Tidak Ada Waiting List Kegiatan</p>
                         @else
                             @foreach ($notifNarasumber as $itemNotifNarasumber)
