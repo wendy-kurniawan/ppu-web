@@ -17,7 +17,7 @@ class INPTSKILL extends Migration
             $table->bigIncrements('NO');
             $table->char('SKILUSERS_ID',12);
             $table->char('IDSKILL',12);
-            $table->char('NAMASKILL');
+            // $table->char('NAMASKILL');
             $table->timestamps();
         });
     }

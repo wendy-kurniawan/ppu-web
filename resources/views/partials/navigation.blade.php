@@ -13,7 +13,7 @@
                     <a class="nav-link" href="{{ route('event.index') }}">Event</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('narasumber.index') }}">Narasumber</a>
+                    <a class="nav-link" href="{{ route('narasumber.index') }}">Rangking</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#about">About</a>

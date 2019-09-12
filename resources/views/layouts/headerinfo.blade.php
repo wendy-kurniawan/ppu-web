@@ -52,7 +52,7 @@
                                             {{-- <i class="educate-icon educate-checked edu-checked-pro admin-check-pro" aria-hidden="true"></i> --}}
                                             <img src="{{asset('assetLogin/img/profile/'.$itemNotifNarasumber->GAMBARNARASUMBER)}}">
                                         </div>
-                                        <div class="notification-content col-md-9 col-xs-8">
+                                        <div class="notification-content col-md-8 col-xs-8">
                                             <h2>Dari: {{$itemNotifNarasumber->NAMAUMKMPMT}}</h2>
                                             <p><small>Pengajuan:<b>{{ \Carbon\Carbon::parse($itemNotifNarasumber->created_at)->format('d-m-Y')}}</b></small></p>
                                             <p>Status Pengajuan <b>{{$itemNotifNarasumber->STATUSPMT}}</b></p>
@@ -124,7 +124,7 @@
                 </li>
             </ul>
         </li>
-        <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown"
+        {{-- <li class="nav-item nav-setting-open"><a href="#" data-toggle="dropdown"
                 role="button" aria-expanded="false"
                 class="nav-link dropdown-toggle"><i
                     class="educate-icon educate-menu"></i></a>
@@ -260,5 +260,5 @@
                     </div>
                 </div>
             </div>
-        </li>
+        </li> --}}
     </ul>

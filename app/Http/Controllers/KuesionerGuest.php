@@ -47,7 +47,7 @@ class KuesionerGuest extends Controller
         $data = $request->all();
         // dd($jwbGuest);
         for ($i=0; $i < count($jwbGuest); $i++) { 
-            echo "No[$i] ".$jwbGuest[$i]."<br>";
+            // echo "No[$i] ".$jwbGuest[$i]."<br>";
             DB::table('hasilkuesioner')->insert([
                 'IDKEGIATAN' => $idKegiatanGuest,
                 'IDUSER' => "Guest",

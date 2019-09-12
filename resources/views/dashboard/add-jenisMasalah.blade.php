@@ -47,6 +47,9 @@
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/calendar/fullcalendar.min.css')}}">
         <link rel="stylesheet" href="{{asset('assetLogin/css/calendar/fullcalendar.print.min.css')}}">
+         <!-- modals CSS
+		============================================ -->
+        <link rel="stylesheet" href="{{asset('assetLogin/css/modals.css')}}">
         <!-- forms CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/form/all-type-forms.css')}}">
@@ -183,8 +186,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"
-                                    id="formDataJenisMasalah">
+                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"id="formDataJenisMasalah">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
                                                 <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
@@ -199,11 +201,47 @@
                                                         <tbody>
                                                             <?php $no=1; ?>
                                                             @foreach ($dataMasalah as $itemKegiatan)
+                                                            <div id="modalsMasalah{{ $itemKegiatan->IDMASALAH }}" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header header-color-modal bg-color-1">
+                                                                                <h4 class="modal-title">Edit Nama Jenis Masalah</h4>
+                                                                                <div class="modal-close-area modal-close-df">
+                                                                                    <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form id="add-department" action="{{route('masalah.update', $itemKegiatan->IDMASALAH)}}" method="POST" class="add-department">
+                                                                                    @csrf
+                                                                                    {{ method_field('PUT') }}
+                                                                                    <div class="form-group">
+                                                                                        <label>Edit Masalah</label>
+                                                                                        <input type="hidden" name="idDB" value="{{$itemKegiatan->NO}}" class="form-control" readonly>
+                                                                                        <input type="hidden" name="oldValue" value="{{$itemKegiatan->IDMASALAH}}" class="form-control" readonly>
+                                                                                        <input name="namaMasalah" type="text" class="form-control" placeholder="Nama Masalah">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="#" data-dismiss="modal" class="btn btn-info btn-md" >Cancel</button>
+                                                                                <button type="submit" class="btn btn-success btn-md" >Process</button>
+                                                                            </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             <tr>
                                                                 <td>{{$no++}}</td>
                                                                 <td>{{$itemKegiatan->IDMASALAH}}</td>
                                                                 <td>{{$itemKegiatan->NAMAMASALAH}}</td>
-                                                                <td>button</td>
+                                                                <td>
+                                                                    <form method="POST" action="{{route('masalah.destroy',$itemKegiatan->IDMASALAH)}}">
+                                                                        @csrf
+                                                                        {{ method_field('DELETE') }}
+                                                                        <a href="#" class=" btn btn-warning" data-toggle="modal" data-target="#modalsMasalah{{ $itemKegiatan->IDMASALAH}}">Edit</a>
+                                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data?')" >Delete</button>
+                                                                    </form>
+                                                                </td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>

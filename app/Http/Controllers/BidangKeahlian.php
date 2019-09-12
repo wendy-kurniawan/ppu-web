@@ -69,12 +69,14 @@ class BidangKeahlian extends Controller
             'created_at' => $current_date_time
         ]);
          /*
-            Audit Log
+            Audit Log && Optimze DB
         */
         DB::table('auditlog')->insert([
-            'AKTIVITASUSER' => "Admin Menginput ".$namaKeahlian,
+            'AKTIVITASUSER' => "Admin Menginput Keahlian ".$namaKeahlian,
             'created_at' => $current_date_time
         ]);
+        DB::disconnect('skill');
+        DB::disconnect('auditlog');
         
 
         Alert::success('Data '.$namaKeahlian.' Telah Tersimpan', 'Terima Kasih')->persistent('Close')->autoclose(3000);
@@ -113,7 +115,42 @@ class BidangKeahlian extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*get NewValue susbstr kan */
+        $namaKeahlian       = $request->jenisKeahlian;
+        $replaceNewValue    = str_replace(" ","",$namaKeahlian);
+        $newValue           = substr($replaceNewValue,0,6);
+
+        /*Old Value */
+        $namaKeahlianOV     = $request->oldValue;
+        $replaceOldValue    = str_replace(" ","",$namaKeahlianOV);
+        $lastValue          = substr($replaceOldValue,6,12);
+
+        /*Combine New and Old Value */
+        $idSkillUpdate = $newValue.$lastValue;
+
+        /*update DB */
+        $idData             = $request->idDB;
+        $current_date_time = Carbon::now()->toDateTimeString();
+
+        DB::table('skill')->where('NO', $idData)
+            ->update([
+                'ID_SKILL' => $idSkillUpdate,
+                'NAMASKILL' => $namaKeahlian,
+                'updated_at' => $current_date_time,
+                ]);
+        /*
+            Audit Log && optimize DB
+        */
+        DB::table('auditlog')->insert([
+            'AKTIVITASUSER' => "Admin Mengupdate IDKeahlian ".$namaKeahlianOV,
+            'created_at' => $current_date_time
+        ]);
+
+        DB::disconnect('skill');
+        DB::disconnect('auditlog');
+        
+        Alert::success('Update Data '.$namaKeahlian.' Telah Berhasil', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        return redirect('panel/bidangkeahlian');
     }
 
     /**
@@ -125,5 +162,20 @@ class BidangKeahlian extends Controller
     public function destroy($id)
     {
         //
+        $deleteData = DB::table('skill')->where('ID_SKILL', '=', $id)->delete();
+        $current_date_time = Carbon::now()->toDateTimeString();
+        /*
+            Audit Log && optimize DB
+        */
+        DB::table('auditlog')->insert([
+            'AKTIVITASUSER' => "Admin Mengdelete idKeahlian ".$id,
+            'created_at' => $current_date_time
+        ]);
+
+        DB::disconnect('skill');
+        DB::disconnect('auditlog');
+
+        Alert::success('Delete Data Telah Berhasil', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        return redirect('panel/bidangkeahlian');
     }
 }

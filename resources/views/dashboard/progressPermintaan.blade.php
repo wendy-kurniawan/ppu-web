@@ -1,7 +1,7 @@
 @extends('layouts.appdashboard')
-@section('title','Jenis Kegiatan')
+@section('title','Progress Permintaan')
 @section('customCSS')
-    <!-- favicon
+      <!-- favicon
 		============================================ -->
         <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico">
         <!-- Google Fonts
@@ -47,20 +47,37 @@
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/calendar/fullcalendar.min.css')}}">
         <link rel="stylesheet" href="{{asset('assetLogin/css/calendar/fullcalendar.print.min.css')}}">
+        <!-- touchspin CSS
+            ============================================ -->
+        <link rel="stylesheet" href="{{asset('assetLogin/css/touchspin/jquery.bootstrap-touchspin.min.css')}}">
+        <!-- datapicker CSS
+            ============================================ -->
+        <link rel="stylesheet" href="{{asset('assetLogin/css/datapicker/datepicker3.css')}}">
         <!-- forms CSS
             ============================================ -->
-        <link rel="stylesheet" href="{{asset('assetLogin/css/form/all-type-forms.css')}}">
+        <link rel="stylesheet" href="{{asset('assetLogin/css/form/themesaller-forms.css')}}">
+        <!-- colorpicker CSS
+            ============================================ -->
+        <link rel="stylesheet" href="css/colorpicker/colorpicker.css')}}">
+        <!-- select2 CSS
+            ============================================ -->
+        <link rel="stylesheet" href="{{asset('assetLogin/css/select2/select2.min.css')}}">
+        <!-- chosen CSS
+            ============================================ -->
+        <link rel="stylesheet" href="{{asset('assetLogin/css/chosen/bootstrap-chosen.css')}}">
+        <!-- ionRangeSlider CSS
+            ============================================ -->
+        <link rel="stylesheet" href="{{asset('assetLogin/css/ionRangeSlider/ion.rangeSlider.css')}}">
+        <link rel="stylesheet" href="{{asset('assetLogin/css/ionRangeSlider/ion.rangeSlider.skinFlat.css')}}">
         <!-- style CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/style.css')}}">
         <!-- responsive CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/responsive.css')}}">
-        <!--Data Tables-->
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/jquery.dataTables.min.css">
         <!-- modernizr JS
             ============================================ -->
-        <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}')}}"></script>
+        <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 @endsection
 @section('contentDashboard')
     <!-- Start Welcome area -->
@@ -92,7 +109,7 @@
                                     <div class="col-lg-6 col-md-7 col-sm-6 col-xs-12">
                                         <div class="header-top-menu tabl-d-n">
                                             <ul class="nav navbar-nav mai-top-nav">
-                                                    @include('layouts.listheaderinfo')                                                                                            
+                                            @include('layouts.listheaderinfo')                                                
                                             </ul>
                                         </div>
                                     </div>
@@ -119,7 +136,7 @@
 
                                             <h3>
                                                 <i class="social-edu-ctn fa fa-pencil"></i>
-                                                Pemerataan Pemberdayaan UMKM Input Jenis Kegiatan
+                                                Pemerataan Pemberdayaan UMKM Input Permintaan
                                             </h3>
 
                                             <!-- <form role="search" class="sr-input-func">
@@ -133,7 +150,7 @@
                                         <ul class="breadcome-menu">
                                             <li><a href="#">Home</a> <span class="bread-slash">/</span>
                                             </li>
-                                            <li><span class="bread-blod">Input Jenis Kegiatan</span>
+                                            <li><span class="bread-blod">Input Permintaan</span>
                                             </li>
                                         </ul>
                                     </div>
@@ -151,59 +168,80 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <div class="product-payment-inner-st">
                             <ul id="myTabedu1" class="tab-review-design text-center">
-                                <li class="active"><a href="#formJenisKegiatan">Input Jenis Kegiatan</a></li>
-                                <li><a href="#formDataJenisKegiatan"> Data Jenis Kegiatan</a></li>
+                                <li class="active"><a href="#formprogressPermintaan">Progress Permintaan</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit">
-                                <div class="product-tab-list tab-pane fade active in" id="formJenisKegiatan">
-                                    <div class="row">
-                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                            <div class="review-content-section">
-
-                                                <div class="row">
-                                                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                                        <form id="add-department" action="{{route('jeniskegiatan.store')}}" method="POST" class="add-department">
-                                                            @csrf
-                                                            <div class="form-group">
-                                                                <label>Jenis Kegiatan</label>
-                                                                <input name="jenisKegiatan" type="text" class="form-control"
-                                                                    placeholder="Jenis Kegiatan">
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="row">
-                                                        <div class="col-lg-12">
-                                                            <div class="payment-adress">
-                                                                <button type="submit"
-                                                                    class="btn btn-primary waves-effect waves-light">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"
-                                    id="formDataJenisKegiatan">
+                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade active in" id="formprogressPermintaan">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive">
                                                 <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
                                                         <thead>
                                                             <tr>
                                                                 <th>No</th>
-                                                                <th>ID_Kegiatan</th>
-                                                                <th>Nama Kegiatan</th>
-                                                                <th>Status</th>
+                                                                <th>Nama Narasumber</th>
+                                                                <th>Nama UMKM</th>
+                                                                <th>Keterangan Permintaan</th>
+                                                                <th>TLP UMKM</th>
+                                                                <th>Status Permintaan</th>
+                                                                <th>Action</th>
                                                             </tr>
                                                         </thead>
                                                         <tbody>
-                                                            @foreach ($dataKegiatan as $itemKegiatan)
+                                                            <?php $no=1; ?>
+                                                            @foreach ($progressPermintaan as $itemProgress)
+                                                            <div id="modalsMasalah{{ $itemProgress->IDMASALAH }}" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+                                                                    <div class="modal-dialog">
+                                                                        <div class="modal-content">
+                                                                            <div class="modal-header header-color-modal bg-color-1">
+                                                                                <h4 class="modal-title">Edit Nama Jenis Masalah</h4>
+                                                                                <div class="modal-close-area modal-close-df">
+                                                                                    <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                                                                                </div>
+                                                                            </div>
+                                                                            <div class="modal-body">
+                                                                                <form id="add-department" action="{{route('permintaan.update', $itemProgress->IDMASALAH)}}" method="POST" class="add-department">
+                                                                                    @csrf
+                                                                                    {{ method_field('PUT') }}
+                                                                                    <div class="form-group">
+                                                                                        <label>Edit Masalah</label>
+                                                                                        <input type="hidden" name="idDB" value="{{$itemProgress->NO}}" class="form-control" readonly>
+                                                                                        <input type="hidden" name="oldValue" value="{{$itemProgress->IDMASALAH}}" class="form-control" readonly>
+                                                                                        <input name="namaMasalah" type="text" class="form-control" placeholder="Nama Masalah">
+                                                                                    </div>
+
+                                                                                </div>
+                                                                            <div class="modal-footer">
+                                                                                <button type="#" data-dismiss="modal" class="btn btn-info btn-md" >Cancel</button>
+                                                                                <button type="submit" class="btn btn-success btn-md" >Process</button>
+                                                                            </div>
+                                                                            </form>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
                                                             <tr>
-                                                                <td>1</td>
-                                                                <td>{{$itemKegiatan->ID_KEGIATAN}}</td>
-                                                                <td>{{$itemKegiatan->NAMA_KEGIATAN}}</td>
-                                                                <td>button</td>
+                                                                <td>{{$no++}}</td>
+                                                                <td>{{$itemProgress->NAMANARASUMBER}}</td>
+                                                                <td>{{$itemProgress->NAMAUMKMPMT}}</td>
+                                                                <td>{{$itemProgress->KETERANGANPMT}}</td>
+                                                                <td>{{$itemProgress->TLPUMKM}}</td>
+                                                                <td>
+                                                                    @if ($itemProgress->STATUSPMT == "WAIT")
+                                                                        <span class="label label-warning">{{$itemProgress->STATUSPMT}}</span>
+                                                                    @elseif ($itemProgress->STATUSPMT == "REJECT")
+                                                                        <span class="label label-danger">{{$itemProgress->STATUSPMT}}</span>
+                                                                    @else
+                                                                        <span class="label label-success">{{$itemProgress->STATUSPMT}}</span>
+                                                                    @endif
+                                                                
+                                                                </td>
+                                                                <td>
+                                                                    <form method="POST" action="{{route('permintaan.destroy',$itemProgress->IDMASALAH)}}">
+                                                                        @csrf
+                                                                        {{ method_field('DELETE') }}
+                                                                        {{-- <a href="#" class=" btn btn-warning btn-xs" data-toggle="modal" data-target="#modalsMasalah{{ $itemProgress->IDMASALAH}}">Edit</a> --}}
+                                                                        <button type="submit" class="btn btn-danger btn-xs" onclick="return confirm('Yakin ingin menghapus data?')" >Delete</button>
+                                                                    </form>
+                                                                </td>
                                                             </tr>
                                                             @endforeach
                                                         </tbody>
@@ -220,18 +258,7 @@
                 </div>
             </div>
         </div>
-        <div class="footer-copyright-area">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <div class="footer-copy-right">
-                            <p>Copyright © 2018. All rights reserved. Template by <a
-                                    href="https://colorlib.com/wp/templates/">Colorlib</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('layouts.footer')
     </div>
 @endsection
 
@@ -268,23 +295,42 @@
             ============================================ -->
         <script src="{{asset('assetLogin/js/metisMenu/metisMenu.min.js')}}"></script>
         <script src="{{asset('assetLogin/js/metisMenu/metisMenu-active.js')}}"></script>
-        <!-- data table JS
+        <!-- touchspin JS
             ============================================ -->
-            <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
-        <!-- morrisjs JS
+        <script src="{{asset('assetLogin/js/touchspin/jquery.bootstrap-touchspin.min.js')}}"></script>
+        <script src="{{asset('assetLogin/js/touchspin/touchspin-active.js')}}"></script>
+        <!-- colorpicker JS
             ============================================ -->
-        <script src="{{asset('assetLogin/js/sparkline/jquery.sparkline.min.js')}}"></script>
-        <script src="{{asset('assetLogin/js/sparkline/jquery.charts-sparkline.js')}}"></script>
-        <!-- calendar JS
+        <script src="{{asset('assetLogin/js/colorpicker/jquery.spectrum.min.js')}}"></script>
+        <script src="{{asset('assetLogin/js/colorpicker/color-picker-active.js')}}"></script>
+        <!-- datapicker JS
             ============================================ -->
-        <script src="{{asset('assetLogin/js/calendar/moment.min.js')}}"></script>
-        <script src="{{asset('assetLogin/js/calendar/fullcalendar.min.js')}}"></script>
-        <script src="{{asset('assetLogin/js/calendar/fullcalendar-active.js')}}"></script>
-        <!-- form validate JS
+        <script src="{{asset('assetLogin/js/datapicker/bootstrap-datepicker.js')}}"></script>
+        <script src="{{asset('assetLogin/js/datapicker/datepicker-active.js')}}"></script>
+        <!-- input-mask JS
             ============================================ -->
-        <script src="{{asset('assetLogin/js/form-validation/jquery.form.min.js')}}"></script>
-        <script src="{{asset('assetLogin/js/form-validation/jquery.validate.min.js')}}"></script>
-        <script src="{{asset('assetLogin/js/form-validation/form-active.js')}}"></script>
+        <script src="{{asset('assetLogin/js/input-mask/jasny-bootstrap.min.js')}}"></script>
+        <!-- chosen JS
+            ============================================ -->
+        <script src="{{asset('assetLogin/js/chosen/chosen.jquery.js')}}"></script>
+        <script src="{{asset('assetLogin/js/chosen/chosen-active.js')}}"></script>
+        <!-- select2 JS
+            ============================================ -->
+        <script src="{{asset('assetLogin/js/select2/select2.full.min.js')}}"></script>
+        <script src="{{asset('assetLogin/js/select2/select2-active.js')}}"></script>
+        <!-- ionRangeSlider JS
+            ============================================ -->
+        <script src="{{asset('assetLogin/js/ionRangeSlider/ion.rangeSlider.min.js')}}"></script>
+        <script src="{{asset('assetLogin/js/ionRangeSlider/ion.rangeSlider.active.js')}}"></script>
+        <!-- rangle-slider JS
+            ============================================ -->
+        <script src="{{asset('assetLogin/js/rangle-slider/jquery-ui-1.10.4.custom.min.js')}}"></script>
+        <script src="{{asset('assetLogin/js/rangle-slider/jquery-ui-touch-punch.min.js')}}"></script>
+        <script src="{{asset('assetLogin/js/rangle-slider/rangle-active.js')}}"></script>
+        <!-- knob JS
+            ============================================ -->
+        <script src="{{asset('assetLogin/js/knob/jquery.knob.js')}}"></script>
+        <script src="{{asset('assetLogin/js/knob/knob-active.js')}}"></script>
         <!-- tab JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/tab.js')}}"></script>
@@ -294,6 +340,4 @@
         <!-- main JS
             ============================================ -->
         <script src="{{asset('assetLogin/js/main.js')}}"></script>
-        {{-- My Custome js --}}
-        <script src="{{asset('myjs/datatables.js')}}"></script>
 @endsection

@@ -45,6 +45,13 @@ class NarasumberController extends Controller
 
             $collection = collect($value->kegiatanNarasumber)->sum('Persen');
             $value->rank = $collection;
+
+            $skillsUser     = DB::table('inptskill')
+            ->join('skill', 'inptskill.IDSKILL', '=', 'skill.ID_SKILL')
+            ->select('inptskill.SKILUSERS_ID', 'inptskill.IDSKILL', 'skill.NAMASKILL')
+            ->where('SKILUSERS_ID', '=', $value->PROFILEUSERS_ID)
+            ->get();
+            $value->Skills = $skillsUser;
             
         }
         return $dataUser;

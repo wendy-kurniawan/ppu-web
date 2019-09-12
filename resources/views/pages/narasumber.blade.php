@@ -23,7 +23,11 @@
                                             <img src="{{ asset('assetLogin/img/profile/'.$itemRangking->GAMBAR) }}" alt="profile picture"/>
                                         </div>
                                     <h5 class="card__name">{{$itemRangking->NAMALENGKAP}}</h5>
-                                    <p class="card__skill">Java, Programming, Design, Machine Learning, Teaching</p>
+                                    <p class="card__skill">
+                                        @foreach ($itemRangking->Skills as $itemSkills)
+                                            {{$itemSkills->NAMASKILL.","}}
+                                        @endforeach
+                                    </p>
                                 <div class="chart" data-percent="{{($itemRangking->rank/$itemRangking->totalKegiatanNarasumber)}}">{{($itemRangking->rank/$itemRangking->totalKegiatanNarasumber)}}%</div>
                             @elseif (($itemRangking->rank/$itemRangking->totalKegiatanNarasumber) > 90.0)
                                 <div id="rank-first" class="ranking__card">
@@ -32,7 +36,11 @@
                                             <img src="{{ asset('assetLogin/img/profile/'.$itemRangking->GAMBAR) }}" alt="profile picture"/>
                                         </div>
                                     <h5 class="card__name">{{$itemRangking->NAMALENGKAP}}</h5>
-                                    <p class="card__skill">Java, Programming, Design, Machine Learning, Teaching</p>
+                                    <p class="card__skill">
+                                        @foreach ($itemRangking->Skills as $itemSkills)
+                                            {{$itemSkills->NAMASKILL.","}}
+                                        @endforeach
+                                    </p>
                                 <div class="chart" data-percent="{{($itemRangking->rank/$itemRangking->totalKegiatanNarasumber)}}">{{($itemRangking->rank/$itemRangking->totalKegiatanNarasumber)}}%</div>
                             @elseif (($itemRangking->rank/$itemRangking->totalKegiatanNarasumber) > 85.0)
                                 <div id="rank-first" class="ranking__card">
@@ -41,7 +49,11 @@
                                             <img src="{{ asset('assetLogin/img/profile/'.$itemRangking->GAMBAR) }}" alt="profile picture"/>
                                         </div>
                                     <h5 class="card__name">{{$itemRangking->NAMALENGKAP}}</h5>
-                                    <p class="card__skill">Java, Programming, Design, Machine Learning, Teaching</p>
+                                    <p class="card__skill">
+                                        @foreach ($itemRangking->Skills as $itemSkills)
+                                            {{$itemSkills->NAMASKILL.","}}
+                                        @endforeach
+                                    </p>
                                     <div class="chart" data-percent="{{($itemRangking->rank/$itemRangking->totalKegiatanNarasumber)}}">{{($itemRangking->rank/$itemRangking->totalKegiatanNarasumber)}}%</div>
                             @else
     
@@ -72,7 +84,11 @@
                                     </div>
                                     <div class="list__profile">
                                         <h5>{{$lowRank->NAMALENGKAP}}</h5>
-                                        <p class="list__skill">Java, Programming, Design, Machine Learning, Teaching</p>
+                                        <p class="list__skill">
+                                            @foreach ($lowRank->Skills as $itemSkills)
+                                            {{$itemSkills->NAMASKILL.","}}
+                                            @endforeach
+                                        </p>
                                     </div>
                                     <div class="list__chart">
                                         <div class="chart" data-percent="{{($lowRank->rank/$lowRank->totalKegiatanNarasumber)}}" class="">{{($lowRank->rank/$lowRank->totalKegiatanNarasumber)}}%</div>

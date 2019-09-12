@@ -27,19 +27,11 @@
                                 <span class="mini-click-non">Input Form</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li>
-                                    <a title="All Professors" href="{{route('bidangkeahlian.index')}}">
+                                    <a title="Bidang Keahlian" href="{{route('bidangkeahlian.index')}}">
                                     <span class="mini-sub-pro">Bidang Keahlian</span></a>
                                 </li>
                                 <li>
-                                    <a title="Add Professor" href="{{route('bidangumkm.index')}}">
-                                    <span class="mini-sub-pro"></span>Bidang UMKM</a>
-                                </li>
-                                <li>
-                                    <a title="Add Professor" href="{{route('jeniskegiatan.index')}}">
-                                    <span class="mini-sub-pro">Jenis Kegiatan</span></a>
-                                </li>
-                                <li>
-                                    <a title="Add Professor" href="{{route('masalah.index')}}">
+                                    <a title="Jenis Masalah" href="{{route('masalah.index')}}">
                                     <span class="mini-sub-pro">Jenis Masalah</span></a>
                                 </li>                     
                             </ul>
@@ -51,8 +43,8 @@
                             <span class="mini-click-non">Form Permintaan</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li>
-                                        <a title="All Professors" href="{{route('permintaan.index')}}">
-                                        <span class="mini-sub-pro">Input Permintaan</span></a>
+                                        <a title="Input Permintaan" href="{{route('permintaan.index')}}">
+                                        <span class="mini-sub-pro">Permintaan</span></a>
                                     </li>
                                 </ul>
                         </li>
@@ -63,11 +55,11 @@
                             <span class="mini-click-non">Data</span></a>
                             <ul class="submenu-angle" aria-expanded="false">
                                 <li>
-                                    <a title="All Professors" href="{{route('datanarasumber.index')}}">
+                                    <a title="Narasumber" href="{{route('datanarasumber.index')}}">
                                     <span class="mini-sub-pro">Narasumber</span></a>
                                 </li>
                                 <li>
-                                    <a title="All Professors" href="{{route('dataumkm.index')}}">
+                                    <a title="UMKM" href="{{route('dataumkm.index')}}">
                                     <span class="mini-sub-pro">UMKM</span></a>
                                 </li>
                             </ul>
@@ -81,7 +73,7 @@
                                     <span class="mini-click-non">Data</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li>
-                                        <a title="All Professors" href="{{route('datanarasumber.index')}}">
+                                        <a title="Data Narasumber" href="{{route('datanarasumber.index')}}">
                                             <span class="mini-sub-pro">Narasumber</span></a>
                                     </li>
                                 </ul>
@@ -93,7 +85,7 @@
                                     <span class="mini-click-non">Data Permintaan</span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
                                         <li>
-                                            <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <a title="Data Permintaan" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
                                             <span class="mini-sub-pro">Data Permintaan</span></a>
                                         </li>
                                     </ul>
@@ -113,15 +105,15 @@
                                     <span class="mini-click-non">Input Kegiatan </span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
                                         <li>
-                                            <a title="All Professors" href="{{route('kegiatanUMKM.index')}}">
+                                            <a title="Kegiatan UMKM" href="{{route('kegiatanUMKM.index')}}">
                                             <span class="mini-sub-pro">Kegiatan UMKM</span></a>
                                         </li>
                                         <li>
-                                            <a title="All Professors" href="{{url('panel/kegiatanUMKM/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <a title="Data Kegiatan Anda" href="{{url('panel/kegiatanUMKM/'.Auth::User()->PROFILEUSERS_ID)}}">
                                             <span class="mini-sub-pro">Data Kegiatan Anda</span></a>
                                         </li>
                                         <li>
-                                            <a title="All Professors" href="{{url('panel/dataregisterkegiatan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <a title="Data User Anda" href="{{url('panel/dataregisterkegiatan/'.Auth::User()->PROFILEUSERS_ID)}}">
                                             <span class="mini-sub-pro">Data User Anda</span></a>
                                         </li>
                                     </ul>
@@ -133,7 +125,7 @@
                                     <span class="mini-click-non">Data Permintaan</span></a>
                                     <ul class="submenu-angle" aria-expanded="false">
                                         <li>
-                                            <a title="All Professors" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                            <a title="Data Permintaan" href="{{URL('panel/listpenerimaan/'.Auth::User()->PROFILEUSERS_ID)}}">
                                             <span class="mini-sub-pro">Data Permintaan</span></a>
                                         </li>
                                     </ul>
@@ -145,11 +137,11 @@
                                 <span class="mini-click-non">Data</span></a>
                                 <ul class="submenu-angle" aria-expanded="false">
                                     <li>
-                                        <a title="All Professors" href="{{route('dataumkm.index')}}">
+                                        <a title="UMKM" href="{{route('dataumkm.index')}}">
                                         <span class="mini-sub-pro">UMKM</span></a>
                                     </li>
                                     <li>
-                                        <a title="All Professors" href="{{URL('panel/ratekuesioner/'.Auth::User()->PROFILEUSERS_ID)}}">
+                                        <a title="Kuesioner" href="{{URL('panel/ratekuesioner/'.Auth::User()->PROFILEUSERS_ID)}}">
                                         <span class="mini-sub-pro">Kuesioner</span></a>
                                     </li>
                                 </ul>

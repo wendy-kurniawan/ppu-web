@@ -102,7 +102,43 @@ class JenisMasalah extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        /*get NewValue susbstr kan */
+        $namaMasalah        = $request->namaMasalah;
+        $replaceNewValue    = str_replace(" ","",$namaMasalah);
+        $newValue           = substr($replaceNewValue,0,6);
+
+        /*Old Value */
+        $namaMasalahOV      = $request->oldValue;
+        $replaceOldValue    = str_replace(" ","",$namaMasalahOV);
+        $lastValue          = substr($replaceOldValue,6,12);
+
+        /*Combine New and Old Value */
+        $idMasalahUpdate = $newValue.$lastValue;
+
+        /*update DB */
+        $idData             = $request->idDB;
+        $current_date_time = Carbon::now()->toDateTimeString();
+
+        // dd($newValue,$lastValue,$idMasalahUpdate,$idData);
+
+        DB::table('jkmasalah')->where('NO', $idData)
+            ->update([
+                'IDMASALAH' => $idMasalahUpdate,
+                'NAMAMASALAH' => $namaMasalah,
+                'updated_at' => $current_date_time,
+                ]);
+        /*
+            Audit Log && optimize DB
+        */
+        DB::table('auditlog')->insert([
+            'AKTIVITASUSER' => "Admin Mengupdate IDMASALAH ".$namaMasalahOV,
+            'created_at' => $current_date_time
+        ]);
+
+        DB::disconnect('jkmasalah');
+        DB::disconnect('auditlog');
+        Alert::success('Update Data '.$namaMasalah.' Telah Berhasil', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        return redirect('panel/masalah');
     }
 
     /**
@@ -114,5 +150,20 @@ class JenisMasalah extends Controller
     public function destroy($id)
     {
         //
+        $deleteData = DB::table('jkmasalah')->where('IDMASALAH', '=', $id)->delete();
+        $current_date_time = Carbon::now()->toDateTimeString();
+        /*
+            Audit Log && optimize DB
+        */
+        DB::table('auditlog')->insert([
+            'AKTIVITASUSER' => "Admin Mengdelete IDMasalah ".$id,
+            'created_at' => $current_date_time
+        ]);
+
+        DB::disconnect('jkmasalah');
+        DB::disconnect('auditlog');
+
+        Alert::success('Delete Data Telah Berhasil', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+        return redirect('panel/masalah');
     }
 }

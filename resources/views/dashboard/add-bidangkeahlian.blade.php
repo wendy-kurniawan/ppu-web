@@ -47,6 +47,9 @@
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/calendar/fullcalendar.min.css')}}">
         <link rel="stylesheet" href="{{asset('assetLogin/css/calendar/fullcalendar.print.min.css')}}">
+        <!-- modals CSS
+		============================================ -->
+        <link rel="stylesheet" href="{{asset('assetLogin/css/modals.css')}}">
         <!-- forms CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/form/all-type-forms.css')}}">
@@ -185,8 +188,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade"
-                                    id="formDataKeahlian">
+                                <div class="data-table-area mg-b-15 product-tab-list tab-pane fade" id="formDataKeahlian">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 table-responsive ">
                                                 <table id="example" class=" table display table-bordered responsive no-wrap" style="width:100%">
@@ -199,12 +201,51 @@
                                                             </tr>
                                                         </thead>
                                                         <tbody>
+                                                            @php
+                                                                $no=1
+                                                            @endphp
                                                                 @foreach ($dataSkill as $itemSkill)    
+                                                                <div id="modals{{ $itemSkill->ID_SKILL }}" class="modal modal-edu-general default-popup-PrimaryModal fade" role="dialog">
+                                                                        <div class="modal-dialog">
+                                                                            <div class="modal-content">
+                                                                                <div class="modal-header header-color-modal bg-color-1">
+                                                                                    <h4 class="modal-title">Edit Nama Skill/Bidang Keahlian</h4>
+                                                                                    <div class="modal-close-area modal-close-df">
+                                                                                        <a class="close" data-dismiss="modal" href="#"><i class="fa fa-close"></i></a>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="modal-body">
+                                                                                    <form id="add-department" action="{{route('bidangkeahlian.update', $itemSkill->ID_SKILL)}}" method="POST" class="add-department">
+                                                                                        @csrf
+                                                                                        {{ method_field('PUT') }}
+                                                                                        <div class="form-group">
+                                                                                            <label>Bidang Keahlian</label>
+                                                                                            <input type="hidden" name="idDB" value="{{$itemSkill->NO}}" class="form-control" readonly>
+                                                                                            <input type="hidden" name="oldValue" value="{{$itemSkill->ID_SKILL}}" class="form-control" readonly>
+                                                                                            <input name="jenisKeahlian" type="text" class="form-control" placeholder="Nama Keahlian">
+                                                                                        </div>
+
+                                                                                    </div>
+                                                                                <div class="modal-footer">
+                                                                                    <button type="#" data-dismiss="modal" class="btn btn-info btn-md" >Cancel</button>
+                                                                                    <button type="submit" class="btn btn-success btn-md" >Process</button>
+                                                                                </div>
+                                                                                </form>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
                                                                 <tr>
-                                                                    <td>1</td>
+                                                                    <td>{{$no++}}</td>
                                                                     <td>{{$itemSkill->ID_SKILL}}</td>
                                                                     <td>{{$itemSkill->NAMASKILL}}</td>
-                                                                    <td>button</td>
+                                                                    <td>
+                                                                    <form method="POST" action="{{route('bidangkeahlian.destroy',$itemSkill->ID_SKILL)}}">
+                                                                        @csrf
+                                                                        {{ method_field('DELETE') }}
+                                                                        <a href="#" class=" btn btn-warning" data-toggle="modal" data-target="#modals{{ $itemSkill->ID_SKILL }}">Edit</a>
+                                                                        <button type="submit" class="btn btn-danger" onclick="return confirm('Yakin ingin menghapus data?')">Delete</button>
+                                                                    </form>
+                                                                    </td>
                                                                 </tr>
                                                                 @endforeach
                                                         </tbody>

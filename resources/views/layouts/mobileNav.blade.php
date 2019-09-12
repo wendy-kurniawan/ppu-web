@@ -16,15 +16,13 @@
                                 <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                 <ul id="inputForm" class="collapse dropdown-header-top">
                                     <li><a href="{{route('bidangkeahlian.index')}}">Bidang Keahlian</a></li>
-                                    <li><a href="{{route('bidangumkm.index')}}">Bidang UMKM</a></li>
-                                    <li><a href="{{route('jeniskegiatan.index')}}">Jenis Kegiatan</a></li>
                                     <li><a href="{{route('masalah.index')}}">Jenis Masalah</a></li>
                                 </ul>
                             </li>
                             <li><a data-toggle="collapse" data-target="#inputForm" href="#">Form Permintaan
                                     <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
                                 <ul id="inputForm" class="collapse dropdown-header-top">
-                                    <li><a href="{{route('permintaan.index')}}">Input Permintaan</a></li>
+                                    <li><a href="{{route('permintaan.index')}}">Permintaan</a></li>
                                 </ul>
                             </li>
                             <li><a data-toggle="collapse" data-target="#inputForm" href="#">Data <span

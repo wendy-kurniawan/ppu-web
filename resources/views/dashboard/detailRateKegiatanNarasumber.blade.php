@@ -308,12 +308,13 @@
 
                                                             @endif
                                                             
-                                                            <div class="m-t-md mg-t-10">
+                                                            {{-- <div class="m-t-md mg-t-10">
                                                                 <a class="btn btn-xs btn-default"><i
                                                                         class="fa fa-thumbs-up"></i> Like </a>
                                                                 <a class="btn btn-xs btn-success"><i
                                                                         class="fa fa-heart"></i> Love</a>
-                                                            </div>
+                                                            </div> --}}
+                                                            
                                                         </div>
                                                     </div>
                                                         @endforeach

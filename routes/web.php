@@ -22,8 +22,6 @@ Route::resource('kuesioner', 'KuesionerGuest');
 Route::middleware('auth')->group(function() {
     Route::resource('src', 'Dashboard');
     Route::resource('panel/bidangkeahlian', 'BidangKeahlian');
-    Route::resource('panel/bidangumkm', 'BidangUMKM');
-    Route::resource('panel/jeniskegiatan', 'JenisKegiatan');
     Route::resource('panel/masalah', 'JenisMasalah');
     Route::resource('panel/permintaan', 'permintaanUMKM');
     Route::resource('panel/datanarasumber', 'narasumberData');

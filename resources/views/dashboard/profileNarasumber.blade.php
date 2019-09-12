@@ -125,46 +125,7 @@
                 </div>
             </div>
             <!-- Mobile Menu start -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul class="mobile-menu-nav">
-                                        <li>
-                                            <a href="index-1.html">Home
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Input Form <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-bidangkeahlian.html">Bidang Keahlian</a></li>
-                                                <li><a href="add-bidangUMKM.html">Bidang UMKM</a></li>
-                                                <li><a href="add-department.html">Jenis Kegiatan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Form Permintaan
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-inputPermintaan.html">Input Permintaan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Data <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-dataNarasumber.html">Narasumber</a></li>
-                                                <li><a href="add-dataUMKM.html">UMKM</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="events.html">Event</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.mobileNav')
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
@@ -281,7 +242,7 @@
                         <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#Biography">Biography</a></li>
-                                <li><a href="#reviews"> Activity</a></li>
+                                <li><a href="#activityNarasumber"> Activity</a></li>
                                 <li><a href="#permintaan">Permintaan</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
@@ -312,53 +273,13 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Java</h2>
+                                                                @foreach ($bioProfil->Skills as $itemSkills)
+                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                                    <div class="progress-skill">
+                                                                        <h2>*{{$itemSkills->NAMASKILL}}</h2>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Php</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Laravel</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*React Native</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Flutter</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Kotlin</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*React JS</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Progressive Web Apps</h2>
-                                                                </div>
-                                                            </div>
+                                                                @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
@@ -367,172 +288,34 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="reviews">
+                                <div class="product-tab-list tab-pane fade" id="activityNarasumber">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div class="chat-discussion" style="height: auto">
+                                                @foreach ($profileNarasumber as $itemActivity)
                                                     <div class="chat-message">
                                                         <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/1.jpg')}}" alt="">
+                                                            <img class="message-avatar" src="{{asset('assetLogin/img/profile/'.$itemActivity->GAMBAR)}}" alt="">
                                                         </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Mon Jan 26 2015 - 18:39:23
-                                                            </span>
-                                                            <span class="message-content">Lorem ipsum dolor sit amet,
-                                                                consectetuer adipiscing elit, sed diam nonummy nibh
-                                                                euismod tincidunt ut laoreet dolore magna aliquam erat
-                                                                volutpat.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-success"><i
-                                                                        class="fa fa-heart"></i> Love</a>
+                                                        @foreach ($itemActivity->kNarasumber as $Activity)
+                                                            <div class="message">
+                                                                <a class="message-author" href="#"> {{$Activity->JUDULACARA}} </a>
+                                                                <span class="message-date">{{ \Carbon\Carbon::parse($Activity->created_at)->format('d M Y')}}
+                                                                </span>
+                                                                <span class="message-content">
+                                                                    {{$Activity->KETKEGIATAN}}
+                                                                </span>
+                                                                {{-- <div class="m-t-md mg-t-10">
+                                                                    <a class="btn btn-xs btn-default"><i
+                                                                            class="fa fa-thumbs-up"></i> Like </a>
+                                                                    <a class="btn btn-xs btn-success"><i
+                                                                            class="fa fa-heart"></i> Love</a>
+                                                                </div> --}}
                                                             </div>
+                                                        @endforeach
                                                         </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/2.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Karl Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                Many desktop publishing packages and web page editors
-                                                                now use Lorem Ipsum as their default model text, and a
-                                                                search for 'lorem ipsum' will uncover.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                                <a class="btn btn-xs btn-primary"><i
-                                                                        class="fa fa-pencil"></i> Message</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/3.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have suffered alteration.
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/4.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Alice Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-warning"><i
-                                                                        class="fa fa-eye"></i> Nudge</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/1.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Mark Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-success"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/2.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Karl Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                Many desktop publishing packages and web page editors
-                                                                now use Lorem Ipsum as their default model text, and a
-                                                                search for 'lorem ipsum' will uncover.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                                <a class="btn btn-xs btn-primary"><i
-                                                                        class="fa fa-pencil"></i> Message</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/3.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have suffered alteration.
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/4.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Alice Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
@@ -568,8 +351,7 @@
                                                             @endforeach
                                                             <div class="form-group">
                                                                     <label>Jenis Pemasalahan</label>
-                                                                    <select name="jkMasalah[]" data-placeholder="Jenis Permasalahan" class="form-control chosen-select" multiple="multiple" tabindex="-1">
-                                                                            <option value="">Select</option>
+                                                                    <select name="jkMasalah[]" data-placeholder="Pilih Salah Satu" class="form-control chosen-select" multiple="multiple" tabindex="-1">
                                                                             @foreach ($jenisMasalah as $itemJenisMasalah)
                                                                             <option value="{{$itemJenisMasalah->NAMAMASALAH}}">{{$itemJenisMasalah->NAMAMASALAH}}</option>
                                                                             @endforeach

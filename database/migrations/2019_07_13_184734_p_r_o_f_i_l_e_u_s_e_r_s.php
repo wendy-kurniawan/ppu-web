@@ -22,7 +22,7 @@ class PROFILEUSERS extends Migration
             $table->char('NOHP',13)->nullable();
             $table->char('GAMBAR')->nullable();
             $table->mediumText('BIOGRAFI')->nullable();
-            $table->enum('JENISKL',[' ','Perempuan','Laki-Laki']);
+            $table->enum('JENISKL',[' ','Perempuan','Laki-Laki'])->nullable();
             $table->char('ALAMATUMKM')->nullable();
             $table->timestamps();
         });

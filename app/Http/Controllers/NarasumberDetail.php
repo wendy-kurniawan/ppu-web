@@ -27,6 +27,8 @@ class NarasumberDetail extends Controller
         //  jenismasalah Load on select
         $jenisMasalah   = $this->dataMasalah();
          
+        // dd($profileNarasumber);
+
          return view('dashboard/profileNarasumber',
          [
              'profileNarasumber' => $profileNarasumber,
@@ -38,11 +40,25 @@ class NarasumberDetail extends Controller
     }
     /*function index*/
     private function dataNarasumber($idNarsumber){
-        return  DB::table('users')
+        $dataNara = DB::table('users')
         ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
-        ->select('users.*', 'profileusers.*')
+        ->select('users.PROFILEUSERS_ID','users.USERNAME','users.STATUSUSER','users.email', 'profileusers.*')
         ->where('PROFILE_ID','=', $idNarsumber)
         ->get();
+
+        foreach ($dataNara as $key => $value) {
+            $kegiatanNara   = DB::table('inptkegiatan')->where('IDNARASUMBER', '=', $value->PROFILE_ID)->get();
+            $value->kNarasumber = $kegiatanNara;
+
+            $skillsUser     = DB::table('inptskill')
+            ->join('skill', 'inptskill.IDSKILL', '=', 'skill.ID_SKILL')
+            ->select('inptskill.SKILUSERS_ID', 'inptskill.IDSKILL', 'skill.NAMASKILL')
+            ->where('SKILUSERS_ID', '=', $idNarsumber)
+            ->get();
+            $value->Skills = $skillsUser;
+        }
+
+        return $dataNara;
     }
 
     private function dataUMKM($idUMKM){
@@ -86,7 +102,7 @@ class NarasumberDetail extends Controller
         $namaUMKM       = $request->namaUMKM;
         $fotoNarasumber = $request->imgNarasumber;
         //GENERATE IDMASALAH
-        $subKalimat =  substr($idUMKM,0,3);
+        $subKalimat     =  substr($idUMKM,0,3);
         $pmt            = DB::table('pmt_umkm')->count();
         $lastNumber     = $pmt + (int) 1;
         $idMasalah      = $subKalimat."msl".sprintf("%06s",$lastNumber);

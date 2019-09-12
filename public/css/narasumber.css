@@ -9,7 +9,8 @@
     background: transparent;
 }
 
-html, body {
+html,
+body {
     height: 100%;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
@@ -31,7 +32,8 @@ p {
     font-weight: 600;
 }
 
-.profile, .profile img {
+.profile,
+.profile img {
     width: 100px;
     height: 100px;
     border-radius: 50%;
@@ -137,7 +139,7 @@ p {
 }
 
 .list__skill {
-    width: 400px;
+    width: 600px;
     height: 58px;
     overflow: hidden;
 }
@@ -153,7 +155,8 @@ p {
         flex-direction: column;
     }
 
-    .ranking__number p, .list__profile p{
+    .ranking__number p,
+    .list__profile p {
         font-size: 16px;
     }
 
@@ -166,7 +169,7 @@ p {
         border-radius: 10px;
         margin-bottom: 20px;
     }
-    
+
     .list__profile h5 {
         margin-top: 20px;
         font-size: 18px;

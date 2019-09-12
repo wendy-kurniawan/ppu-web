@@ -125,46 +125,7 @@
                 </div>
             </div>
             <!-- Mobile Menu start -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul class="mobile-menu-nav">
-                                        <li>
-                                            <a href="index-1.html">Home
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Input Form <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-bidangkeahlian.html">Bidang Keahlian</a></li>
-                                                <li><a href="add-bidangUMKM.html">Bidang UMKM</a></li>
-                                                <li><a href="add-department.html">Jenis Kegiatan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Form Permintaan
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-inputPermintaan.html">Input Permintaan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Data <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-dataNarasumber.html">Narasumber</a></li>
-                                                <li><a href="add-dataUMKM.html">UMKM</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="events.html">Event</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.mobileNav')
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
@@ -305,67 +266,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row mg-b-15">
-                                                    <div class="col-lg-12">
-                                                        <div class="row">
-                                                            <div class="col-lg-12">
-                                                                <div class="skill-title">
-                                                                    <h2>Keahlian</h2>
-                                                                    <hr />
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                        <div class="row">
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Java</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Php</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Laravel</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*React Native</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Flutter</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Kotlin</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*React JS</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Progressive Web Apps</h2>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
                                             </div>
                                         </div>
                                         @endforeach
@@ -395,13 +295,13 @@
                                                                     <span class="label label-primary">{{$item->JKMASALAH}}</span>
                                                                 @endforeach
                                                             </span>
-                                                            <div class="m-t-md mg-t-10">
+                                                            {{-- <div class="m-t-md mg-t-10">
                                                                 <a href="https://www.google.com" class="btn btn-xs btn-default">
                                                                     <i class="fa fa-info"></i> Selengkapnya 
                                                                 </a>
                                                                 <a class="btn btn-xs btn-success"><i
                                                                     class="fa fa-heart"></i> Love</a>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                     </div>
                                                     @endforeach

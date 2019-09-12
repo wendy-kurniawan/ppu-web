@@ -21,7 +21,7 @@
                     </div>
                     <ul class="nav nav-tabs nav-justified mb-4" id="myTab" role="tablist">
                         <li class="nav-item">
-                            <a class="nav-link active" id="umkm-tab" data-toggle="tab" href="#umkm" role="tab" aria-controls="umkm" aria-selected="true">UMKM</a>
+                            <a class="nav-link active " id="umkm-tab" data-toggle="tab" href="#umkm" role="tab" aria-controls="umkm" aria-selected="true">UMKM</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" id="narasumber-tab" data-toggle="tab" href="#narasumber" role="tab" aria-controls="narasumber" aria-selected="false">Narasumber</a>

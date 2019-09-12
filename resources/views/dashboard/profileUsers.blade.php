@@ -57,6 +57,12 @@
     <!-- responsive CSS
 		============================================ -->
     <link rel="stylesheet" href="{{asset('assetLogin/css/responsive.css')}}">
+    <!-- select2 CSS
+        ============================================ -->
+    <link rel="stylesheet" href="{{asset('assetLogin/css/select2/select2.min.css')}}">
+    <!-- chosen CSS
+        ============================================ -->
+    <link rel="stylesheet" href="{{asset('assetLogin/css/chosen/bootstrap-chosen.css')}}">
     <!-- modernizr JS
 		============================================ -->
     <script src="{{asset('assetLogin/js/vendor/modernizr-2.8.3.min.js')}}"></script>
@@ -106,46 +112,7 @@
                 </div>
             </div>
             <!-- Mobile Menu start -->
-            <div class="mobile-menu-area">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <div class="mobile-menu">
-                                <nav id="dropdown">
-                                    <ul class="mobile-menu-nav">
-                                        <li>
-                                            <a href="index-1.html">Home
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Input Form <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-bidangkeahlian.html">Bidang Keahlian</a></li>
-                                                <li><a href="add-bidangUMKM.html">Bidang UMKM</a></li>
-                                                <li><a href="add-department.html">Jenis Kegiatan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Form Permintaan
-                                                <span class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-inputPermintaan.html">Input Permintaan</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a data-toggle="collapse" data-target="#inputForm" href="#">Data <span
-                                                    class="admin-project-icon edu-icon edu-down-arrow"></span></a>
-                                            <ul id="inputForm" class="collapse dropdown-header-top">
-                                                <li><a href="add-dataNarasumber.html">Narasumber</a></li>
-                                                <li><a href="add-dataUMKM.html">UMKM</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="events.html">Event</a></li>
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @include('layouts.mobileNav')
             <!-- Mobile Menu end -->
             <div class="breadcome-area">
                 <div class="container-fluid">
@@ -262,7 +229,10 @@
                         <div class="product-payment-inner-st res-mg-t-30 analysis-progrebar-ctn">
                             <ul id="myTabedu1" class="tab-review-design">
                                 <li class="active"><a href="#Biography">Biography</a></li>
-                                <li><a href="#reviews"> Activity</a></li>
+                                @if (Auth::user()->STATUSUSER == "NARASUMBER")
+                                <li><a href="#activityNara"> Activity</a></li>
+                                <li><a href="#activitySkills"> Update Keahlian</a></li>
+                                @endif
                                 <li><a href="#updateProfile">Update Profile</a></li>
                             </ul>
                             <div id="myTabContent" class="tab-content custom-product-edit st-prf-pro">
@@ -273,11 +243,20 @@
                                             <div class="review-content-section">
                                                 <div class="row">
                                                     <div class="col-lg-12">
+                                                        <div class="skill-title">
+                                                            <h2>Deskripsi Singkat</h2>
+                                                            <hr/>
+                                                        </div>
                                                         <div class="content-profile">
                                                             <p align="justify">{{$bioProfil->BIOGRAFI}}</p>
+                                                            @if (Auth::user()->STATUSUSER == "ADMIN")
+                                                                <p align="justify">Saya Admin,Mengontrol Perilaku User</p>                                                                
+                                                            @endif
                                                         </div>
                                                     </div>
                                                 </div>
+                                                
+                                                @if (Auth::user()->STATUSUSER == "NARASUMBER")
                                                 <div class="row mg-b-15">
                                                     <div class="col-lg-12">
                                                         <div class="row">
@@ -289,232 +268,93 @@
                                                             </div>
                                                         </div>
                                                         <div class="row">
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Java</h2>
+                                                            @foreach ($Narasumber as $item)
+                                                                @foreach ($item->Skills as $itemSkills)
+                                                                    
+                                                                <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
+                                                                    <div class="progress-skill">
+                                                                        <h2>*{{$itemSkills->NAMASKILL}}</h2>
+                                                                    </div>
                                                                 </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Php</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Laravel</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*React Native</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Flutter</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Kotlin</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*React JS</h2>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
-                                                                <div class="progress-skill">
-                                                                    <h2>*Progressive Web Apps</h2>
-                                                                </div>
-                                                            </div>
+                                                                
+                                                                @endforeach
+                                                            @endforeach
                                                         </div>
                                                     </div>
                                                 </div>
+                                                @endif
                                             </div>
                                         </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="product-tab-list tab-pane fade" id="reviews">
+                                <div class="product-tab-list tab-pane fade" id="activityNara">
                                     <div class="row">
                                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                             <div class="review-content-section">
                                                 <div class="chat-discussion" style="height: auto">
+                                                    @foreach ($Narasumber as $itemActivity)
                                                     <div class="chat-message">
                                                         <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/1.jpg')}}" alt="">
+                                                            <img class="message-avatar" src="{{asset('assetLogin/img/profile/'.$itemActivity->GAMBAR)}}" alt="">
                                                         </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Mon Jan 26 2015 - 18:39:23
-                                                            </span>
-                                                            <span class="message-content">Lorem ipsum dolor sit amet,
-                                                                consectetuer adipiscing elit, sed diam nonummy nibh
-                                                                euismod tincidunt ut laoreet dolore magna aliquam erat
-                                                                volutpat.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-success"><i
-                                                                        class="fa fa-heart"></i> Love</a>
+                                                        @foreach ($itemActivity->kNarasumber as $activity)
+                                                            <div class="message">
+                                                                <a class="message-author" href="#"> {{$activity->JUDULACARA}} </a>
+                                                                <span class="message-date">{{ \Carbon\Carbon::parse($activity->created_at)->format('d M Y')}}
+                                                                </span>
+                                                                <span class="message-content">
+                                                                    {{$activity->KETKEGIATAN}}
+                                                                </span>
+                                                                {{-- <div class="m-t-md mg-t-10">
+                                                                    <a class="btn btn-xs btn-default"><i
+                                                                            class="fa fa-thumbs-up"></i> Like </a>
+                                                                    <a class="btn btn-xs btn-success"><i
+                                                                            class="fa fa-heart"></i> Love</a>
+                                                                </div> --}}
                                                             </div>
-                                                        </div>
+                                                        @endforeach
                                                     </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/2.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Karl Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                Many desktop publishing packages and web page editors
-                                                                now use Lorem Ipsum as their default model text, and a
-                                                                search for 'lorem ipsum' will uncover.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                                <a class="btn btn-xs btn-primary"><i
-                                                                        class="fa fa-pencil"></i> Message</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/3.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have suffered alteration.
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/4.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Alice Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-warning"><i
-                                                                        class="fa fa-eye"></i> Nudge</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/1.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Mark Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-success"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/2.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Karl Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                Many desktop publishing packages and web page editors
-                                                                now use Lorem Ipsum as their default model text, and a
-                                                                search for 'lorem ipsum' will uncover.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                                <a class="btn btn-xs btn-primary"><i
-                                                                        class="fa fa-pencil"></i> Message</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/3.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Michael Smith </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                There are many variations of passages of Lorem Ipsum
-                                                                available, but the majority have suffered alteration.
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                    <div class="chat-message">
-                                                        <div class="profile-hdtc">
-                                                            <img class="message-avatar" src="{{asset('assetLogin/img/contact/4.jpg')}}" alt="">
-                                                        </div>
-                                                        <div class="message">
-                                                            <a class="message-author" href="#"> Alice Jordan </a>
-                                                            <span class="message-date"> Fri Jan 25 2015 - 11:12:36
-                                                            </span>
-                                                            <span class="message-content">
-                                                                All the Lorem Ipsum generators on the Internet tend to
-                                                                repeat predefined chunks as necessary, making this the
-                                                                first true generator on the Internet.
-                                                                It uses a dictionary of over 200 Latin words.
-                                                            </span>
-                                                            <div class="m-t-md mg-t-10">
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-thumbs-up"></i> Like </a>
-                                                                <a class="btn btn-xs btn-default"><i
-                                                                        class="fa fa-heart"></i> Love</a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
+                                                    @endforeach
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                <div class="product-tab-list tab-pane fade" id="activitySkills">
+                                    <div class="row">
+                                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                            <div class="review-content-section">
+                                                <div class="row">
+                                                    <div class="col-lg-12">
+                                                        <form action="{{route('myprofile.store')}}" method="POST">
+                                                            <input type="hidden" name="statUser" value="{{Auth::user()->STATUSUSER}}">
+                                                            <input type="hidden" name="idProfile" value="{{Auth::user()->PROFILEUSERS_ID}}">
+                                                            @csrf
+                                                            <div class="form-group">
+                                                                    <label>Tambah Bidang Keahlian / Skills</label>
+                                                                    <select name="skills[]" data-placeholder="Pilih Salah Satu" class="form-control chosen-select" multiple="multiple" tabindex="-1">
+                                                                        @foreach ($dataSkills as $itemSkills)
+                                                                        <option value="{{$itemSkills->ID_SKILL}}">{{$itemSkills->NAMASKILL}}</option>
+                                                                        @endforeach
+                                                                    </select>
+                                                            </div>
+                                                    </div>
+                                                    <div class="row">
+                                                        <div class="col-lg-12">
+                                                            <br>
+                                                            <div class="payment-adress mg-t-15">
+                                                                <button type="submit"
+                                                                    class="btn btn-primary waves-effect waves-light mg-b-15">Submit</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
                                 <div class="product-tab-list tab-pane fade" id="updateProfile">
                                     <div class="row">
                                         @foreach ($users as $profile)
@@ -526,14 +366,17 @@
                                                             @csrf
                                                             <input type="hidden" name="statUser" value="{{$profile->STATUSUSER}}">
                                                             <input type="hidden" name="idProfile" value="{{$profile->PROFILE_ID}}">
-                                                            @if ($profile->STATUSUSER == "UMKM")
+                                                            @if($profile->STATUSUSER == "ADMIN")
+                                                                <div class="form-group">
+                                                                    <label>No Telp</label>
+                                                                    <input type="text" class="form-control" value="{{$profile->NOHPUMKM}}" name="profileTelpUMKM" maxlength="13" placeholder="No Tlp UMKM">
+                                                                </div>
+                                                            @elseif ($profile->STATUSUSER == "UMKM")
                                                                 <div class="form-group">
                                                                     <label>Alamat Lembaga</label>
                                                                     <input type="text" name="addrsLembaga" value="{{$profile->ALAMATUMKM}}" class="form-control"
                                                                         placeholder="Alamat Lembaga">
                                                                 </div>
-                                                            @endif
-                                                             @if ($profile->STATUSUSER =="UMKM")
                                                                 <div class="form-group">
                                                                     <label>No Telp UMKM</label>
                                                                     <input type="text" class="form-control" value="{{$profile->NOHPUMKM}}" name="profileTelpUMKM" maxlength="13" placeholder="No Tlp UMKM">
@@ -572,7 +415,7 @@
                                                             <div class="form-group">
                                                                 <select name="profileJK" class="form-control">
                                                                     @if ($profile->JENISKL == "")
-                                                                        <option>Select Gender</option>
+                                                                        <option value=" ">Select Gender</option>
                                                                         <option value="Perempuan">Perempuan</option>
                                                                         <option value="Laki-Laki">Laki-Laki</option>
                                                                     @elseif ($profile->JENISKL == "Laki-Laki")
@@ -655,6 +498,14 @@
 		============================================ -->
         <script src="{{asset('assetLogin/js/sparkline/jquery.sparkline.min.js')}}"></script>
         <script src="{{asset('assetLogin/js/sparkline/jquery.charts-sparkline.js')}}"></script>
+        <!-- chosen JS
+            ============================================ -->
+        <script src="{{asset('assetLogin/js/chosen/chosen.jquery.js')}}"></script>
+        <script src="{{asset('assetLogin/js/chosen/chosen-active.js')}}"></script>
+        <!-- select2 JS
+            ============================================ -->
+        <script src="{{asset('assetLogin/js/select2/select2.full.min.js')}}"></script>
+        <script src="{{asset('assetLogin/js/select2/select2-active.js')}}"></script>
         <!-- calendar JS
 		============================================ -->
         <script src="{{asset('assetLogin/js/calendar/moment.min.js')}}"></script>

@@ -81,7 +81,7 @@ class UMKMDetail extends Controller
             $saveMasalah = DB::table('pmt_jp')
             ->where('IDMASALAHJP', '=', $value->IDMASALAH)
             ->get();
-            dd($saveMasalah);
+            
             $value->masalah = $saveMasalah;
             $idMasalah[$key] = $value;
 
