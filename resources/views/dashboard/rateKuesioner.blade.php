@@ -53,6 +53,7 @@
         <!-- style CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assetLogin/customStyle.css')}}">
         <!-- responsive CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/responsive.css')}}">
@@ -63,15 +64,9 @@
 @section('contentDashboard')
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="logo-pro">
-                        <a href="{{route('src.index')}}"><img class="main-logo" src="{{asset('assetLogin/img/logo/logo.png')}}" alt="" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+        @include('layouts.mobileLogo')       
+        
         <div class="header-advance-area">
             <div class="header-top-area">
                 <div class="container-fluid">
@@ -145,8 +140,8 @@
                                 <img src="{{asset('/assetLogin/img/kegiatan/'.$itemKuesioner->GAMBAR)}}" alt="" />
                             </div>
                             <div class="student-dtl text-left">
-                                <h2>{{$itemKuesioner->NAMANARASUMBER}}</h2>
-                                <span><b>{{$itemKuesioner->JUDULACARA}}</b></span><br>
+                                <h2 class="dot">{{$itemKuesioner->NAMANARASUMBER}}</h2>
+                                <span><p class="dot"><b>{{$itemKuesioner->JUDULACARA}}</b></p></span><br>
                                 <p><b>Rate:
                                     @if ($itemKuesioner->totalJawaban == 0)
                                     <span class="label label-default">0%</span>

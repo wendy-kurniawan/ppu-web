@@ -21,13 +21,13 @@ $(function () {
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div  class="student-inner-std res-mg-b-30">
                             <div class="student-img">
-                                <img src="${('http://localhost/Project_Web/laravel/project/ppu-web/public/assetLogin/img/profile/'+ item.GAMBAR)}" alt="" />
+                                <img src="${('http://localhost/Project_Web/laravel/project/ppu-web/public/assetLogin/img/profile/' + item.GAMBAR)}" alt="" />
                             </div>
                             <div class="student-dtl">
-                                <h2>${item.NAMALENGKAP}</h2>
+                                <h2 class="dot">${item.NAMALENGKAP}</h2>
                                 <a href="tel:${item.NOHP}" class="dp">Tlp:${item.NOHP}</a>
                                 <p class="dp-ag"><b>Tanggal Lahir:</b> ${reverseDate}</p>
-                                <a href="${('http://localhost/Project_Web/laravel/project/ppu-web/public/panel/detailnarasumber?&idNarasumber='+item.PROFILE_ID +'&idUMKM='+idUMKM)}" class="btn btn-primary">Selengkapnya</a>
+                                <a href="${('http://localhost/Project_Web/laravel/project/ppu-web/public/panel/detailnarasumber?&idNarasumber=' + item.PROFILE_ID + '&idUMKM=' + idUMKM)}" class="btn btn-primary">Selengkapnya</a>
                             </div>
                         </div>
                     </div>

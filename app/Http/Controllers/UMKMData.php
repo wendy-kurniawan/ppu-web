@@ -20,7 +20,7 @@ class UMKMData extends Controller
         ->select('users.*','profileusers.*')
         ->where('STATUSUSER', '=', 'UMKM')
         ->get();
-        return view('dashboard/add-dataUMKM',
+        return view('dashboard/dataUMKM',
         [
             'dataUMKM' => $dataUMKM,
         ]);
@@ -59,7 +59,7 @@ class UMKMData extends Controller
         $data = DB::table('users')
         ->join('profileusers', 'PROFILEUSERS_ID', '=', 'profileusers.PROFILE_ID')
         ->select('users.*','profileusers.*')
-        ->whereRaw("users.USERNAME LIKE '%$id%' AND users.STATUSUSER= 'UMKM' ")
+        ->whereRaw("users.NAMAUMKM LIKE '%$id%' AND users.STATUSUSER= 'UMKM' ")
         ->get();
 
         return $data;

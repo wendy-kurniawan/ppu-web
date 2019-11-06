@@ -84,8 +84,6 @@ class profileUsers extends Controller
         $skills     = $request->skills;
         $dateNow = Carbon::now()->toDateTimeString();
 
-        // dd($request->all(),$countSkills);
-        
         if($statUser == "ADMIN"){
             $file       = $request->file('docProfile'); 
             if($file == ""){
@@ -170,37 +168,76 @@ class profileUsers extends Controller
                 
                 Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                 return redirect('panel/myprofile?myProfile='.$profileID);
-            }else{
-                //images
-                $nameProf   = $file->hashName();
-                $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
+            }else{ //if has photo umkm
+                $photoUMKM  = DB::table('profileusers')->where('PROFILE_ID',$profileID)->get();
+                
+                foreach ($photoUMKM as $umkmPhoto) {
+                    if($umkmPhoto->GAMBAR != 'guest.jpg'){
+                        $target = unlink(public_path('assetLogin/img/profile/'.$umkmPhoto->GAMBAR));
+                        //images
+                        $nameProf   = $file->hashName();
+                        $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
 
-                $addrsLembaga = $request->addrsLembaga;
-                $profileTelpUMKM = $request->profileTelpUMKM;
-                $replace =str_replace(" ","",$profileTelpUMKM);
+                        $addrsLembaga = $request->addrsLembaga;
+                        $profileTelpUMKM = $request->profileTelpUMKM;
+                        $replace =str_replace(" ","",$profileTelpUMKM);
 
-                //update
-                $profileUser = DB::table('profileusers')
-                ->where('PROFILE_ID',$profileID)
-                ->update(
-                    [
-                    'NOHPUMKM' => $replace,
-                    'GAMBAR' => $nameProf,
-                    'ALAMATUMKM' => $addrsLembaga,
-                    ]);
-                 /*
-                Audit Log && optimize DB
-                */
-                DB::table('auditlog')->insert([
-                    'AKTIVITASUSER' => "UMKM ".$profileID." Mengupdate Profile ".$addrsLembaga.",".$profileTelpUMKM."dan Gambar ".$nameProf,
-                    'created_at' => $dateNow
-                ]);
+                        //update
+                        $profileUser = DB::table('profileusers')
+                        ->where('PROFILE_ID',$profileID)
+                        ->update(
+                            [
+                            'NOHPUMKM' => $replace,
+                            'GAMBAR' => $nameProf,
+                            'ALAMATUMKM' => $addrsLembaga,
+                            ]);
+                        /*
+                        Audit Log && optimize DB
+                        */
+                        DB::table('auditlog')->insert([
+                            'AKTIVITASUSER' => "UMKM ".$profileID." Mengupdate Profile ".$addrsLembaga.",".$profileTelpUMKM."dan Gambar ".$nameProf,
+                            'created_at' => $dateNow
+                        ]);
 
-                DB::disconnect('profileusers');
-                DB::disconnect('auditlog');
+                        DB::disconnect('profileusers');
+                        DB::disconnect('auditlog');
 
-                Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
-                return redirect('panel/myprofile?myProfile='.$profileID);
+                        Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                        return redirect('panel/myprofile?myProfile='.$profileID);
+                    }else{
+                        //images
+                        $nameProf   = $file->hashName();
+                        $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
+
+                        $addrsLembaga = $request->addrsLembaga;
+                        $profileTelpUMKM = $request->profileTelpUMKM;
+                        $replace =str_replace(" ","",$profileTelpUMKM);
+
+                        //update
+                        $profileUser = DB::table('profileusers')
+                        ->where('PROFILE_ID',$profileID)
+                        ->update(
+                            [
+                            'NOHPUMKM' => $replace,
+                            'GAMBAR' => $nameProf,
+                            'ALAMATUMKM' => $addrsLembaga,
+                            ]);
+                        /*
+                        Audit Log && optimize DB
+                        */
+                        DB::table('auditlog')->insert([
+                            'AKTIVITASUSER' => "UMKM ".$profileID." Mengupdate Profile ".$addrsLembaga.",".$profileTelpUMKM."dan Gambar ".$nameProf,
+                            'created_at' => $dateNow
+                        ]);
+
+                        DB::disconnect('profileusers');
+                        DB::disconnect('auditlog');
+
+                        Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                        return redirect('panel/myprofile?myProfile='.$profileID);
+                    }
+                }
+                
             }
             
         }elseif ($statUser == "NARASUMBER"){
@@ -235,18 +272,21 @@ class profileUsers extends Controller
                     Alert::success('Input Skills Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                     return redirect('panel/myprofile?myProfile='.$profileID);
                 }elseif($checkdataSkillsUser > 0) {
-                    // /*compare with the request */
-                    // $dataSkillsUser = DB::table('inptskill')->select('IDSKILL')->where('SKILUSERS_ID', '=', $profileID)->get();
-                    
-                    // foreach ($dataSkillsUser as $key => $value) {
-                    //     $aaa    = ([$value->IDSKILL]);
-                    // }
-                    // $requestSkills= $skills;
-                    // $merge = array_merge([$aaa,$requestSkills]);
-                   
-                    // dd($merge,$dataSkillsUser,$requestSkills);
-                    // // dd($dataSkillsUser);
-                    Alert::info('Penambahan Gagal ', 'Sedang Maintance')->persistent('Close')->autoclose(3000);
+                   /*find the compare array IMPORTANT!!! */
+
+                   $deleteSkill = DB::table('inptskill')->where('SKILUSERS_ID', '=', $profileID)->delete();
+                   for ($i=0; $i < count($skills); $i++) { 
+                    // echo "No[$i] ".$skills[$i]."<br>";
+                    DB::table('inptskill')->insert([
+                        'SKILUSERS_ID' => $profileID,
+                        'IDSKILL' => $skills[$i],
+                        'created_at' => $dateNow
+                    ]);
+                }
+
+                    // dd($request->skills, $deleteSkill);
+
+                    Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                     return redirect('panel/myprofile?myProfile='.$profileID);
 
 
@@ -279,39 +319,83 @@ class profileUsers extends Controller
 
                     Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
                     return redirect('panel/myprofile?myProfile='.$profileID);
-                }else{
-                    $nameProf   = $file->hashName();
-                    $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
-                                
-                    $profileHandphoneNarasumber = $request->profileHandphoneNarasumber;
-                    $profileJK = $request->profileJK;
-                    $bioNarasumber = $request->bioNarasumber;
-                    $tglLahir       = $request->tglLahirprofile;
+                }else{ //if has photo
+                    $photo  = DB::table('profileusers')->where('PROFILE_ID',$profileID)->get();
 
-                    //update
-                    $profileUser = DB::table('profileusers')
-                    ->where('PROFILE_ID',$profileID)
-                    ->update(
-                        [
-                        'TANGGALLAHIR' =>$tglLahir,
-                        'NOHP' => $profileHandphoneNarasumber,
-                        'GAMBAR' => $nameProf,
-                        'BIOGRAFI' => $bioNarasumber,
-                        'JENISKL' => $profileJK,
-                        ]);
-                    /*
-                    Audit Log && optimize DB
-                    */
-                    DB::table('auditlog')->insert([
-                        'AKTIVITASUSER' => "Narasumber ".$profileID." Mengupdate Profile ".$profileHandphoneNarasumber.",".$profileJK."dan tglLahir ".$tglLahir,
-                        'created_at' => $dateNow
-                    ]);
+                        foreach ($photo as $photoNarasumber) {
+                            if($photoNarasumber->GAMBAR != 'guest.jpg'){
+                                $targetphotoNarasumber = unlink(public_path('assetLogin/img/profile/'.$photoNarasumber->GAMBAR));
 
-                    DB::disconnect('profileusers');
-                    DB::disconnect('auditlog');
+                                //move PhotoNarasumber
+                                $nameProf   = $file->hashName();
+                                $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
+                                            
+                                $profileHandphoneNarasumber = $request->profileHandphoneNarasumber;
+                                $profileJK = $request->profileJK;
+                                $bioNarasumber = $request->bioNarasumber;
+                                $tglLahir       = $request->tglLahirprofile;
+            
+                                //update
+                                $profileUser = DB::table('profileusers')
+                                ->where('PROFILE_ID',$profileID)
+                                ->update(
+                                    [
+                                    'TANGGALLAHIR' =>$tglLahir,
+                                    'NOHP' => $profileHandphoneNarasumber,
+                                    'GAMBAR' => $nameProf,
+                                    'BIOGRAFI' => $bioNarasumber,
+                                    'JENISKL' => $profileJK,
+                                    ]);
+                                /*
+                                Audit Log && optimize DB
+                                */
+                                DB::table('auditlog')->insert([
+                                    'AKTIVITASUSER' => "Narasumber ".$profileID." Mengupdate Profile ".$profileHandphoneNarasumber.",".$profileJK."dan tglLahir ".$tglLahir,
+                                    'created_at' => $dateNow
+                                ]);
+            
+                                DB::disconnect('profileusers');
+                                DB::disconnect('auditlog');
+            
+                                Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                                return redirect('panel/myprofile?myProfile='.$profileID);
+                            }else{
+                                //move PhotoNarasumber
+                                $nameProf   = $file->hashName();
+                                $move = $file->move(public_path('\assetLogin\img\profile'), $nameProf);
+                                            
+                                $profileHandphoneNarasumber = $request->profileHandphoneNarasumber;
+                                $profileJK = $request->profileJK;
+                                $bioNarasumber = $request->bioNarasumber;
+                                $tglLahir       = $request->tglLahirprofile;
+            
+                                //update
+                                $profileUser = DB::table('profileusers')
+                                ->where('PROFILE_ID',$profileID)
+                                ->update(
+                                    [
+                                    'TANGGALLAHIR' =>$tglLahir,
+                                    'NOHP' => $profileHandphoneNarasumber,
+                                    'GAMBAR' => $nameProf,
+                                    'BIOGRAFI' => $bioNarasumber,
+                                    'JENISKL' => $profileJK,
+                                    ]);
+                                /*
+                                Audit Log && optimize DB
+                                */
+                                DB::table('auditlog')->insert([
+                                    'AKTIVITASUSER' => "Narasumber ".$profileID." Mengupdate Profile ".$profileHandphoneNarasumber.",".$profileJK."dan tglLahir ".$tglLahir,
+                                    'created_at' => $dateNow
+                                ]);
+            
+                                DB::disconnect('profileusers');
+                                DB::disconnect('auditlog');
+            
+                                Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
+                                return redirect('panel/myprofile?myProfile='.$profileID);
 
-                    Alert::success('Update Berhasil ', 'Terima Kasih')->persistent('Close')->autoclose(3000);
-                    return redirect('panel/myprofile?myProfile='.$profileID);
+                            }
+                        }
                 }
         }else{
             Alert::error('Update Gagal ', 'Hubungi Pihak Terkait')->persistent('Close')->autoclose(3000);

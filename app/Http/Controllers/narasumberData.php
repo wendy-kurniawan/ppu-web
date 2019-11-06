@@ -22,7 +22,7 @@ class narasumberData extends Controller
         ->get();
         // dd($dataNarasumber);
 
-        return view('dashboard/add-dataNarasumber',
+        return view('dashboard/dataNarasumber',
         [
             'dataNarasumber' => $dataNarasumber,
         ]);

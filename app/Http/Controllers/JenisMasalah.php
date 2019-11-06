@@ -19,7 +19,7 @@ class JenisMasalah extends Controller
     {
         //
         $dataMasalah = DB::table('jkmasalah')->get();
-        return view('dashboard/add-JenisMasalah',[
+        return view('dashboard/add-jenisMasalah',[
             'dataMasalah' => $dataMasalah
         ]);
     }

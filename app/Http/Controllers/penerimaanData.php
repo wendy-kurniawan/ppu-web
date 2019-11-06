@@ -69,6 +69,7 @@ class penerimaanData extends Controller
                 'created_at' => $updatedDate
             ]);
         }
+        
         if($err){
             Alert::error('Error Internal Server '.$err, 'Server Down!!!')->persistent('Close')->autoclose(4000);
             return redirect('panel/listpenerimaan/'.$idNarasumber);

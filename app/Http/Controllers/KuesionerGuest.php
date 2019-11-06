@@ -17,7 +17,8 @@ class KuesionerGuest extends Controller
     public function index()
     {
         //
-        return view('pages/kuesionerGuest');
+        // return view('pages/kuesionerGuest');
+        return redirect('/checkkuesioner');
     }
 
     /**
@@ -85,14 +86,21 @@ class KuesionerGuest extends Controller
     public function show($id)
     {
         //
-        $getGuest       = $this->dataregisKegiatan($id);
-        $getKuesioner   = $this->dbKuesioner($getGuest);
-        // dd($getGuest,$getKuesioner);
+        $check = DB::table('regiskegiatan')->where('EMAILPESERTA', '=', $id)->first();
+       
+        if($check == null){
+            return redirect('/checkkuesioner');
+        }else{
+            $getGuest       = $this->dataregisKegiatan($id);
+            $getKuesioner   = $this->dbKuesioner($getGuest);
+            // dd($getGuest,$getKuesioner);
 
-        return view('pages/kuesionerGuest',[
-            'getGuest'  => $getGuest,
-        ]);
-    }
+            return view('pages/kuesionerGuest',[
+                'getGuest'  => $getGuest,
+            ]);
+        }
+        
+     }
     //dataUser
     private function dataregisKegiatan($idGuest){
         return DB::table('regiskegiatan')

@@ -55,7 +55,9 @@ class BidangKeahlian extends Controller
         /*ambil nama kemudian str_replace lalu susbstr kan */
         $namaKeahlian = $request->jenisKeahlian;
         $replacE = str_replace(" ","",$namaKeahlian);
-        $subKalimat =  substr($replacE,0,6);
+        //check if has /
+        $slash = str_replace("/","-",$replacE);
+        $subKalimat =  substr($slash,0,6);
         /*count form DB */
         $lastCount = DB::table('skill')->count();
         $lastNumber = $lastCount + (int) 1;

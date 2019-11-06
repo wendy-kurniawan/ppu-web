@@ -43,7 +43,7 @@ class EventCheckController extends Controller
         /*Check */
         $cek    = DB::table('regiskegiatan') ->whereRaw("EMAILPESERTA = '$emailGuest' AND STATUSKUESIONER= 'UNDONE' ")->count(); 
         if($cek == 0){
-            Alert::info('Email: '.$emailGuest.'Sudah Mengisi Kuesioner', 'Informasi')->persistent('Close')->autoclose(4000);
+            Alert::info('Email: '.$emailGuest.' Tidak Terdata', 'Informasi')->persistent('Close')->autoclose(4000);
             return redirect('checkkuesioner');
         }else{
             Alert::info('Email: '.$emailGuest.' Terdaftar', 'Info')->persistent('Close')->autoclose(4000);

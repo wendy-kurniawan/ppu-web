@@ -53,6 +53,7 @@
         <!-- style CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assetLogin/customStyle.css')}}">
         <!-- responsive CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/responsive.css')}}">
@@ -63,15 +64,9 @@
 @section('contentDashboard')
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="logo-pro">
-                        <a href="{{route('src.index')}}"><img class="main-logo" src="{{asset('assetLogin/img/logo/logo.png')}}" alt="" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        
+        @include('layouts.mobileLogo')        
+        
         <div class="header-advance-area">
             <div class="header-top-area">
                 <div class="container-fluid">
@@ -145,7 +140,7 @@
                                 <img src="{{asset('/assetLogin/img/profile/'.$itemUMKM->GAMBAR)}}" alt="" />
                             </div>
                             <div class="student-dtl">
-                                <h2>{{$itemUMKM->NAMAUMKM}}</h2>
+                                <h2 class="dot">{{$itemUMKM->NAMAUMKM}}</h2>
                                 <p class="dp">{{$itemUMKM->ALAMATUMKM}}</p>
                                 <a href="tel:{{$itemUMKM->NOHPUMKM}}" class="dp-ag"><b>NoTlp: </b> {{$itemUMKM->NOHPUMKM}}</a>
                                 <a href="{{url('panel/detailUMKM/'.$itemUMKM->PROFILE_ID) }}" class="btn btn-primary">Selengkapnya</a>

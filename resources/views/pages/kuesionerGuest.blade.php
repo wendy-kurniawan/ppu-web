@@ -15,8 +15,8 @@
                     <div class="card ranking__card container col-md-12" style="width: 18rem;">
                         <div class="card-body">
                             <h5 class="card-title">Judul Seminar: {{$itemGuest->JUDULACARA}}</h5>
-                            <input type="text" name="emailGuest" value="{{$itemGuest->EMAILPESERTA}}" readonly>
-                            <input type="text" name="idkegiatanGuest" value="{{$itemGuest->IDKEGIATAN}}" readonly>
+                            <input type="hidden" name="emailGuest" value="{{$itemGuest->EMAILPESERTA}}" readonly>
+                            <input type="hidden" name="idkegiatanGuest" value="{{$itemGuest->IDKEGIATAN}}" readonly>
                             @foreach ($itemGuest->totalKuesioner as $itemKuesioner)
                                 <label>{{$itemKuesioner->PERTANYAAN}}</label>
                                 <select class="form-control" name="jwb[]" required>

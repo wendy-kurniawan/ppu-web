@@ -85,7 +85,7 @@ class RegisterController extends Controller
             // $status     = $data['statusUser'];
             // dd($idUser,$namaUser,$password,$email,$status);
 
-              return User::create([
+            return User::create([
             'PROFILEUSERS_ID' => $idUser,
             'USERNAME' => $data['name'],
             'NAMAUMKM' => $data['namaUMKM'],

@@ -53,6 +53,7 @@
         <!-- style CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/style.css')}}">
+        <link rel="stylesheet" href="{{asset('assetLogin/customStyle.css')}}">
         <!-- responsive CSS
             ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/responsive.css')}}">
@@ -63,15 +64,8 @@
 @section('contentDashboard')
     <!-- Start Welcome area -->
     <div class="all-content-wrapper">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <div class="logo-pro">
-                        <a href="{{route('src.index')}}"><img class="main-logo" src="{{asset('assetLogin/img/logo/logo.png')}}" alt="" /></a>
-                    </div>
-                </div>
-            </div>
-        </div>
+        @include('layouts.mobileLogo')
+        
         <div class="header-advance-area">
             <div class="header-top-area">
                 <div class="container-fluid">
@@ -143,10 +137,10 @@
                     <div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
                         <div class="student-inner-std res-mg-b-30">
                             <div class="student-img">
-                                <img src="{{asset('/assetLogin/img/profile/'.$itemNarasumber->GAMBAR)}}" alt="" />
+                                <img src="{{asset('/assetLogin/img/profile/'.$itemNarasumber->GAMBAR)}}" alt="" width="300px" height="211px"/>
                             </div>
                             <div class="student-dtl">
-                                <h2>{{$itemNarasumber->NAMALENGKAP}}</h2>
+                                <h2 class="dot">{{$itemNarasumber->NAMALENGKAP}}</h2>
                                 <a href="tel:{{$itemNarasumber->NOHP}}" class="dp">Tlp: {{$itemNarasumber->NOHP}}</a>
                                 <p class="dp-ag"><b>Tanggal Lahir:</b> {{ \Carbon\Carbon::parse($itemNarasumber->TANGGALLAHIR)->formatLocalized('%d-%B-%Y')}}</p>
                                 <a href="{{url('panel/detailnarasumber?&idNarasumber='.$itemNarasumber->PROFILE_ID.'&'.'idUMKM='.Auth::user()->PROFILEUSERS_ID) }}" class="btn btn-primary">Selengkapnya</a>
