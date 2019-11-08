@@ -1,0 +1,10 @@
+.bgcolor {
+    background-color: red;
+}
+
+.verify {
+    margin-top: 25%;
+    margin: 25% auto; /* Added */
+    float: none; /* Added */
+    margin-bottom: 10px; /* Added */
+}

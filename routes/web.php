@@ -13,13 +13,13 @@
 
 Route::get('/', function () {return view('pages.index');});
 Route::get('/datarangking', 'NarasumberController@index')->name('narasumber.index');
-Auth::routes();
 Route::resource('event', 'EventController');
 Route::resource('eventregister', 'EventRegisterController');
 Route::resource('checkkuesioner', 'EventCheckController');
 Route::resource('kuesioner', 'KuesionerGuest');
 
-Route::middleware('auth')->group(function() {
+Auth::routes(['verify' => true]);
+Route::middleware(['auth','verified'])->group(function() {
     Route::resource('src', 'Dashboard');
     Route::resource('panel/bidangkeahlian', 'BidangKeahlian');
     Route::resource('panel/masalah', 'JenisMasalah');

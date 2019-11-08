@@ -9,6 +9,7 @@
         ============================================ -->
         <link rel="stylesheet" href="{{asset('assetLogin/css/font-awesome.min.css')}}">
         <link rel="stylesheet" href="{{ asset('css/bootstrap/bootstrap.min.css') }}" type="text/css">
+        <link rel="stylesheet" href="{{ asset('css/verify.css') }}" type="text/css">
     <!-- Library Sweetalert
         ============================================ -->
         <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
