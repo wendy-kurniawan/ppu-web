@@ -33,7 +33,7 @@ $(document).ready(function () {
                     domHtml += `
                     <div class="card mx-2 mb-3" style="width: 22rem; box-shadow: 0 10px 10px rgba(0, 0, 0, 0.25)">
                         <p class="card-tag text-white font-weight-bold">${itemEvent.JKKEGIATAN}</p>
-                        <img class="card-img-top" src="${('http://localhost/Project_Web/laravel/project/ppu-web/public/assetLogin/img/kegiatan/'+ itemEvent.GAMBAR)}" alt="Foto Tidak Ada">
+                        <img class="card-img-top" src="${('http://localhost/Project_Web/laravel/project/Development/ppu-web/public/assetLogin/img/kegiatan/' + itemEvent.GAMBAR)}" alt="Foto Tidak Ada">
                         <div class="card-body">
                             <h5 class="card-title text-primary">${itemEvent.JUDULACARA}</h5>
                             <div class="card-author">
@@ -47,23 +47,23 @@ $(document).ready(function () {
                         </div>
                         <div class="card-footer d-flex justify-content-between align-items-center">
                             ${rvcvgetTGLMULAI < currentFormattedDate ?
-                                `<span class="font-weight-bold">Selesai</span>
+                            `<span class="font-weight-bold">Selesai</span>
                                 <span class="disable-links">
                                     <button type="#" class="btn btn-danger" disabled>Pendaftar ditutup</button>   
                                 </span>` : ''}
-                            ${subDateNow == subTGLMULAI ? 
-                                `<span class="font-weight-bold">
-                                Tersisa ${sumDay} Hari
+                            ${subDateNow > subTGLMULAI ?
+                            `<span class="font-weight-bold">
+                                Tersisa ${sumDay} Hari asd
                                 </span>
-                                <a href="#" class="btn btn-primary">Daftar</a>`  
-                                : ""}
-                            ${rvcvgetTGLMULAI > currentFormattedDate ? 
-                                `<span class="font-weight-bold">
+                                <a href="#" class="btn btn-primary">Daftar</a>`
+                            : ""}
+                            ${rvcvgetTGLMULAI > currentFormattedDate ?
+                            `<span class="font-weight-bold">
                                 Tersisa ${sumMonth} Bulan 
                                 ${sumDay}Hari
                             </span>
                             <a href="#" class="btn btn-primary">Daftar</a>`
-                                : ""}
+                            : ""}
                         </div>
                     </div>
                     `;
